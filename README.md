@@ -1,12 +1,12 @@
-# React + Vite
+미로 링크 
+https://miro.com/app/board/uXjVIO90O5g=/?share_link_id=391173475921
+공유문서 링크
+https://docs.google.com/spreadsheets/d/1z1CAkMHo9Ub_DTOXZcw48OdtYGdRu-2EgKroTFuvMos/edit?usp=sharing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+JAVA 버전 : 아마존 corretto 21 LTS
+NodeJS 버전 : 21.15.0 인텔리제이 기본
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+밑에건 필요없을수도 있는데 혹시나해서 넣어둡니다
+--------------------
+NVM 버전 : 1.2.2
+NPM 버전 : 10.7.0
