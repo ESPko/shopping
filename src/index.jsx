@@ -7,15 +7,15 @@ import './ParkES/style.css';
 
 const router = createBrowserRouter([
     {
-        path: "/sandbox",
+        path: "/",
         element: <CheckoutPage />,
     },
     {
-        path: "/sandbox/success",
+        path: "/success",
         element: <SuccessPage />,
     },
     {
-        path: "/sandbox/fail",
+        path: "/fail",
         element: <FailPage />,
     },
 ]);
