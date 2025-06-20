@@ -1,0 +1,55 @@
+export const koreanLocalization = {
+    socialButtonsBlockButton: '{provider}로 계속하기',
+    dividerText: '또는',
+    formFieldLabel__emailAddress: '이메일 주소',
+    formFieldLabel__password: '비밀번호',
+    formFieldInputPlaceholder__emailAddress: '이메일을 입력하세요',
+    formFieldInputPlaceholder__password: '비밀번호를 입력하세요',
+    formButtonPrimary: '로그인',
+    formFieldAction__forgotPassword: '비밀번호를 잊으셨나요?',
+    signIn: {
+        start: {
+            title: '로그인',
+            subtitle: '계정에 로그인하세요',
+            actionText: '계정이 없으신가요?',
+            actionLink: '회원가입하기',
+        },
+    },
+    signUp: {
+        start: {
+            title: '회원가입',
+            subtitle: '새 계정을 만들어보세요',
+            actionText: '이미 계정이 있으신가요?',
+            actionLink: '로그인하기',
+        },
+    },
+    userButton: {
+        action__signOut: '로그아웃',
+        action__manageAccount: '계정 관리',
+    },
+
+    errors: {
+        form_field_required: '이 필드는 반드시 입력해야 합니다.',
+        form_field_invalid_email: '올바른 이메일 주소를 입력해주세요.',
+        form_field_invalid_phone: '유효한 전화번호 형식이 아닙니다.',
+        form_field_invalid_username: '사용자 이름에 사용할 수 없는 문자가 포함되어 있습니다.',
+        form_field_password_too_short: '비밀번호는 최소 8자 이상이어야 합니다.',
+        form_field_passwords_dont_match: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
+        form_field_invalid_verification_code: '입력하신 인증 코드가 올바르지 않습니다.',
+        form_field_too_many_attempts: '너무 많은 시도가 감지되었습니다. 잠시 후 다시 시도해주세요.',
+        form_field_invalid_password: '비밀번호 형식이 올바르지 않습니다.',
+        form_field_email_already_in_use: '이미 사용 중인 이메일 주소입니다.',
+        form_field_username_taken: '이미 사용 중인 사용자 이름입니다.',
+        form_field_password_missing_special_char: '비밀번호에 특수문자가 포함되어야 합니다.',
+        form_field_password_missing_number: '비밀번호에 숫자가 포함되어야 합니다.',
+        form_field_password_missing_uppercase: '비밀번호에 대문자가 포함되어야 합니다.',
+        form_field_password_missing_lowercase: '비밀번호에 소문자가 포함되어야 합니다.',
+        form_field_invalid_date: '유효한 날짜를 입력해주세요.',
+        form_field_invalid_format: '입력 형식이 올바르지 않습니다.',
+        form_field_code_expired: '인증 코드가 만료되었습니다. 다시 요청해주세요.',
+        form_field_invalid_code_format: '인증 코드 형식이 올바르지 않습니다.',
+        form_field_too_short: '입력한 값이 너무 짧습니다.',
+        form_field_too_long: '입력한 값이 너무 깁니다.',
+    },
+
+};
