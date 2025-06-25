@@ -1,8 +1,8 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
-import Dajung from "./JangDJ/Dajung.jsx";
 import Board from "./ParkES/Board.jsx";
-import LoginRoutes from "./Login.jsx";
+import LoginRoutes from "./LoginRoutes.jsx";
+import ProductList from "./JangDJ/ProductList.jsx";
 
 function Home() {
     const navigate = useNavigate();
@@ -18,10 +18,10 @@ function Home() {
                     MainPage
                 </button>
                 <button
-                    onClick={() => navigate('/dajung')}
+                    onClick={() => navigate('/list')}
                     className="w-full px-4 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition"
                 >
-                    Dajung
+                    ProductList
                 </button>
                 <button
                     onClick={() => navigate('/board')}
@@ -43,9 +43,9 @@ function Home() {
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
+            {/*<Route path="/" element={<Home />} />*/}
             <Route path="/main" element={<MainPage />} />
-            <Route path="/dajung" element={<Dajung />} />
+            <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
             <Route path="/login/*" element={<LoginRoutes />} />
         </Routes>
