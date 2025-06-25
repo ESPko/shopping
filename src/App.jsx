@@ -2,7 +2,6 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
 import Dajung from "./JangDJ/Dajung.jsx";
 import Board from "./ParkES/Board.jsx";
-import Login from "./Login.jsx";
 import LoginRoutes from "./Login.jsx";
 
 function Home() {
