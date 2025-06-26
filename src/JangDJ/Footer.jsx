@@ -42,7 +42,7 @@ function Footer() {
                 </div>
             </div>
         {/*    맨 밑*/}
-            <div className="border-t pt-6 py-4 text-center text-xs text-gray-500">
+            <div className="mx-16 border-t pt-6 py-4 text-center text-xs text-gray-500">
                 Hilight Brands is a division within Modern Works. The Diadora trademark, logo and trade dress are used by Modern Works under license from Diadora Company. <strong>© 2025 Hilight Brands</strong>
             </div>
         </footer>
