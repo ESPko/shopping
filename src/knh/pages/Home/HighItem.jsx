@@ -1,10 +1,10 @@
 const HighItem = ({mainContentTit}) => {
-    const highItem = [
+    const HighItem = [
         {
             id: 1,
             img:'',
             name:'',
-            price:,
+            price:'',
 
         }
     ]

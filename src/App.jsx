@@ -41,7 +41,7 @@ function Menu() {
                 </button>
                 <button
                     onClick={() => navigate('/pay')}
-                    className="w-full px-4 py-3 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
+                    className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
                 >
                     Pay
                 </button>
