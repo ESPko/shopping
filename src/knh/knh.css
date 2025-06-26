@@ -1,3 +1,6 @@
+section {
+    max-width: 1440px;
+}
 .search-tag {
     background: #1B3C5C;
     padding: 9px 25px;

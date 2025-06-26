@@ -1,0 +1,70 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import {Autoplay, Pagination, Navigation, Scrollbar} from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
+const MainBanner = () => {
+   const mainBanner = [
+        {
+            id: 1,
+            src: 'https://diadorakorea.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/ee20695737bb681537520a37e299f573.jpg',
+            link: 'https://www.diadorakorea.com/product/promotion.html?cate_no=425',
+            title: 'STYLE IS ALWAYS IN THE GAME',
+            subtitle: '2025 S/S 우먼스 테니스웨어',
+
+
+        },
+        {
+            id: 2,
+            src: 'https://diadorakorea.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/ee9980d8f54a659e69fc9e4f9dc23181.jpg',
+            link: 'https://www.diadorakorea.com/product/promotion.html?cate_no=408',
+            title: 'Out of Home',
+            subtitle: '어디든 떠나보세요, comfy와 함께.',
+        },
+        {
+            id: 3,
+            src: 'https://diadorakorea.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/4371a77c2631eca5c7445ae7c5cd9b4b.jpg',
+            link: 'https://www.diadorakorea.com/product/promotion.html?cate_no=432',
+            title: 'SUMMER VIBE PANTS',
+            subtitle: '액티비티의 경쾌함과 일상의 감각을 담은 디아도라의 여름팬츠',
+        },
+    ];
+
+
+    return (
+        <>
+            <section className="main-banner relative">
+                <Swiper
+                    modules={[Autoplay, Pagination, Navigation, Scrollbar]}
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    scrollbar={{ draggable: true }}
+                    loop={true}
+                    // pagination={{ clickable: true }}
+                    autoplay={{
+                        delay: 3000, // 3초마다 자동 전환
+                        disableOnInteraction: false, // 사용자 조작 후에도 자동 실행 유지
+                    }}
+                >
+                    {mainBanner.map((banner) => (
+                        <SwiperSlide key={banner.id}>
+                                <img src={banner.src}
+                                onClick={() => window.location.href = banner.link}/>
+                            <div className={'main-text absolute bottom-20 left-20 '}>
+                                <h1 className={'main-title text-6xl text-white font-bold pb-4'}>{banner.title}</h1>
+                                <p className={'main-sub text-2xl text-white'}>{banner.subtitle}</p>
+                                <button onClick={() => window.location.href = banner.link}></button>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </section>
+
+        </>
+    )
+}
+export default MainBanner;
