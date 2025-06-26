@@ -4,7 +4,7 @@ import Board from "./ParkES/Board.jsx";
 import LoginRoutes from "./LoginRoutes.jsx";
 import ProductList from "./JangDJ/ProductList.jsx";
 
-function Home() {
+function Menu() {
     const navigate = useNavigate();
 
     return (
@@ -30,11 +30,12 @@ function Home() {
                     Board
                 </button>
                 <button
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate('/')}
                     className="w-full px-4 py-3 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
                 >
                     Login
                 </button>
+
             </div>
         </div>
     );
@@ -43,11 +44,11 @@ function Home() {
 function App() {
     return (
         <Routes>
-            {/*<Route path="/" element={<Home />} />*/}
+            <Route path="/menu" element={<Menu />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
-            <Route path="/login/*" element={<LoginRoutes />} />
+            <Route path="/*" element={<LoginRoutes />} />
         </Routes>
     );
 }

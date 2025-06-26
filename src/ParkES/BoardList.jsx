@@ -12,8 +12,8 @@ const BoardList = () => {
 
     return (
         <div className="w-full">
-            <table className="w-full text-center border-t border-gray-300">
-                <thead className="bg-gray-100">
+            <table className="w-full text-center">
+                <thead className="bg-white border-b border-gray-200">
                 <tr className="h-12">
                     <th>No</th>
                     <th>Product</th>
@@ -36,14 +36,14 @@ const BoardList = () => {
 
                                 {post.name === '판매자' && (
                                     <span className="bg-gray-300 text-white text-xs px-2 py-0.5 rounded-full">
-                                            Re
+                                            RE
                                         </span>
                                 )}
 
                                 <span>{post.title}</span>
 
                                 <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                                        New
+                                        NEW
                                     </span>
                             </div>
                         </td>
