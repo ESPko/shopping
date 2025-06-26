@@ -1,6 +1,8 @@
 import {useState} from "react";
 import '../knh.css'
 
+
+
 // 메뉴 데이터
 const menuData = {
     Women: [
@@ -78,7 +80,7 @@ const Header = ({isDefaultBlack = false}) => {
             }}
         >
             <header
-                className={`w-screen h-[100px] flex items-center justify-between fixed px-8
+                className={`z-50 w-screen h-[100px] flex items-center justify-between fixed px-8
     ${borderStyle} 
     ${hoverActive ? 'bg-white' : ''} transition-colors duration-300`}
             >
