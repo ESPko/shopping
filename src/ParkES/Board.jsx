@@ -16,7 +16,7 @@ function Board() {
 
     return (
         <div>
-            <Header/>
+            <Header isDefaultBlack={true} />
             <div style={{ paddingTop: '120px', paddingLeft: '40px', paddingRight: '40px' }}>
                 {/* 상단 바 */}
                 <div style={{
