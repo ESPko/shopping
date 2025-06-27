@@ -1,13 +1,5 @@
 const HighItem = ({mainContentTit}) => {
-    const highItem = [
-        {
-            id: 1,
-            img:'',
-            name:'',
-            price:,
 
-        }
-    ]
     return (
         <section className={'main-high px-3 pt-40'}>
             <div className={'flex justify-between items-center'}>
