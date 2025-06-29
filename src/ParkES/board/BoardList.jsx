@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BoardList = () => {
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/board')
             .then((res) => setPosts(res.data))
             .catch((err) => console.error(err));
     }, []);
+
+    const handleTitleClick = (post) => {
+        if (post.secret === 0) {
+            navigate(`/boardsecret/${post.id}`);
+        } else {
+            navigate(`/boarddetail/${post.id}`);
+        }
+    };
 
     return (
         <div className="w-full">
@@ -29,10 +39,15 @@ const BoardList = () => {
                         <td className="align-middle">{post.id}</td>
                         <td className="align-middle">{post.product || '-'}</td>
 
-                        {/* 🔒 + Re + Title + New 를 감싸는 flex box */}
+                        {/* 제목 클릭 시 조건에 따라 페이지 이동 */}
                         <td className="align-middle">
-                            <div className="flex items-center justify-center gap-2">
-                                <span className="text-black">🔒</span>
+                            <div
+                                className="flex items-center justify-center gap-2 cursor-pointer"
+                                onClick={() => handleTitleClick(post)}
+                            >
+                                {post.secret === 0 && (
+                                    <span className="text-black">🔒</span>
+                                )}
 
                                 {post.name === '판매자' && (
                                     <span className="bg-gray-300 text-white text-xs px-2 py-0.5 rounded-full">

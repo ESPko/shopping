@@ -1,12 +1,17 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
-import Board from "./ParkES/Board.jsx";
+import Board from "./ParkES/board/Board.jsx";
 import LoginRoutes from "./LoginRoutes.jsx";
 import ProductList from "./JangDJ/ProductList.jsx";
-import {CheckoutPage} from "./ParkES/checkout.jsx";
-import {SuccessPage} from "./ParkES/success.jsx";
-import {FailPage} from "./ParkES/fail.jsx";
+import {CheckoutPage} from "./ParkES/payment/checkout.jsx";
+import {SuccessPage} from "./ParkES/payment/success.jsx";
+import {FailPage} from "./ParkES/payment/fail.jsx";
 import Home from "./JungSY/Home.jsx";
+import Community from "./ParkES/community/Community.jsx";
+import Write from "./ParkES/board/Write.jsx";
+import BoardDetail from "./ParkES/board/BoardDetail.jsx";
+import EditPage from "./ParkES/board/EditPage.jsx";
+import BoardSecret from "./ParkES/board/BoardSecret.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -58,6 +63,13 @@ function App() {
             <Route path="/main" element={<MainPage />} />
             <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
+            <Route path="/boarddetail/:no" element={<BoardDetail />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/write" element={<Write/>} />
+            <Route path="/edit/:no" element={<EditPage/>} />
+            <Route path="/boardsecret/:id" element={<BoardSecret />} />
+
+
             <Route path="/*" element={<LoginRoutes />} />
 
             {/* ✅ /pay 하위 경로 */}
