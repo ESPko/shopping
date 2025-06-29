@@ -24,7 +24,7 @@ function Community() {
     return (
         <div>
             <Header isDefaultBlack={true} />
-            <div style={{ paddingTop: "120px", paddingLeft: "40px", paddingRight: "40px" }}>
+            <div style={{ paddingTop: "120px", paddingLeft: "200px", paddingRight: "200px" }}>
                 {/* 상단 바 */}
                 <div
                     style={{
@@ -43,7 +43,7 @@ function Community() {
                         <button
                             onClick={() => navigate("/community")}
                             style={{
-                                backgroundColor: isCommunityPage ? "#007bff" : "#e0e0e0",
+                                backgroundColor: isCommunityPage ? "#1B3C5C" : "#e0e0e0",
                                 color: isCommunityPage ? "white" : "#333",
                                 borderRadius: "20px",
                                 padding: "6px 16px",
@@ -59,7 +59,7 @@ function Community() {
                         <button
                             onClick={() => navigate("/board")}
                             style={{
-                                backgroundColor: isBoardPage ? "#007bff" : "#e0e0e0",
+                                backgroundColor: isBoardPage ? "#1B3C5C" : "#e0e0e0",
                                 color: isBoardPage ? "white" : "#333",
                                 borderRadius: "20px",
                                 padding: "6px 16px",
@@ -76,7 +76,12 @@ function Community() {
                 {/* 게시판 리스트 */}
                 <CommunityList />
             </div>
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+
+            {/* 페이지네이션 중앙 정렬 (보드페이지도 비슷한 구조이므로 동일하게) */}
+            <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
+                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            </div>
+
             <Footer />
         </div>
     );

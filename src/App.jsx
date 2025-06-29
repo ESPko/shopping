@@ -12,6 +12,11 @@ import Write from "./ParkES/board/Write.jsx";
 import BoardDetail from "./ParkES/board/BoardDetail.jsx";
 import EditPage from "./ParkES/board/EditPage.jsx";
 import BoardSecret from "./ParkES/board/BoardSecret.jsx";
+import MyPoint from "./ParkES/mypage/MyPoint.jsx";
+import MyCoupon from "./ParkES/mypage/MyCoupon.jsx";
+import MyInfo from "./ParkES/mypage/MyInfo.jsx";
+import MyAddr from "./ParkES/mypage/MyAddr.jsx";
+import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -50,6 +55,12 @@ function Menu() {
                 >
                     Pay
                 </button>
+                <button
+                    onClick={() => navigate('/mypoint')}
+                    className="w-full px-4 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
+                >
+                    MyPage
+                </button>
 
             </div>
         </div>
@@ -68,6 +79,11 @@ function App() {
             <Route path="/write" element={<Write/>} />
             <Route path="/edit/:no" element={<EditPage/>} />
             <Route path="/boardsecret/:id" element={<BoardSecret />} />
+            <Route path="/mypoint" element={<MyPoint />} />
+            <Route path="/mycoupon" element={<MyCoupon />} />
+            <Route path="/myinfo" element={<MyInfo />} />
+            <Route path="/myaddr" element={<MyAddr />} />
+            <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
 
 
             <Route path="/*" element={<LoginRoutes />} />
