@@ -14,7 +14,7 @@ const MyInfo = () => {
 
             <div className="max-w-5xl mx-auto px-6 pt-36 pb-16">
                 {/* 상단 네비게이션 */}
-                <div className="flex justify-between items-center mb-6 px-6">
+                <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold">My page</h2>
                     <div className="flex gap-2">
                         {["홈", "주문조회", "활동정보", "혜택정보", "회원정보"].map((item) => {
