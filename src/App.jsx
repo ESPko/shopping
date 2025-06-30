@@ -6,7 +6,7 @@ import ProductList from "./JangDJ/ProductList.jsx";
 import {CheckoutPage} from "./ParkES/checkout.jsx";
 import {SuccessPage} from "./ParkES/success.jsx";
 import {FailPage} from "./ParkES/fail.jsx";
-import Home from "./JungSY/Home.jsx";
+import MyPageRouter from "./JungSY/mypage/router/MyPageRouter.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Menu() {
                     Board
                 </button>
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/auth')}
                     className="w-full px-4 py-3 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
                 >
                     Login
@@ -45,7 +45,12 @@ function Menu() {
                 >
                     Pay
                 </button>
-
+                <button
+                    onClick={() => navigate('/mypage')}
+                    className="w-full px-4 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition"
+                >
+                    Mypage
+                </button>
             </div>
         </div>
     );
@@ -54,11 +59,12 @@ function Menu() {
 function App() {
     return (
         <Routes>
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/main" element={<MainPage />} />
-            <Route path="/list" element={<ProductList/>} />
+            <Route path="/menu" element={<Menu/>}/>
+            <Route path="/main" element={<MainPage/>}/>
+            <Route path="/list" element={<ProductList/>}/>
             <Route path="/board" element={<Board />} />
-            <Route path="/*" element={<LoginRoutes />} />
+            <Route path="/auth/*" element={<LoginRoutes />} />
+            <Route path={'/mypage/*'} element={<MyPageRouter />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />
