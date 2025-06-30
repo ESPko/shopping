@@ -5,6 +5,8 @@ import BestItem from "./BestItem.jsx";
 import '/src/index.css'
 import SubBanner from "./SubBanner.jsx";
 import HighItem from "./HighItem.jsx";
+import MediumBanner from "./MediumBanner.jsx";
+import KeywordItem from "./KeywordItem.jsx";
 
 const MainPage = () => {
     const MainContentTit = [
@@ -30,12 +32,14 @@ const MainPage = () => {
             {/*<Header isDefaultBlack={true} />*/}
 
             {/* 메인 페이지에서만 사용 (hover 작동) */}
-            <Header isDefaultBlack={false} />
-            <MainBanner />
-            <BestItem mainContentTit={MainContentTit} />
-            <SubBanner />
-            <HighItem mainContentTit={MainContentTit} />
-            <Footer />
+                <Header isDefaultBlack={false} />
+                <MainBanner />
+                <BestItem mainContentTit={MainContentTit} />
+                <SubBanner />
+                <HighItem mainContentTit={MainContentTit} />
+                <MediumBanner />
+                <KeywordItem mainContentTit={MainContentTit} />
+                <Footer />
 
         </>
     )
