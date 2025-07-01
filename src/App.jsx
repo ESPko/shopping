@@ -7,6 +7,7 @@ import {CheckoutPage} from "./ParkES/checkout.jsx";
 import {SuccessPage} from "./ParkES/success.jsx";
 import {FailPage} from "./ParkES/fail.jsx";
 import Home from "./JungSY/Home.jsx";
+import ProductDetail from "./JangDJ/ProductDetail.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -45,7 +46,12 @@ function Menu() {
                 >
                     Pay
                 </button>
-
+                <button
+                    onClick={() => navigate('/detail')}
+                    className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
+                >
+                    ProductDetail
+                </button>
             </div>
         </div>
     );
@@ -59,6 +65,7 @@ function App() {
             <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
             <Route path="/*" element={<LoginRoutes />} />
+            <Route path="/detail" element={<ProductDetail />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />

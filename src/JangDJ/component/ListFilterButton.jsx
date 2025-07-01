@@ -9,7 +9,7 @@ function ListFilterButton() {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className="flex gap-2 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100"
+                className="flex gap-2 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100 items-center"
             >
                 필터 <span><SlidersHorizontal className="w-4 h-4" /></span>
             </button>

@@ -2,7 +2,7 @@ import {useState} from "react";
 import {FaHeart, FaRegHeart, FaShoppingBag} from "react-icons/fa";
 import {LucideHeart, ShoppingBag} from 'lucide-react';
 
-function ProductCard({ image, name, price, salePrice}) {
+function ProductCard({ image, name, price, salePrice, onCartClick }) {
 
     const [like, setLike] = useState(false);
 
@@ -14,12 +14,13 @@ function ProductCard({ image, name, price, salePrice}) {
 
     // 장바구니 클릭 이벤트
     const handleAddCart = () => {
+        onCartClick({ image, name, price, salePrice });
         console.log(`${name} 장바구니 담기`);
     };
 
     return (
         <div className="flex flex-col gap-2">
-            <div className="relative bg-[#F7F7F7] rounded-2xl overflow-hidden">
+            <div className="relative bg-[#F7F7F7] rounded-2xl overflow-hidden hover:shadow">
                 <img src={image} alt={name} className="w-full h-auto object-contain" />
             {/*    하트, 장바구니 버튼*/}
                 <div className="absolute top-1.5 right-1 flex gap-1.5 pr-1 ">
