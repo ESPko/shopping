@@ -1,9 +1,9 @@
-import ProductGrid from "./component/ProductGrid.jsx";
-import Footer from "./Footer.jsx";
-import ListFilterButton from "./component/ListFilterButton.jsx";
-import SortDropdown from "./component/SortDropdown.jsx";
+import ProductGrid from "../../component/proList/ProductGrid.jsx";
+import Footer from "../../Footer.jsx";
+import ListFilterButton from "../../component/proList/ListFilterButton.jsx";
+import SortDropdown from "../../component/proList/SortDropdown.jsx";
 import {useState} from "react";
-import Header from "../knh/components/Header.jsx";
+import Header from "../../../knh/components/Header.jsx";
 
 // 상품 더미 데이터
 const sampleProducts = [

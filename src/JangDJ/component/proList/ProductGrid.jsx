@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard.jsx";
 import {useState} from "react";
-import ProductListCart from "./ProductListCart.jsx";
+import ProductListCart from "../../pages/proList/ProductListCart.jsx";
 
 function ProductGrid({products}) {
     const [selectProduct, setSelectProduct] = useState(null);

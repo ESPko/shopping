@@ -1,10 +1,10 @@
 import {useEffect} from "react";
 import {FaSearch} from "react-icons/fa";
 import {FiRotateCw} from "react-icons/fi";
-import FilterPriceSlide from "./component/FilterPriceSlide.jsx";
-import useFilterList from "./useFilterList.js";
-import FilterColor from "./component/FilterColor.jsx";
-import Header from "../knh/components/Header.jsx";
+import FilterPriceSlide from "../../component/proList/FilterPriceSlide.jsx";
+import useFilterList from "../../useFilterList.js";
+import FilterColor from "../../component/proList/FilterColor.jsx";
+import Header from "../../../knh/components/Header.jsx";
 
 function ListFilter({ open, close }) {
     // 상품 리스트 스크롤 막기

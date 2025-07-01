@@ -1,5 +1,5 @@
 import {useState} from "react";
-import ListFilter from "../ListFilter.jsx";
+import ListFilter from "../../pages/proList/ListFilter.jsx";
 import { SlidersHorizontal } from "lucide-react";
 
 function ListFilterButton() {

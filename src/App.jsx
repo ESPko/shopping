@@ -2,12 +2,12 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
 import Board from "./ParkES/Board.jsx";
 import LoginRoutes from "./LoginRoutes.jsx";
-import ProductList from "./JangDJ/ProductList.jsx";
+import ProductList from "./JangDJ/pages/proList/ProductList.jsx";
 import {CheckoutPage} from "./ParkES/checkout.jsx";
 import {SuccessPage} from "./ParkES/success.jsx";
 import {FailPage} from "./ParkES/fail.jsx";
 import Home from "./JungSY/Home.jsx";
-import ProductDetail from "./JangDJ/ProductDetail.jsx";
+import ProductDetail from "./JangDJ/pages/proDetail/ProductDetail.jsx";
 
 function Menu() {
     const navigate = useNavigate();
