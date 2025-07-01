@@ -9,11 +9,11 @@ const QnaSecret = () => {
     const handleConfirm = () => {
         // 이 부분에 비밀번호 검증 로직이 들어갈 수 있음
         // 비밀번호 없이도 관리자면 바로 navigate 가능
-        navigate(`/boarddetail/${id}`);
+        navigate(`/qnadetail/${id}`);
     };
 
     const handleList = () => {
-        navigate('/board');
+        navigate('/qna');
     };
 
     return (

@@ -13,7 +13,7 @@ function Community() {
     const navigate = useNavigate();
 
     const isCommunityPage = location.pathname === "/community";
-    const isBoardPage = location.pathname === "/board";
+    const isBoardPage = location.pathname === "/qna";
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
@@ -57,7 +57,7 @@ function Community() {
 
                         {/* Q&A 버튼 (Qna 페이지로 이동) */}
                         <button
-                            onClick={() => navigate("/board")}
+                            onClick={() => navigate("/qna")}
                             style={{
                                 backgroundColor: isBoardPage ? "#1B3C5C" : "#e0e0e0",
                                 color: isBoardPage ? "white" : "#333",

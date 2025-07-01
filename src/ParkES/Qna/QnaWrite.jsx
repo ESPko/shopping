@@ -24,7 +24,7 @@ function WritePage() {
 
         try {
             // 예시 API 요청
-            const response = await fetch('/api/board', {
+            const response = await fetch('/api/qna', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function WritePage() {
             if (!response.ok) throw new Error('등록 실패');
 
             alert('게시글 등록 완료!');
-            navigate('/board');
+            navigate('/qna');
         } catch (error) {
             alert('등록 중 오류가 발생했습니다.');
             console.error(error);
@@ -53,7 +53,7 @@ function WritePage() {
     };
 
     const handleList = () => {
-        navigate('/board'); // 목록 페이지로 이동
+        navigate('/qna'); // 목록 페이지로 이동
     };
 
     return (

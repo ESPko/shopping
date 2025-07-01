@@ -7,16 +7,16 @@ const QnaList = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/board')
+        axios.get('http://localhost:8080/api/qna')
             .then((res) => setPosts(res.data))
             .catch((err) => console.error(err));
     }, []);
 
     const handleTitleClick = (post) => {
         if (post.secret === 0) {
-            navigate(`/boardsecret/${post.id}`);
+            navigate(`/qnasecret/${post.id}`);
         } else {
-            navigate(`/boarddetail/${post.id}`);
+            navigate(`/qnadetail/${post.id}`);
         }
     };
 

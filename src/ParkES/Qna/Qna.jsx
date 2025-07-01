@@ -12,7 +12,7 @@ function Qna() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const isBoardPage = location.pathname === "/board";
+    const isBoardPage = location.pathname === "/qna";
     const isCommunityPage = location.pathname === "/community";
 
     const handlePageChange = (page) => {
@@ -22,7 +22,7 @@ function Qna() {
     };
 
     const handleWriteClick = () => {
-        navigate('/write');
+        navigate('/qnawrite');
     };
 
     return (
@@ -59,7 +59,7 @@ function Qna() {
                         </button>
 
                         <button
-                            onClick={() => navigate("/board")}
+                            onClick={() => navigate("/qna")}
                             style={{
                                 backgroundColor: isBoardPage ? "#1B3C5C" : "#e0e0e0",
                                 color: isBoardPage ? "white" : "#333",

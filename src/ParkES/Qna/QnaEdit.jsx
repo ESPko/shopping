@@ -25,7 +25,7 @@ function QnaEdit() {
     useEffect(() => {
         // 게시글 데이터 불러오기
         if (no) {
-            axios.get(`http://localhost:8080/api/board/${no}`)
+            axios.get(`http://localhost:8080/api/qna/${no}`)
                 .then(res => {
                     const data = res.data;
                     setTitle(data.title || '');
@@ -40,11 +40,11 @@ function QnaEdit() {
                 .catch(err => {
                     console.error(err);
                     alert('게시글을 불러오는 중 오류가 발생했습니다.');
-                    navigate('/board');
+                    navigate('/qna');
                 });
         } else {
             alert('잘못된 접근입니다.');
-            navigate('/board');
+            navigate('/qna');
         }
     }, [no, navigate]);
 
@@ -56,7 +56,7 @@ function QnaEdit() {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:8080/api/board/${no}`, {
+            await axios.put(`http://localhost:8080/api/qna/${no}`, {
                 title,
                 category: selectedOption,
                 content,
@@ -68,7 +68,7 @@ function QnaEdit() {
             });
 
             alert('게시글이 수정되었습니다.');
-            navigate('/board');
+            navigate('/qna');
         } catch (error) {
             alert('수정 중 오류가 발생했습니다.');
             console.error(error);
@@ -80,7 +80,7 @@ function QnaEdit() {
     };
 
     const handleList = () => {
-        navigate('/board');
+        navigate('/qna');
     };
 
     return (

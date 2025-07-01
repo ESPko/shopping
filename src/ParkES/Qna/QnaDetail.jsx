@@ -12,7 +12,7 @@ function QnaDetail() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/board/${no}`)
+        axios.get(`http://localhost:8080/api/qna/${no}`)
             .then(res => {
                 setPost(res.data);
                 setLoading(false);
@@ -26,9 +26,9 @@ function QnaDetail() {
     const handleDelete = async () => {
         if (!window.confirm('정말 삭제하시겠습니까?')) return;
         try {
-            await axios.delete(`http://localhost:8080/api/board/${no}`);
+            await axios.delete(`http://localhost:8080/api/qna/${no}`);
             alert('게시글이 삭제되었습니다.');
-            navigate('/board');
+            navigate('/qna');
         } catch (error) {
             alert('삭제 중 오류가 발생했습니다.');
             console.error(error);
@@ -36,11 +36,11 @@ function QnaDetail() {
     };
 
     const handleEdit = () => {
-        navigate(`/edit/${no}`); // 수정 페이지로 이동 (작성 페이지 수정 필요)
+        navigate(`/qnaedit/${no}`); // 수정 페이지로 이동 (작성 페이지 수정 필요)
     };
 
     const handleList = () => {
-        navigate('/board');
+        navigate('/qna');
     };
 
     if (loading) {
