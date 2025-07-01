@@ -6,6 +6,10 @@ import ProductList from "./JangDJ/ProductList.jsx";
 import {CheckoutPage} from "./ParkES/payment/checkout.jsx";
 import {SuccessPage} from "./ParkES/payment/success.jsx";
 import {FailPage} from "./ParkES/payment/fail.jsx";
+import ProductList from "./JangDJ/pages/proList/ProductList.jsx";
+import {CheckoutPage} from "./ParkES/checkout.jsx";
+import {SuccessPage} from "./ParkES/success.jsx";
+import {FailPage} from "./ParkES/fail.jsx";
 import Home from "./JungSY/Home.jsx";
 import Community from "./ParkES/community/Community.jsx";
 import Write from "./ParkES/board/Write.jsx";
@@ -18,6 +22,7 @@ import MyInfo from "./ParkES/mypage/MyInfo.jsx";
 import MyAddr from "./ParkES/mypage/MyAddr.jsx";
 import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
 import SearchPage from "./knh/pages/Search/SearchPage.jsx";
+import ProductDetail from "./JangDJ/pages/proDetail/ProductDetail.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -63,6 +68,12 @@ function Menu() {
                     MyPage
                 </button>
 
+                <button
+                    onClick={() => navigate('/detail')}
+                    className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
+                >
+                    ProductDetail
+                </button>
             </div>
         </div>
     );
@@ -90,6 +101,8 @@ function App() {
             <Route path="/auth/*" element={<LoginRoutes />} />
 
             <Route path='/search' element={<SearchPage />} />
+            <Route path="/*" element={<LoginRoutes />} />
+            <Route path="/detail" element={<ProductDetail />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />

@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import ProductList from "./ProductList.jsx";
+import ProductList from "./pages/proList/ProductList.jsx";
 
 function Dajung() {
     return (
