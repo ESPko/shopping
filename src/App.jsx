@@ -7,6 +7,7 @@ import {CheckoutPage} from "./ParkES/checkout.jsx";
 import {SuccessPage} from "./ParkES/success.jsx";
 import {FailPage} from "./ParkES/fail.jsx";
 import Home from "./JungSY/Home.jsx";
+import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -59,6 +60,8 @@ function App() {
             <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
             <Route path="/*" element={<LoginRoutes />} />
+
+            <Route path='/search' element={<SearchPage />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />

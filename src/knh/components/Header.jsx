@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import '../knh.css';
+import SearchBar from "../pages/Search/SearchBar.jsx";
+
+
 
 // 로고 이미지 데이터
 const logoImg = {
@@ -34,8 +37,7 @@ const menuData = {
     ],
 };
 
-// 검색어 키워드
-const searchKeywords = ["발레토", "그랜드 슬램", "러닝", "테니스"];
+
 
 // 카테고리
 const categories = [
@@ -109,6 +111,7 @@ const Header = ({ isDefaultBlack = false }) => {
         ? "border-b border-black"
         : "border-b border-transparent group-hover:border-black transition-colors";
 
+
     return (
         <div
             className="relative group"
@@ -170,32 +173,17 @@ const Header = ({ isDefaultBlack = false }) => {
                         <div className="fixed top-[100px] left-0 w-screen h-[50vh] bg-white z-50 p-8 overflow-y-auto">
                             <div className="max-w-xl mx-auto flex items-center space-x-4">
                                 <div className="relative w-full max-w-xl">
-                                    <input
-                                        type="text"
-                                        placeholder="Search"
-                                        className="w-full border border-gray-300 rounded px-4 py-3 text-lg pr-10"
-                                    />
-                                    <img
-                                        src="/src/assets/icon_search.png"
-                                        alt="search"
-                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                                    />
+                                    <SearchBar />
                                 </div>
                                 <button
                                     onClick={() => setIsSearchOpen(false)}
-                                    className="text-3xl text-gray-500 hover:text-black flex-shrink-0"
+                                    className="text-3xl text-gray-500 hover:text-black flex-shrink-0 pb-20"
                                     aria-label="닫기"
                                 >
                                     &times;
                                 </button>
                             </div>
-                            <div className="flex justify-center gap-3 mt-8">
-                                {searchKeywords.map((keyword, index) => (
-                                    <button key={index} className="search-tag">
-                                        {keyword}
-                                    </button>
-                                ))}
-                            </div>
+
                         </div>
                     )}
                     <a href="/" className="w-[30px] mr-7">
