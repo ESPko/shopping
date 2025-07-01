@@ -1,9 +1,5 @@
 import {useLocation} from "react-router-dom";
-import ProductGrid from "../../../JangDJ/component/ProductGrid.jsx";
-
-import ProductList from "../../../JangDJ/ProductList.jsx";
-import Footer from "../../../JangDJ/Footer.jsx";
-import ListFilterButton from "../../../JangDJ/component/ListFilterButton.jsx";
+import ProductGrid from "../../../JangDJ/component/proList/ProductGrid.jsx";
 
 const SearchList = () => {
     const sampleProducts = [

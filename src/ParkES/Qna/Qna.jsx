@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Pagination from "../../component/Pagination.jsx";
-import BoardList from "./BoardList.jsx";
+import QnaList from "./QnaList.jsx";
 import Footer from "../../JangDJ/Footer.jsx";
 import Header from "../../knh/components/Header.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Board() {
+function Qna() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 20;
 
@@ -76,7 +76,7 @@ function Board() {
                 </div>
 
                 {/* 게시판 리스트 */}
-                <BoardList />
+                <QnaList />
 
                 {/* WRITE 버튼 (오른쪽 정렬) */}
                 <div style={{
@@ -119,4 +119,4 @@ function Board() {
     );
 }
 
-export default Board;
+export default Qna;

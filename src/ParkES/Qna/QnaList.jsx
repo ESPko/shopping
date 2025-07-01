@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const BoardList = () => {
+const QnaList = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
@@ -74,4 +74,4 @@ const BoardList = () => {
     );
 };
 
-export default BoardList;
+export default QnaList;

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "../../knh/components/Header.jsx";
 import Footer from "../../JangDJ/Footer.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
+import TabMenu from "../../JungSY/mypage/components/TabMenu.jsx";
 
 const MyCoupon = () => {
     const navigate = useNavigate();
@@ -22,39 +23,11 @@ const MyCoupon = () => {
 
     return (
         <div>
-            <Header isDefaultBlack={true} />
 
-            <div className="max-w-5xl mx-auto px-6 pt-36 pb-16">
+            <div className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen">
                 {/* 상단 네비게이션 */}
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold">My page</h2>
-                    <div className="flex gap-2">
-                        {["홈", "주문조회", "활동정보", "혜택정보", "회원정보"].map((item) => {
-                            // 이동 경로 지정
-                            let path = "/";
-                            if (item === "혜택정보") path = "/mypoint";
-                            else if (item === "회원정보") path = "/myinfo";
-                            else path = `/${item.toLowerCase()}`; // 필요하면 조정
+                <TabMenu />
 
-                            // 현재 페이지와 같으면 활성 스타일
-                            const isActive = item === currentPage;
-
-                            return (
-                                <span
-                                    key={item}
-                                    onClick={() => navigate(path)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer ${
-                                        isActive
-                                            ? "bg-[#001F3F] text-white"
-                                            : "bg-gray-200 text-gray-700"
-                                    }`}
-                                >
-                {item}
-              </span>
-                            );
-                        })}
-                    </div>
-                </div>
 
                 {/* 구분선 */}
                 <div className="h-[1px] bg-gray-200 mb-6"></div>
@@ -147,7 +120,6 @@ const MyCoupon = () => {
                 </div>
             </div>
 
-            <Footer />
         </div>
     );
 };

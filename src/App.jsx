@@ -1,29 +1,24 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
-import Board from "./ParkES/board/Board.jsx";
+import Qna from "./ParkES/Qna/Qna.jsx";
 import LoginRoutes from "./LoginRoutes.jsx";
-import ProductList from "./JangDJ/ProductList.jsx";
 import {CheckoutPage} from "./ParkES/payment/checkout.jsx";
 import {SuccessPage} from "./ParkES/payment/success.jsx";
 import {FailPage} from "./ParkES/payment/fail.jsx";
-import ProductList from "./JangDJ/pages/proList/ProductList.jsx";
-import {CheckoutPage} from "./ParkES/checkout.jsx";
-import {SuccessPage} from "./ParkES/success.jsx";
-import {FailPage} from "./ParkES/fail.jsx";
-import Home from "./JungSY/Home.jsx";
 import Community from "./ParkES/community/Community.jsx";
-import Write from "./ParkES/board/Write.jsx";
-import BoardDetail from "./ParkES/board/BoardDetail.jsx";
-import EditPage from "./ParkES/board/EditPage.jsx";
-import BoardSecret from "./ParkES/board/BoardSecret.jsx";
+import QnaDetail from "./ParkES/Qna/QnaDetail.jsx";
+import QnaEdit from "./ParkES/Qna/QnaEdit.jsx";
+import QnaSecret from "./ParkES/Qna/QnaSecret.jsx";
 import MyPoint from "./ParkES/mypage/MyPoint.jsx";
 import MyCoupon from "./ParkES/mypage/MyCoupon.jsx";
 import MyInfo from "./ParkES/mypage/MyInfo.jsx";
 import MyAddr from "./ParkES/mypage/MyAddr.jsx";
 import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
-import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 import ProductDetail from "./JangDJ/pages/proDetail/ProductDetail.jsx";
 import MyPageRouter from "./JungSY/mypage/router/MyPageRouter.jsx";
+import ProductList from "./JangDJ/pages/proList/ProductList.jsx";
+import SearchPage from "./knh/pages/Search/SearchPage.jsx";
+import QnaWrite from "./ParkES/Qna/QnaWrite.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -58,17 +53,10 @@ function Menu() {
                 </button>
                 <button
                     onClick={() => navigate('/pay')}
-                    className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
+                    className="w-full px-4 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
                 >
                     Pay
                 </button>
-                <button
-                    onClick={() => navigate('/mypoint')}
-                    className="w-full px-4 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
-                >
-                    MyPage
-                </button>
-
                 <button
                     onClick={() => navigate('/detail')}
                     className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
@@ -92,23 +80,18 @@ function App() {
             <Route path="/" element={<Menu />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/list" element={<ProductList/>} />
-            <Route path="/board" element={<Board />} />
-            <Route path="/boarddetail/:no" element={<BoardDetail />} />
+            <Route path="/qna" element={<Qna />} />
+            <Route path="/qnadetail/:no" element={<QnaDetail />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/write" element={<Write/>} />
-            <Route path="/edit/:no" element={<EditPage/>} />
-            <Route path="/boardsecret/:id" element={<BoardSecret />} />
-            <Route path="/mypoint" element={<MyPoint />} />
+            <Route path="/qnawrite" element={<QnaWrite/>} />
+            <Route path="/qnaedit/:no" element={<QnaEdit/>} />
+            <Route path="/qnasecret/:id" element={<QnaSecret />} />
             <Route path="/mycoupon" element={<MyCoupon />} />
-            <Route path="/myinfo" element={<MyInfo />} />
             <Route path="/myaddr" element={<MyAddr />} />
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
 
 
-            <Route path="/auth/*" element={<LoginRoutes />} />
-
             <Route path='/search' element={<SearchPage />} />
-            <Route path="/*" element={<LoginRoutes />} />
             <Route path="/detail" element={<ProductDetail />} />
             <Route path="/auth/*" element={<LoginRoutes />} />
             <Route path={'/mypage/*'} element={<MyPageRouter />} />

@@ -55,7 +55,7 @@ function Community() {
                             공지사항
                         </button>
 
-                        {/* Q&A 버튼 (Board 페이지로 이동) */}
+                        {/* Q&A 버튼 (Qna 페이지로 이동) */}
                         <button
                             onClick={() => navigate("/board")}
                             style={{

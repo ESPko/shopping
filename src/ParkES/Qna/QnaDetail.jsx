@@ -4,7 +4,7 @@ import Footer from "../../JangDJ/Footer.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
-function BoardDetail() {
+function QnaDetail() {
     const navigate = useNavigate();
     const { no } = useParams();
 
@@ -141,4 +141,4 @@ function BoardDetail() {
     );
 }
 
-export default BoardDetail;
+export default QnaDetail;

@@ -4,8 +4,8 @@ const tabs = [
     { label: "홈", path: "/mypage" },
     { label: "주문조회", path: "/mypage/orders" },
     { label: "활동정보", path: "/mypage/activity" },
-    { label: "혜택정보", path: "/mypage/benefits" },
-    { label: "회원정보", path: "/mypage/userinfo" },
+    { label: "혜택정보", path: "/mypage/mypoint" },
+    { label: "회원정보", path: "/mypage/myinfo" },
 ];
 
 function TabMenu() {

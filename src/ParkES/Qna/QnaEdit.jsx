@@ -4,7 +4,7 @@ import Footer from "../../JangDJ/Footer.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
-function EditPage() {
+function QnaEdit() {
     const navigate = useNavigate();
     const { no } = useParams(); // 게시글 ID
 
@@ -304,4 +304,4 @@ function Dropdown({ options, selectedOption, onOptionClick }) {
     );
 }
 
-export default EditPage;
+export default QnaEdit;

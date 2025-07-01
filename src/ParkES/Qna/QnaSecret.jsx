@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const BoardSecret = () => {
+const QnaSecret = () => {
     const navigate = useNavigate();
     const { id } = useParams(); // 게시글 번호
     const [password, setPassword] = useState('');
@@ -86,4 +86,4 @@ const BoardSecret = () => {
     );
 };
 
-export default BoardSecret;
+export default QnaSecret;

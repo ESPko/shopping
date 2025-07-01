@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../knh/components/Header.jsx";
 import Footer from "../../JangDJ/Footer.jsx";
 import { useNavigate } from "react-router-dom";
+import TabMenu from "../../JungSY/mypage/components/TabMenu.jsx";
 
 const FormRow = ({ label, required, children }) => (
     <div className="flex items-start gap-4">
@@ -18,33 +19,11 @@ const MyAddrUpdate = () => {
 
     return (
         <div>
-            <Header isDefaultBlack={true} />
 
-            <div className="max-w-5xl mx-auto px-6 pt-36 pb-16">
+            <div className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen">
                 {/* 상단 제목 및 탭 */}
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold">My page</h2>
-                    <div className="flex gap-2">
-                        {["홈", "주문조회", "활동정보", "혜택정보", "회원정보"].map((item) => {
-                            const isActive = item === "회원정보";
-                            return (
-                                <span
-                                    key={item}
-                                    onClick={() => {
-                                        if (item === "회원정보") navigate("/myinfo");
-                                        else if (item === "혜택정보") navigate("/mypoint");
-                                        else navigate(`/${item.toLowerCase()}`);
-                                    }}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer ${
-                                        isActive ? "bg-[#1B3C5C] text-white" : "bg-gray-200 text-gray-700"
-                                    }`}
-                                >
-                                    {item}
-                                </span>
-                            );
-                        })}
-                    </div>
-                </div>
+                <TabMenu />
+
 
                 <div className="h-[1px] bg-gray-200 mb-6"></div>
 
@@ -154,7 +133,7 @@ const MyAddrUpdate = () => {
                 </form>
             </div>
 
-            <Footer />
+
         </div>
     );
 };
