@@ -17,6 +17,7 @@ import MyCoupon from "./ParkES/mypage/MyCoupon.jsx";
 import MyInfo from "./ParkES/mypage/MyInfo.jsx";
 import MyAddr from "./ParkES/mypage/MyAddr.jsx";
 import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
+import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -87,6 +88,8 @@ function App() {
 
 
             <Route path="/auth/*" element={<LoginRoutes />} />
+
+            <Route path='/search' element={<SearchPage />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />

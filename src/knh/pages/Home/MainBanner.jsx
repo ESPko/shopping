@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {Autoplay, Pagination, Navigation, Scrollbar} from 'swiper/modules';
+import {Autoplay, Pagination, Navigation} from 'swiper/modules';
 
 import 'swiper/css';
+import '/src/knh/knh.css'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -38,22 +39,25 @@ const MainBanner = () => {
     return (
         <>
             <section className="main-banner relative">
-                <Swiper
-                    modules={[Autoplay, Pagination, Navigation, Scrollbar]}
+                <Swiper className={'relative pb-8 w-full'}
+                    modules={[Autoplay, Pagination, Navigation]}
                     spaceBetween={0}
                     slidesPerView={1}
-                    scrollbar={{ draggable: true }}
+                    pagination={{
+                        type: 'progressbar',
+
+                    }}
                     loop={true}
                     // pagination={{ clickable: true }}
                     autoplay={{
-                        delay: 3000, // 3초마다 자동 전환
-                        disableOnInteraction: false, // 사용자 조작 후에도 자동 실행 유지
+                        delay: 3000,
+                        disableOnInteraction: false,
                     }}
                 >
                     {mainBanner.map((banner) => (
                         <SwiperSlide key={banner.id}>
                                 <img src={banner.src}
-                                onClick={() => window.location.href = banner.link}/>
+                                onClick={() => window.location.href = banner.link} className={'max-w-full mx-full object-cover'} />
                             <div className={'main-text absolute bottom-20 left-20 '}>
                                 <h1 className={'main-title text-6xl text-white font-bold pb-4'}>{banner.title}</h1>
                                 <p className={'main-sub text-2xl text-white'}>{banner.subtitle}</p>
@@ -64,7 +68,9 @@ const MainBanner = () => {
                 </Swiper>
             </section>
 
+
         </>
+
     )
 }
 export default MainBanner;
