@@ -7,10 +7,9 @@ function LoginRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />  {/* /login */}
-            <Route path="auth/kakao/callback" element={<Auth />} />
-            <Route path="auth/naver/callback" element={<Auth />} />
+            <Route path="kakao/callback" element={<Auth />} />
+            <Route path="naver/callback" element={<Auth />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     );
 }

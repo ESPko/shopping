@@ -23,6 +23,7 @@ import MyAddr from "./ParkES/mypage/MyAddr.jsx";
 import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
 import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 import ProductDetail from "./JangDJ/pages/proDetail/ProductDetail.jsx";
+import MyPageRouter from "./JungSY/mypage/router/MyPageRouter.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -74,6 +75,12 @@ function Menu() {
                 >
                     ProductDetail
                 </button>
+                <button
+                    onClick={() => navigate('/mypage')}
+                    className="w-full px-4 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition"
+                >
+                    Mypage
+                </button>
             </div>
         </div>
     );
@@ -103,6 +110,8 @@ function App() {
             <Route path='/search' element={<SearchPage />} />
             <Route path="/*" element={<LoginRoutes />} />
             <Route path="/detail" element={<ProductDetail />} />
+            <Route path="/auth/*" element={<LoginRoutes />} />
+            <Route path={'/mypage/*'} element={<MyPageRouter />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />

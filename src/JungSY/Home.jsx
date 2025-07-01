@@ -9,7 +9,7 @@ function Home() {
     const {isLoggedIn} = useAuthStore();
     const nv = useNavigate();
     const onClickBtn = () => {
-        nv('/profile');
+        nv('/auth/profile');
     };
 
     return (

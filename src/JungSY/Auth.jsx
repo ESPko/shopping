@@ -42,7 +42,7 @@ function Auth() {
                 const res = await axios.get(url);
                 localStorage.setItem('user', JSON.stringify(res.data.user));
                 console.log('로그인 결과:', res.data);
-                nv('/profile');
+                nv('/auth/profile');
             } catch (err) {
                 setError('로그인 실패: ' + err.message);
             }
