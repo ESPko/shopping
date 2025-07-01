@@ -40,10 +40,10 @@ function Menu() {
                     ProductList
                 </button>
                 <button
-                    onClick={() => navigate('/board')}
+                    onClick={() => navigate('/qna')}
                     className="w-full px-4 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition"
                 >
-                    Board
+                    Qna
                 </button>
                 <button
                     onClick={() => navigate('/auth')}
