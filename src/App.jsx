@@ -44,7 +44,7 @@ function Menu() {
                     Board
                 </button>
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/auth')}
                     className="w-full px-4 py-3 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
                 >
                     Login
@@ -70,7 +70,7 @@ function Menu() {
 function App() {
     return (
         <Routes>
-            <Route path="/menu" element={<Menu />} />
+            <Route path="/" element={<Menu />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/list" element={<ProductList/>} />
             <Route path="/board" element={<Board />} />
@@ -86,7 +86,7 @@ function App() {
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
 
 
-            <Route path="/*" element={<LoginRoutes />} />
+            <Route path="/auth/*" element={<LoginRoutes />} />
 
             {/* ✅ /pay 하위 경로 */}
             <Route path="/pay" element={<CheckoutPage />} />
