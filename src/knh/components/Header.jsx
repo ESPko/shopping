@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import '../knh.css';
-import SearchBar from "../pages/Search/SearchBar.jsx";
-
+import SearchBar from "./SearchBar.jsx";
+import { Link } from 'react-router-dom';
 
 
 // 로고 이미지 데이터
@@ -128,9 +128,11 @@ const Header = ({ isDefaultBlack = false }) => {
                     transition-all duration-300
                     ${showHeader ? 'top-0' : '-top-[100px]'}`}
             >
-                <h1>
-                    <img src={logoSrc} alt="Logo" className="w-32 h-auto ml-6 transition" />
-                </h1>
+                <Link to={'/'}>
+                    <h1>
+                        <img src={logoSrc} alt="Logo" className="w-32 h-auto ml-6 transition" />
+                    </h1>
+                </Link>
 
                 <nav className="flex space-x-11">
                     {categories.map((category) =>
@@ -222,3 +224,4 @@ const Header = ({ isDefaultBlack = false }) => {
 };
 
 export default Header;
+

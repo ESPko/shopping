@@ -1,5 +1,5 @@
 import Header from "../../components/Header.jsx";
-import SearchBar from "./SearchBar.jsx";
+import SearchBar from "../../components/SearchBar.jsx";
 import SearchList from "./SearchList.jsx";
 import Footer from "../../../JangDJ/Footer.jsx";
 
