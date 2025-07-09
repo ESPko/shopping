@@ -71,7 +71,7 @@ export function CheckoutPage() {
                 <div id="agreement" className="w-100" />
                 <div className="btn-wrapper w-100">
                     <button
-                        className="btn primary w-100"
+                        className="w-full bg-[#1B3C5C] text-white py-3 mt-6 text-lg rounded"
                         onClick={async () => {
                             try {
                                 /**

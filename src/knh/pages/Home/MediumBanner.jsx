@@ -59,7 +59,7 @@ const MediumBanner = () => {
                             <img
                                 src={product.img}
                                 alt={product.name}
-                                className="w-full object-cover rounded-lg mb-2"
+                                className="  rounded-lg mb-2"
                             />
                             <div className={'text-left'}>
                                 <h3 className="font-semibold text-lg text-white">{product.name}</h3>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import '../knh.css';
 import SearchBar from "./SearchBar.jsx";
 import { Link } from 'react-router-dom';
+import useCartStore from "../Store/useCartStore.jsx";
 
 
 // 로고 이미지 데이터
@@ -111,6 +112,11 @@ const Header = ({ isDefaultBlack = false }) => {
         ? "border-b border-black"
         : "border-b border-transparent group-hover:border-black transition-colors";
 
+    // 장바구니 뱃지
+    // 상품 종류 수 계산 (id 개수)
+    const { cartItems } = useCartStore();
+    const cartCount = cartItems.length;
+
 
     return (
         <div
@@ -188,8 +194,13 @@ const Header = ({ isDefaultBlack = false }) => {
 
                         </div>
                     )}
-                    <a href="/" className="w-[30px] mr-7">
+                    <a href="/cart" className="relative w-[30px] mr-7">
                         <img src={cartIconSrc} alt="cart" className="transition" />
+                        {cartCount > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-[#00883E] text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    {cartCount}
+                </span>
+                        )}
                     </a>
                     <a href="/" className="w-[30px] mr-6">
                         <img src={mypageIconSrc} alt="mypage" className="transition" />

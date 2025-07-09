@@ -19,6 +19,8 @@ import MyPageRouter from "./JungSY/mypage/router/MyPageRouter.jsx";
 import ProductList from "./JangDJ/pages/proList/ProductList.jsx";
 import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 import QnaWrite from "./ParkES/Qna/QnaWrite.jsx";
+import CartPage from "./knh/pages/Cart/CartPage.jsx";
+import OrderPage from "./knh/pages/ Order/OrderPage.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -89,8 +91,8 @@ function App() {
             <Route path="/mycoupon" element={<MyCoupon />} />
             <Route path="/myaddr" element={<MyAddr />} />
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
-
-
+            <Route path='/order' element={<OrderPage />} />
+            <Route path='/cart' element={<CartPage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path="/detail" element={<ProductDetail />} />
             <Route path="/auth/*" element={<LoginRoutes />} />
