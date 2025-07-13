@@ -9,10 +9,6 @@ import Community from "./ParkES/community/Community.jsx";
 import QnaDetail from "./ParkES/Qna/QnaDetail.jsx";
 import QnaEdit from "./ParkES/Qna/QnaEdit.jsx";
 import QnaSecret from "./ParkES/Qna/QnaSecret.jsx";
-import MyPoint from "./ParkES/mypage/MyPoint.jsx";
-import MyCoupon from "./ParkES/mypage/MyCoupon.jsx";
-import MyInfo from "./ParkES/mypage/MyInfo.jsx";
-import MyAddr from "./ParkES/mypage/MyAddr.jsx";
 import MyAddrUpdate from "./ParkES/mypage/MyAddrUpdate.jsx";
 import ProductDetail from "./JangDJ/pages/proDetail/ProductDetail.jsx";
 import MyPageRouter from "./JungSY/mypage/router/MyPageRouter.jsx";
@@ -88,7 +84,6 @@ function App() {
             <Route path="/qnawrite" element={<QnaWrite/>} />
             <Route path="/qnaedit/:no" element={<QnaEdit/>} />
             <Route path="/qnasecret/:id" element={<QnaSecret />} />
-            <Route path="/myaddr" element={<MyAddr />} />
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
             <Route path='/order' element={<OrderPage />} />
             <Route path='/cart' element={<CartPage />} />
