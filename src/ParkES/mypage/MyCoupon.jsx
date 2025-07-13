@@ -1,25 +1,10 @@
 import React from 'react';
-import Header from "../../knh/components/Header.jsx";
-import Footer from "../../JangDJ/Footer.jsx";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import TabMenu from "../../JungSY/mypage/components/TabMenu.jsx";
 
 const MyCoupon = () => {
     const navigate = useNavigate();
-    const location = useLocation();
 
-    // 현재 경로에 따라 currentPage 값 설정
-    // 예를 들어 /myinfo면 "회원정보", /mypoint면 "혜택정보"로 매핑
-    const pathToPageName = {
-        "/": "홈",
-        "/주문조회": "주문조회",
-        "/활동정보": "활동정보",
-        "/mypoint": "혜택정보",
-        "/mycoupon": "혜택정보",  // 추가
-        "/myinfo": "회원정보",
-    };
-    // location.pathname 에서 현재 페이지 이름 가져오기 (없으면 빈 문자열)
-    const currentPage = pathToPageName[location.pathname] || '';
 
     return (
         <div>
@@ -36,11 +21,11 @@ const MyCoupon = () => {
                 <div className="flex justify-center gap-8 text-lg font-medium mb-4">
                     <div
                         className="text-gray-500 cursor-pointer"
-                        onClick={() => navigate('/mypoint')}
+                        onClick={() => navigate('/mypage/mypoint')}
                     >
                         적립금
                     </div>
-                    <div className="relative cursor-pointer" onClick={() => navigate('/mycoupon')}>
+                    <div className="relative cursor-pointer" onClick={() => navigate('/mypage/mycoupon')}>
                         <span>쿠폰</span>
                         <div className="h-1 bg-black mt-1 w-full"></div>
                     </div>

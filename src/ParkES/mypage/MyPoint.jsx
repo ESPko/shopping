@@ -1,23 +1,9 @@
 import React from 'react';
-import Header from "../../knh/components/Header.jsx";
-import Footer from "../../JangDJ/Footer.jsx";
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import TabMenu from "../../JungSY/mypage/components/TabMenu.jsx";
 
 const MyPoint = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-
-    // 현재 경로에 따라 currentPage 값 설정
-    // 예를 들어 /myinfo면 "회원정보", /mypoint면 "혜택정보"로 매핑
-    const pathToPageName = {
-        "/": "홈",
-        "/주문조회": "주문조회",
-        "/활동정보": "활동정보",
-        "/mypoint": "혜택정보",
-        "/mycoupon": "혜택정보",  // 추가
-        "/myinfo": "회원정보",
-    };
 
 
     return (
@@ -32,13 +18,13 @@ const MyPoint = () => {
 
                 {/* 포인트/쿠폰 탭 가운데 정렬 */}
                 <div className="flex justify-center gap-8 text-lg font-medium mb-4">
-                    <div className="relative cursor-pointer" onClick={() => navigate('/mypoint')}>
+                    <div className="relative cursor-pointer" onClick={() => navigate('/mypage/mypoint')}>
                         <span>적립금</span>
                         <div className="h-1 bg-black mt-1 w-full"></div>
                     </div>
                     <div
                         className="text-gray-500 cursor-pointer"
-                        onClick={() => navigate('/mycoupon')}
+                        onClick={() => navigate('/mypage/mycoupon')}
                     >
                         쿠폰
                     </div>

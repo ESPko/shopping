@@ -88,7 +88,6 @@ function App() {
             <Route path="/qnawrite" element={<QnaWrite/>} />
             <Route path="/qnaedit/:no" element={<QnaEdit/>} />
             <Route path="/qnasecret/:id" element={<QnaSecret />} />
-            <Route path="/mycoupon" element={<MyCoupon />} />
             <Route path="/myaddr" element={<MyAddr />} />
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
             <Route path='/order' element={<OrderPage />} />

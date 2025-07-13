@@ -87,7 +87,7 @@ function mypageMainHome() {
 
                 {/* 로그아웃 */}
                 <div className={'text-right pt-4'}>
-                    <button className={`border px-10 py-2 rounded-full font-bold transition ml-4 bg-[#1B3C5C] text-white border-[#1B3C5C]`}>로그아웃</button>
+                    <button className={`border px-10 py-2 rounded-full mb-5 font-bold transition ml-4 bg-[#1B3C5C] text-white border-[#1B3C5C]`}>로그아웃</button>
                 </div>
 
             </main>
