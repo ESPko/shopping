@@ -3,6 +3,8 @@ import ProDeImage from "../../component/preDetail/ProDeImage.jsx";
 import ProDeBuy from "../../component/preDetail/ProDeBuy.jsx";
 import ProDeTap from "../../component/preDetail/ProDeTap.jsx";
 import ProDeInfo from "../../component/preDetail/ProDeInfo.jsx";
+import TopButton from "../../component/TopButton.jsx";
+import Footer from "../../Footer.jsx";
 
 function ProductDetail() {
     const price = 139000;
@@ -11,7 +13,7 @@ function ProductDetail() {
     return (
         <div>
             <Header isDefaultBlack={true} />
-            <div className="pt-28 max-w-[1440px] mx-auto">
+            <div className="pt-28 max-w-[1440px] mx-auto overflow-visible">
                 <div className="grid md:grid-cols-2 gap-10 pt-4 px-24">
                     <ProDeImage />
                     <ProDeBuy name={name} price={price} />
@@ -20,6 +22,7 @@ function ProductDetail() {
                 <ProDeTap />
                 <ProDeInfo />
             </div>
+            <TopButton />
         </div>
     );
 }

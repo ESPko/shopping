@@ -3,9 +3,9 @@ import {create} from "zustand";
 const useProductReview = create((set) => ({
     reviews: [],
     currentPage: 1,
-    totalPage: 5, // 이것도 댓글 수 에 맞게 생성되게 바꿀수 있는지 확인
+    reviewsPerPage: 5, // 페이지당 보여줄 리뷰 갯수
     selectedSort: "latest",
-    photoOnly: false, // 이거 뭔지 확인
+    photoOnly: false, // 포토리뷰 모아보기
 
     setReviews: (data) => set({ reviews: data }),
     setCurrentPage: (page) => set({ currentPage: page }),
