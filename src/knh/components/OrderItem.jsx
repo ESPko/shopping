@@ -4,6 +4,7 @@ const OrderItem = () => {
     const { orderedItems,  itemTotalPrice } = useOrderStore();
     return (
         <div className={'mt-5 mb-3 '}>
+            <h3 className={'border-b pb-1 border-b-black'}>주문상품</h3>
             <div className={'mt-10 mb-3'}>
                 {orderedItems.map((item) => (
                     <div

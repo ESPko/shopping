@@ -17,6 +17,7 @@ import SearchPage from "./knh/pages/Search/SearchPage.jsx";
 import QnaWrite from "./ParkES/Qna/QnaWrite.jsx";
 import CartPage from "./knh/pages/Cart/CartPage.jsx";
 import OrderPage from "./knh/pages/ Order/OrderPage.jsx";
+import OrderCompletePage from "./knh/pages/OrderComplete/OrderCompletePage.jsx";
 
 function Menu() {
     const navigate = useNavigate();
@@ -85,7 +86,6 @@ function App() {
             <Route path="/qnaedit/:no" element={<QnaEdit/>} />
             <Route path="/qnasecret/:id" element={<QnaSecret />} />
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
-            <Route path='/order' element={<OrderPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path="/detail" element={<ProductDetail />} />
@@ -96,6 +96,11 @@ function App() {
             <Route path="/pay" element={<CheckoutPage />} />
             <Route path="/pay/success" element={<SuccessPage />} />
             <Route path="/pay/fail" element={<FailPage />} />
+
+            <Route path='/order' element={<OrderPage />} />
+            <Route path='/order/susccess' element={<OrderCompletePage />} />
+
+
         </Routes>
     );
 }

@@ -103,7 +103,6 @@ const BestItem = ({mainContentTit}) => {
         },
 
     ]
-
     const activeCategory = bestItem.find((cat) => cat.id === activeId);
     const selectItems = activeCategory ? activeCategory.items : [];
     return (
