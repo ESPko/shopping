@@ -1,68 +1,18 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const HighItem = ({ mainContentTit }) => {
-    const highItemData = {
-        moreLink: 'https://www.diadorakorea.com/',
-        items: [
-            {
-                id: 1,
-                img: 'https://www.diadorakorea.com/web/product/medium/202505/162487e48590dd917e809e2bf594c743.jpg',
-                name: '그랜드슬램 에어리 하프 반팔 아노락 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 2,
-                img: 'https://www.diadorakorea.com/web/product/medium/202503/f4ab6f4d8173e675e4ce07b37c71a0c5.jpg',
-                name: '그랜드슬램 에어리 쇼츠 GREEN',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 3,
-                img: 'https://www.diadorakorea.com/web/product/small/202504/0cc654610b0fd8feba88a88b033ce6c4.jpg',
-                name: '그랜드슬램 에어리 하프 반팔 아노락 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 4,
-                img: 'https://www.diadorakorea.com/web/product/medium/202501/81e4016b6883536121c8203d961bc6c2.jpg',
-                name: '그랜드슬램 에어리 하프 반팔 아노락 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 5,
-                img: 'https://www.diadorakorea.com/web/product/medium/202503/f4ab6f4d8173e675e4ce07b37c71a0c5.jpg',
-                name: '그랜드슬램 에어리 하프 반팔 아노락 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 6,
-                img: 'https://www.diadorakorea.com/web/product/medium/202505/162487e48590dd917e809e2bf594c743.jpg',
-                name: '시어서커 반팔 피스테 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 7,
-                img: 'https://www.diadorakorea.com/web/product/small/202504/b49aa0d3f23f0d93b385b7e1122b0f06.jpg',
-                name: '시어서커 반팔 피스테 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-            {
-                id: 8,
-                img: 'https://www.diadorakorea.com/web/product/small/202504/0cc654610b0fd8feba88a88b033ce6c4.jpg',
-                name: '시어서커 반팔 피스테 OFF WHITE',
-                price: 3000,
-                link: '',
-            },
-        ],
-    };
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/products")
+            .then((res) => setItems(res.data))
+            .catch((err) => console.error(err));
+    }, []);
 
     return (
         <section className="main-high px-3 py-40">
+            {/* 상단 제목 영역 */}
             <div className="flex justify-between items-center">
                 <div>
                     {(() => {
@@ -76,7 +26,7 @@ const HighItem = ({ mainContentTit }) => {
                     })()}
                 </div>
                 <a
-                    href={highItemData.moreLink}
+                    href="https://www.diadorakorea.com/"
                     className="border px-10 py-2 rounded-full font-bold text-white bg-[#1B3C5C]"
                 >
                     더보기
@@ -85,10 +35,10 @@ const HighItem = ({ mainContentTit }) => {
 
             {/* 상품 그리드 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
-                {highItemData.items.map((item) => (
+                {items.map((item) => (
                     <a
                         key={item.id}
-                        href={item.link}
+                        href={item.link || "#"}
                         className="bg-[#f7f7f7] rounded-lg overflow-hidden transition text-centers"
                     >
                         <img
