@@ -3,9 +3,15 @@ import Footer from "../../../JangDJ/Footer.jsx";
 import CartItem from "../../components/CartItem.jsx";
 import CartSummary from "./CartSummary.jsx";
 import useCartStore from "../../Store/useCartStore.jsx";
+import {useEffect} from "react";
 
 const CartPage = () => {
-    const { cartItems } = useCartStore();
+    const { cartItems, fetchCartItems } = useCartStore();
+    const userId = 1; // 예시 - 로그인한 사용자 ID를 넣어주세요
+
+    useEffect(() => {
+        fetchCartItems(userId);
+    }, [fetchCartItems, userId]);
 
     return (
         <>
