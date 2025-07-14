@@ -2,8 +2,8 @@ import Header from "../../components/Header.jsx";
 import Footer from "../../../JangDJ/Footer.jsx";
 import {CheckoutPage} from "../../../ParkES/payment/checkout.jsx";
 import OrderList from "./OrderList.jsx";
-import OrderAddr from "./OrderAddr.jsx";
-import OrderSummary from "./OrderSummary.jsx";
+import OrderAddr from "../../components/OrderAddr.jsx";
+import OrderSummary from "../../components/OrderSummary.jsx";
 
 const OrderPage = () =>  {
     return (
