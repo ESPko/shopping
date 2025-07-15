@@ -19,9 +19,11 @@ function Home() {
             const res = await axios.post('http://localhost:8080/api/auth/login', {
                 userId,
                 password
-            });
+            }, {withCredentials: true});
 
             const userData = res.data;
+            console.log(userData);
+
             // 로그인 성공 시
             setUser(userData);            // 전역 상태 저장
             setIsLoggedIn(true);

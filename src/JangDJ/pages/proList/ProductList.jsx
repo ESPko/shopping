@@ -1,89 +1,62 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import ProductGrid from "../../component/proList/ProductGrid.jsx";
 import Footer from "../../Footer.jsx";
 import ListFilterButton from "../../component/proList/ListFilterButton.jsx";
 import SortDropdown from "../../component/proList/SortDropdown.jsx";
-import {useState} from "react";
 import Header from "../../../knh/components/Header.jsx";
 
-// 상품 더미 데이터
-const sampleProducts = [
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-        salePrice: 39000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-    {
-        image: '/images/diadoraProduct.jpg',
-        name: '경량 러닝 볼캡 CHARCOAL GREY',
-        price: 59000,
-    },
-]
-
 function ProductList() {
-
     const [sort, setSort] = useState("new");
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await axios.get("http://localhost:8080/api/products");
+                // 서버에서 product 엔티티 필드에 맞춰서 반환한다고 가정
+                console.log("API Response:", res.data);  // 여기서 데이터 확인
+                setProducts(res.data.map(p => ({
+                    id: p.id,
+                    name: p.name,
+                    price: p.price,
+                    salePrice: p.salePrice,
+                    size: p.size,
+                    color: p.color,
+                    category: p.category,
+                    image: p.infoImage,  // 상품 이미지 URL만 남기고 infoImage는 생략지로 상세 이미지 URL을 임시 사용 (필요시 분    리)
+                })));
+            } catch (err) {
+                console.error("상품 데이터를 불러오는 데 실패했습니다", err);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     return (
         <div>
             <Header isDefaultBlack={true} />
             <div className="pt-28 max-w-[1440px] mx-auto">
-                {/* 선택한 카테고리 뜨게 하는 부분 */}
                 <div className="flex px-4 pt-6 pb-10 font-bold gap-3 items-center">
                     <h2 className="text-xl">Men's Clothing</h2>
                     <p className="text-[#00883F]">:</p>
                     <h2 className="text-xl">아우터</h2>
-                    <p className="text-[#00883F]">:</p>
-                    <button className="relative w-24 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100 font-normal text-gray-500">자켓</button>
-                    <button className="relative w-24 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100 font-normal text-gray-500">베스트</button>
-                    <button className="relative w-24 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100 font-normal text-gray-500">다운&패딩</button>
-                    <button className="relative w-24 text-sm border px-4 py-1.5 rounded-full hover:bg-gray-100 font-normal text-gray-500">플리스</button>
                 </div>
 
                 <div className="flex justify-between items-center p-4">
                     <h2 className="text-3xl">아우터</h2>
                     <div className="flex gap-3">
-                        {/*정렬방식 드롭다운*/}
                         <SortDropdown onChange={(value) => setSort(value)} />
-                        {/*필터 버튼*/}
                         <ListFilterButton />
                     </div>
                 </div>
-                <ProductGrid products={sampleProducts} />
+
+                <ProductGrid products={products} />
             </div>
             <Footer />
         </div>
     );
 }
 
-export default ProductList
+export default ProductList;

@@ -88,7 +88,7 @@ function App() {
             <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/search' element={<SearchPage />} />
-            <Route path="/detail" element={<ProductDetail />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/auth/*" element={<LoginRoutes />} />
             <Route path={'/mypage/*'} element={<MyPageRouter />} />
 

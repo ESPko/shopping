@@ -1,46 +1,53 @@
-import {useState} from "react";
-import {FaHeart, FaRegHeart, FaShoppingBag} from "react-icons/fa";
-import {LucideHeart, ShoppingBag} from 'lucide-react';
+import { useState } from "react";
+import { FaHeart } from "react-icons/fa";
+import { LucideHeart, ShoppingBag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-function ProductCard({ image, name, price, salePrice, onCartClick }) {
-
+function ProductCard({ id, image, name, price, salePrice, onCartClick }) {
     const [like, setLike] = useState(false);
+    const navigate = useNavigate();
 
-    // 찜하기 클릭 이벤트
     const handleLike = () => {
-        setLike(!like); // 찜 버튼 누르면 반대로 상태 바꿔줌
+        setLike(!like);
         console.log(`${name} 찜 상태: ${!like}`);
     };
 
-    // 장바구니 클릭 이벤트
     const handleAddCart = () => {
-        onCartClick({ image, name, price, salePrice });
+        onCartClick({ id, image, name, price, salePrice });
         console.log(`${name} 장바구니 담기`);
     };
 
+    // 이미지 클릭 시 상세 페이지 이동 함수
+    const goToDetail = () => {
+        navigate(`/product/${id}`); // 경로는 라우터 설정에 따라 변경 가능
+    };
+
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 cursor-pointer">
             <div className="relative bg-[#F7F7F7] rounded-2xl overflow-hidden hover:shadow">
-                <img src={image} alt={name} className="w-full h-auto object-contain" />
-            {/*    하트, 장바구니 버튼*/}
+                <img
+                    src={image}
+                    alt={name}
+                    className="w-full h-auto object-contain"
+                    onClick={goToDetail} // 이미지 클릭 시 상세 페이지 이동
+                />
+                {/* 하트, 장바구니 버튼 */}
                 <div className="absolute top-1.5 right-1 flex gap-1.5 pr-1 ">
-                    <button onClick={handleLike} className="p-1">
+                    <button onClick={handleLike} className="p-1" type="button">
                         {like ? (
-                            // 하트 누를 시 빨간색으로 가득차게 변경
                             <FaHeart className="text-red-500" size={23} />
                         ) : (
-                            // 기본 하트는 테두리만 있음
                             <LucideHeart className="text-gray-600" strokeWidth={1.5} size={23} />
                         )}
                     </button>
-                    <button onClick={handleAddCart} className="p-1">
+                    <button onClick={handleAddCart} className="p-1" type="button">
                         <ShoppingBag className="text-gray-600" strokeWidth={1.5} size={23} />
                     </button>
                 </div>
             </div>
 
-        {/*    상품 정보 영역*/}
-            <div className="flex flex-col gap-1 mt-4">
+            {/* 상품 정보 영역 */}
+            <div className="flex flex-col gap-1 mt-4" onClick={goToDetail}>
                 <span className="font-bold">{name}</span>
                 {salePrice ? (
                     <div className="flex items-center gap-2">
@@ -56,4 +63,4 @@ function ProductCard({ image, name, price, salePrice, onCartClick }) {
     );
 }
 
-export default ProductCard
+export default ProductCard;

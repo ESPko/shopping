@@ -11,6 +11,7 @@ function ProductGrid({products}) {
               {products.map((item, index) => (
                 <ProductCard
                   key={index}
+                  id={item.id}                  // id 추가
                   image={item.image}
                   name={item.name}
                   price={item.price}

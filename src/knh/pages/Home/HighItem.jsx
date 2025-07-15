@@ -39,17 +39,17 @@ const HighItem = ({ mainContentTit }) => {
                     <a
                         key={item.id}
                         href={item.link || "#"}
-                        className="bg-[#f7f7f7] rounded-lg overflow-hidden transition text-centers"
+                        className="bg-[#f7f7f7] rounded-lg overflow-hidden transition text-center"
                     >
                         <img
-                            src={item.img}
+                            src={item.infoImage}  // 여기서 infoImage를 이미지 URL로 사용
                             alt={item.name}
                             className="w-full object-cover"
                         />
                         <div className="p-4">
                             <h3 className="text-lg font-semibold">{item.name}</h3>
                             <p className="text-lg font-thin">
-                                {item.price.toLocaleString()}원
+                                {item.price?.toLocaleString()}원
                             </p>
                         </div>
                     </a>
