@@ -49,13 +49,26 @@ const useCartStore = create((set, get) => ({
             // 수량 변경 API 호출
             const res = await axios.put(
                 `http://localhost:8080/api/cart/${user.id}/item/${itemId}`,
-                { quantity: newQty }
+                { quantityDiff: delta }  // quantityDiff로 변경
             );
+
             const updatedItem = res.data;
-            const cartItems = get().cartItems.map(i =>
-                i.id === itemId ? { ...i, quantity: updatedItem.quantity } : i
-            );
-            set({ cartItems });
+
+            if (updatedItem === null) {
+                // 아이템이 삭제되었을 경우 상태에서 해당 아이템을 제거
+                set(state => ({
+                    cartItems: state.cartItems.filter(i => i.id !== itemId)
+                }));
+            } else {
+                // 수량이 변경된 아이템 상태 업데이트
+                set(state => ({
+                    cartItems: state.cartItems.map(i =>
+                        i.id === itemId ? { ...i, quantity: updatedItem.quantity } : i
+                    ),
+                }));
+            }
+            console.log("Updated CartItems:", get().cartItems); // 상태 업데이트 확인
+
         } catch (error) {
             console.error("수량 변경 실패", error);
         }
@@ -69,8 +82,11 @@ const useCartStore = create((set, get) => ({
         try {
             // 아이템 삭제 API 호출
             await axios.delete(`http://localhost:8080/api/cart/${user.id}/item/${itemId}`);
-            const cartItems = get().cartItems.filter(item => item.id !== itemId);
-            set({ cartItems });
+
+            // 상태를 바로 업데이트
+            set(state => ({
+                cartItems: state.cartItems.filter(item => item.id !== itemId),
+            }));
         } catch (error) {
             console.error("아이템 삭제 실패", error);
         }
@@ -82,24 +98,35 @@ const useCartStore = create((set, get) => ({
         if (!user) return;
 
         try {
+            console.log("사이즈 변경 시 호출된 itemId:", itemId, "새로운 사이즈:", newSize);
+
             // 사이즈 변경 API 호출
             const res = await axios.put(
                 `http://localhost:8080/api/cart/${user.id}/item/${itemId}/size`,
-                { selectedSize: newSize }
+                { newSize: newSize }
             );
-            const updatedItem = res.data;
-            const cartItems = get().cartItems.map(i =>
-                i.id === itemId ? { ...i, selectedSize: updatedItem.selectedSize } : i
-            );
-            set({ cartItems });
+
+            console.log("API 응답 데이터:", res.data);  // 응답 확인
+
+            const updatedItem = res.data;  // 변경된 CartItem
+
+            // 상태 업데이트
+            set(state => ({
+                cartItems: state.cartItems.map(i =>
+                    i.id === itemId ? { ...i, selectedSize: updatedItem.selectedSize } : i
+                ),
+            }));
+
+            console.log("사이즈 변경 후 장바구니 상태:", get().cartItems);
         } catch (error) {
             console.error("사이즈 변경 실패", error);
         }
     },
 
+
     // 장바구니에 상품 추가
-    addToCart: async (productId, size, quantity) => {
-        console.log("addToCart called with productId =", productId);
+    addToCart: async (product, size, quantity) => {
+        console.log("addToCart called with productId =", product.productId);  // product.productId 사용
         console.log("size =", size);
         console.log("quantity =", quantity);
 
@@ -113,7 +140,7 @@ const useCartStore = create((set, get) => ({
             // 장바구니에 아이템 추가 API 호출
             await axios.post(
                 `http://localhost:8080/api/cart/${user.id}/item`,
-                { productId, selectedSize: size, quantity },
+                { productId: product.productId, selectedSize: size, quantity: quantity },  // 필요한 값만 전달
                 { headers: { Authorization: `Bearer ${user.token}` } }
             );
             // 추가 후 장바구니 재조회

@@ -6,7 +6,6 @@ import useAuthStore from "../../JungSY/UserAuthStore.js";
 import useCartStore from "./UserCartStore.jsx";
 
 const CartItem = ({ item }) => {
-    console.log("CartItem image URL:", item.info_image);  // info_image 로그 확인
 
     const user = useAuthStore(state => state.user);
     const {

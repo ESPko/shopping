@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
+import useCartStore from "../../components/UserCartStore.jsx";
 
-const CartPop = ({ onClose, item, changeSize, addToCart }) => {
-    const [tempSelectedSize, setTempSelectedSize] = useState(item.selectedSize);
+const CartPop = ({ onClose, item }) => {
+    // item.selectedSize가 null인 경우 기본값으로 'S'를 사용
+    const [tempSelectedSize, setTempSelectedSize] = useState(item.selectedSize || 'S');
+
+    // useCartStore에서 changeSize, addToCart 함수 가져오기
+    const { changeSize, addToCart } = useCartStore();
 
     // 스크롤 잠금
     useEffect(() => {
@@ -13,24 +18,29 @@ const CartPop = ({ onClose, item, changeSize, addToCart }) => {
 
     // 사이즈 변경 핸들러
     const handleSizeChange = (e) => {
+        console.log("Selected Size: ", e.target.value); // 선택된 사이즈 확인
         setTempSelectedSize(e.target.value);
     };
 
     // 기존 상품의 옵션(사이즈)만 변경
     const handleSaveOption = () => {
+        console.log("handleSaveOption called with size:", tempSelectedSize); // tempSelectedSize 값 확인
+
         if (tempSelectedSize !== item.selectedSize) {
-            changeSize(item.id, tempSelectedSize);
+            // 사이즈 변경
+            changeSize(item.id, tempSelectedSize);  // useCartStore의 changeSize 사용
         }
         onClose();
     };
 
     // 동일 상품이라도 사이즈 다르면 새로 추가
     const handleAddToCart = () => {
-        addToCart({
-            ...item,
-            selectedSize: tempSelectedSize,
-            id: Date.now(), // 유일한 ID 생성
-        });
+        console.log("handleAddToCart called with size:", tempSelectedSize); // tempSelectedSize 값 확인
+        console.log("Item:", item);  // item 객체 확인
+
+        // 기존 아이템의 id를 사용하여 사이즈만 변경된 아이템을 추가
+        // addToCart에서 size와 quantity 값을 전달
+        addToCart(item, tempSelectedSize, 1);  // 1은 기본 수량
         onClose();
     };
 
@@ -45,32 +55,31 @@ const CartPop = ({ onClose, item, changeSize, addToCart }) => {
 
                 {/* 상품 정보 */}
                 <div className="mb-4 p-5 border-b">
-                    <h2>선택한 상품 이름</h2>
-                    <div>
-                        <h2 className="text-gray-500">[옵션: {item.name}]</h2>
+                    <h2 className="font-bold text-lg">{item.name}</h2>
+                    <div className="text-sm text-gray-500">[옵션: {item.selectedSize}]</div>
+                    {/* 가격 추가 */}
+                    <div className="mt-4 text-xl font-bold">
+                        가격: {item.price.toLocaleString()} 원
                     </div>
                 </div>
 
                 {/* 사이즈 선택 */}
-                {item.size && item.size.length > 0 && (
-                    <div className="mb-4 p-5">
-                        <label htmlFor="size-select" className="block text-sm font-medium text-gray-700 mb-1">
-                            사이즈
-                        </label>
-                        <select
-                            id="size-select"
-                            value={tempSelectedSize}
-                            onChange={handleSizeChange}
-                            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                        >
-                            {item.size.map((s) => (
-                                <option key={s} value={s}>
-                                    {s}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
+                <div className="mb-4 p-5">
+                    <label htmlFor="size-select" className="block text-sm font-medium text-gray-700 mb-1">
+                        사이즈
+                    </label>
+                    <select
+                        id="size-select"
+                        value={tempSelectedSize}
+                        onChange={handleSizeChange}
+                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                    >
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
 
                 {/* 버튼 영역 */}
                 <div className="flex flex-col p-6 gap-2">
