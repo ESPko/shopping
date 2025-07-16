@@ -1,4 +1,4 @@
-import useProductDetail from "../../useProductDetail.js";
+import useProductDetail from "../../store/useProductDetail.js";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
 
 function ProDeImage() {

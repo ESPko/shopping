@@ -1,4 +1,4 @@
-import useProductDetail from "../../useProductDetail.js";
+import useProductDetail from "../../store/useProductDetail.js";
 import {ShoppingBag} from 'lucide-react';
 import {BsFillLightningFill} from "react-icons/bs";
 

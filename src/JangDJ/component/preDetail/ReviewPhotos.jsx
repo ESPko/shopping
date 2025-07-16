@@ -1,5 +1,5 @@
-import useProductReview from "../../useProductReview.js";
-import usePhotoReviewModal from "../../usePhotoReviewModal.js";
+import useProductReview from "../../store/useProductReview.js";
+import usePhotoReviewModal from "../../store/usePhotoReviewModal.js";
 
 function ReviewPhotos() {
     const { reviews } = useProductReview();
