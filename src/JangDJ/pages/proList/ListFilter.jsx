@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {FaSearch} from "react-icons/fa";
 import {FiRotateCw} from "react-icons/fi";
 import FilterPriceSlide from "../../component/proList/FilterPriceSlide.jsx";
-import useFilterList from "../../useFilterList.js";
+import useFilterList from "../../store/useFilterList.js";
 import FilterColor from "../../component/proList/FilterColor.jsx";
 import Header from "../../../knh/components/Header.jsx";
 

@@ -1,4 +1,4 @@
-import useProductReview from "../../useProductReview.js";
+import useProductReview from "../../store/useProductReview.js";
 
 function ReviewFilters() {
     const {

@@ -1,6 +1,6 @@
-import useProductReview from "../../useProductReview.js";
+import useProductReview from "../../store/useProductReview.js";
 import {useEffect} from "react";
-import usePhotoReviewModal from "../../usePhotoReviewModal.js";
+import usePhotoReviewModal from "../../store/usePhotoReviewModal.js";
 
 function ReviewList() {
     const {

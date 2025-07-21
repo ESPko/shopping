@@ -1,4 +1,4 @@
-import useProDeInfo from "../../useProDeInfo.js";
+import useProDeInfo from "../../store/useProDeInfo.js";
 
 function ProDeExpla() {
     const { images } = useProDeInfo();

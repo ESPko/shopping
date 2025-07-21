@@ -1,4 +1,4 @@
-import usePhotoReviewModal from "../../usePhotoReviewModal.js";
+import usePhotoReviewModal from "../../store/usePhotoReviewModal.js";
 import {FaChevronLeft, FaChevronRight, FaTimes} from "react-icons/fa";
 
 function ProReviewModal() {
