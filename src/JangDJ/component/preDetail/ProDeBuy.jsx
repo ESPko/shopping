@@ -1,8 +1,8 @@
 import React from "react";
-import useProductDetail from "../../useProductDetail.js";
 import { ShoppingBag } from "lucide-react";
 import useAuthStore from "../../../JungSY/UserAuthStore.js";
 import useCartStore from "../../../knh/components/UserCartStore.jsx";
+import useProductDetail from "../../store/useProductDetail.js";
 
 function ProDeBuy({ productId, name, price }) {
     const { selectedSize, setSize, count, addCount, minusCount } = useProductDetail();

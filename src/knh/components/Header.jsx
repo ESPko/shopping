@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-import '../knh.css';
-import SearchBar from "./SearchBar.jsx";
-import { Link } from 'react-router-dom';
-import useCartStore from "../Store/useCartStore.jsx";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../JungSY/UserAuthStore.js";
 
-
-// 로고 이미지 데이터
 const logoImg = {
-    White: [
-        { image: 'https://diadorakorea.com/web/upload/image/logo/logo_wh.png?v=1' }
-    ],
-    Black: [
-        { image: 'https://diadorakorea.com/web/upload/image/logo/m_logo1.png?v=1' }
-    ]
+    White: [{ image: 'https://diadorakorea.com/web/upload/image/logo/logo_wh.png?v=1' }],
+    Black: [{ image: 'https://diadorakorea.com/web/upload/image/logo/m_logo1.png?v=1' }],
 };
-// 메뉴 데이터
+
 const menuData = {
     Women: [
         { title: "아우터", items: ["자켓", "베스트", "다운/패딩", "플리스"] },
@@ -38,9 +30,6 @@ const menuData = {
     ],
 };
 
-
-
-// 카테고리
 const categories = [
     { name: "Women", hasDropdown: true },
     { name: "Men", hasDropdown: true },
@@ -52,25 +41,22 @@ const categories = [
 const Header = ({ isDefaultBlack = false }) => {
     const [activeMenu, setActiveMenu] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
-    const hoverActive = !isDefaultBlack && isHovered;
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [forceBlackStyle, setForceBlackStyle] = useState(false);
     const [showHeader, setShowHeader] = useState(true);
     const [ScrollY, setScrollY] = useState(0);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const navigate = useNavigate();
 
-    // 동적으로 isDefaultBlack 스타일 강제 적용 상태
-    const [forceBlackStyle, setForceBlackStyle] = useState(false);
+    const { isLoggedIn } = useAuthStore();
 
-    // 스크롤 이벤트
-    useEffect(() => {
+    React.useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-
             if (currentScrollY === 0) {
                 setForceBlackStyle(false);
                 setShowHeader(true);
                 return;
             }
-
             if (currentScrollY > ScrollY && currentScrollY > 100) {
                 setShowHeader(false);
                 setForceBlackStyle(false);
@@ -78,23 +64,19 @@ const Header = ({ isDefaultBlack = false }) => {
                 setShowHeader(true);
                 setForceBlackStyle(true);
             }
-
             setScrollY(currentScrollY);
         };
-
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [ScrollY]);
 
-    // 최종 검정 스타일 적용 여부
+    const hoverActive = !isDefaultBlack && isHovered;
     const computedIsDefaultBlack = isDefaultBlack || forceBlackStyle;
-
 
     const logoSrc = computedIsDefaultBlack || hoverActive
         ? logoImg.Black[0].image
         : logoImg.White[0].image;
 
-    // 아이콘 이미지
     const searchIconSrc = computedIsDefaultBlack || hoverActive
         ? "/src/assets/icon_search.png"
         : "/src/assets/icon_search_wh.png";
@@ -112,11 +94,36 @@ const Header = ({ isDefaultBlack = false }) => {
         ? "border-b border-black"
         : "border-b border-transparent group-hover:border-black transition-colors";
 
-    // 장바구니 뱃지
-    // 상품 종류 수 계산 (id 개수)
-    const { cartItems } = useCartStore();
-    const cartCount = cartItems.length;
+    const cartCount = 0;
 
+    const handleMenuItemClick = (categoryName) => {
+        navigate(`/list?category=${encodeURIComponent(categoryName)}`);
+        setActiveMenu(null);
+    };
+
+    const handleCommunityClick = (e) => {
+        e.preventDefault();
+        navigate("/community");
+    };
+
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate("/");
+    };
+
+    const toggleSearch = (e) => {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+    };
+
+    const handleMypageClick = (e) => {
+        e.preventDefault();
+        if (isLoggedIn) {
+            navigate("/mypage");
+        } else {
+            navigate("/auth");
+        }
+    };
 
     return (
         <div
@@ -129,16 +136,16 @@ const Header = ({ isDefaultBlack = false }) => {
         >
             <header
                 className={`z-50 w-screen h-[100px] flex items-center justify-between fixed px-8
-                    ${borderStyle}
-                    ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
-                    transition-all duration-300
-                    ${showHeader ? 'top-0' : '-top-[100px]'}`}
+          ${borderStyle}
+          ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
+          transition-all duration-300
+          ${showHeader ? 'top-0' : '-top-[100px]'}`}
             >
-                <Link to={'/'}>
+                <a href="/" onClick={handleLogoClick}>
                     <h1>
                         <img src={logoSrc} alt="Logo" className="w-32 h-auto ml-6 transition" />
                     </h1>
-                </Link>
+                </a>
 
                 <nav className="flex space-x-11">
                     {categories.map((category) =>
@@ -147,8 +154,8 @@ const Header = ({ isDefaultBlack = false }) => {
                                 key={category.name}
                                 onMouseEnter={() => setActiveMenu(category.name)}
                                 className={`text-xl cursor-pointer transition-colors hover:text-[#00883e] 
-                                    ${textColorClass} 
-                                    ${category.name === "Community" ? "font-normal" : "font-bold"}`}
+                  ${textColorClass} 
+                  ${category.name === "Community" ? "font-normal" : "font-bold"}`}
                             >
                                 {category.name}
                             </div>
@@ -156,9 +163,10 @@ const Header = ({ isDefaultBlack = false }) => {
                             <a
                                 key={category.name}
                                 href={category.link}
+                                onClick={handleCommunityClick}
                                 className={`text-xl cursor-pointer transition-colors hover:text-[#00883e] 
-                                    ${textColorClass} 
-                                    ${category.name === "Community" ? "font-normal" : "font-bold"}`}
+                  ${textColorClass} 
+                  ${category.name === "Community" ? "font-normal" : "font-bold"}`}
                             >
                                 {category.name}
                             </a>
@@ -167,22 +175,13 @@ const Header = ({ isDefaultBlack = false }) => {
                 </nav>
 
                 <div className="flex justify-between">
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setIsSearchOpen((prev) => !prev);
-                        }}
-                        className="w-[30px] mr-7 mt-0.5 relative"
-                    >
+                    <a href="#" onClick={toggleSearch} className="w-[30px] mr-7 mt-0.5 relative">
                         <img src={searchIconSrc} alt="search" className="transition" />
                     </a>
                     {isSearchOpen && (
                         <div className="fixed top-[100px] left-0 w-screen h-[50vh] bg-white z-50 p-8 overflow-y-auto">
                             <div className="max-w-xl mx-auto flex items-center space-x-4">
-                                <div className="relative w-full max-w-xl">
-                                    <SearchBar />
-                                </div>
+                                <input type="text" placeholder="검색..." className="border p-2 w-full" />
                                 <button
                                     onClick={() => setIsSearchOpen(false)}
                                     className="text-3xl text-gray-500 hover:text-black flex-shrink-0 pb-20"
@@ -191,28 +190,26 @@ const Header = ({ isDefaultBlack = false }) => {
                                     &times;
                                 </button>
                             </div>
-
                         </div>
                     )}
-                    <a href="/cart" className="relative w-[30px] mr-7">
+                    <a href="/cart" className="relative w-[30px] mr-7" onClick={(e) => { e.preventDefault(); navigate('/cart'); }}>
                         <img src={cartIconSrc} alt="cart" className="transition" />
                         {cartCount > 0 && (
                             <span className="absolute -top-2 -right-2 bg-[#00883E] text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                    {cartCount}
-                </span>
+                                {cartCount}
+                            </span>
                         )}
                     </a>
-                    <a href="/" className="w-[30px] mr-6">
+                    <a href="/login" className="w-[30px] mr-6" onClick={handleMypageClick}>
                         <img src={mypageIconSrc} alt="mypage" className="transition" />
                     </a>
                 </div>
             </header>
 
-            {/* 드롭다운 메뉴 */}
             {activeMenu && menuData[activeMenu] && (
                 <div className="fixed top-[100px] left-0 w-screen h-[50vh] bg-white z-50 p-8 overflow-y-auto">
                     <div className="grid grid-cols-4 gap-8 mt-2">
-                        {menuData[activeMenu]?.map((section) => (
+                        {menuData[activeMenu].map((section) => (
                             <div key={section.title}>
                                 <h3 className="font-bold mb-3">{section.title}</h3>
                                 <ul className="space-y-1">
@@ -220,6 +217,7 @@ const Header = ({ isDefaultBlack = false }) => {
                                         <li
                                             key={item}
                                             className="hover:underline cursor-pointer hover:text-[#00883e] py-1 text-gray-500"
+                                            onClick={() => handleMenuItemClick(item)}
                                         >
                                             {item}
                                         </li>
@@ -235,4 +233,3 @@ const Header = ({ isDefaultBlack = false }) => {
 };
 
 export default Header;
-

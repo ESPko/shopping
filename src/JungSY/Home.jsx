@@ -105,11 +105,11 @@ function Home() {
                         </a>
                     </div>
 
-                    <div className="text-sm text-right mt-4 text-gray-600">
-                        <a href="#" className="hover:underline">
-                            비회원 주문 조회
-                        </a>
-                    </div>
+                    {/*<div className="text-sm text-right mt-4 text-gray-600">*/}
+                    {/*    <a href="#" className="hover:underline">*/}
+                    {/*        비회원 주문 조회*/}
+                    {/*    </a>*/}
+                    {/*</div>*/}
                 </div>
             </div>
             <Footer />

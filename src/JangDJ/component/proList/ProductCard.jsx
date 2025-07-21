@@ -19,7 +19,7 @@ function ProductCard({ id, image, name, price, salePrice, onCartClick }) {
 
     // 이미지 클릭 시 상세 페이지 이동 함수
     const goToDetail = () => {
-        navigate(`/product/${id}`); // 경로는 라우터 설정에 따라 변경 가능
+        navigate(`/product/${id}`); // 라우터 설정에 따라 경로 변경 가능
     };
 
     return (
@@ -49,14 +49,18 @@ function ProductCard({ id, image, name, price, salePrice, onCartClick }) {
             {/* 상품 정보 영역 */}
             <div className="flex flex-col gap-1 mt-4" onClick={goToDetail}>
                 <span className="font-bold">{name}</span>
-                {salePrice ? (
+                {salePrice != null && price != null ? (
                     <div className="flex items-center gap-2">
                         <span className="text-gray-400 line-through">{price.toLocaleString()}원</span>
-                        <span className="font-bold text-lg text-[#00883F]">{Math.round(((price - salePrice) / price) * 100)}% OFF</span>
+                        <span className="font-bold text-lg text-[#00883F]">
+                            {price ? Math.round(((price - salePrice) / price) * 100) : 0}% OFF
+                        </span>
                         <span className="text-black font-bold text-lg">{salePrice.toLocaleString()}원</span>
                     </div>
-                ) : (
+                ) : price != null ? (
                     <span className="text-black font-bold text-lg">{price.toLocaleString()}원</span>
+                ) : (
+                    <span className="text-gray-500">가격 정보 없음</span>
                 )}
             </div>
         </div>
