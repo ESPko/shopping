@@ -24,12 +24,12 @@ function ReviewSummary() {
     }, [reviews]);
 
     return (
-        <div className="border rounded p-6 mb-8 mx-16">
+        <div className="border rounded p-6 mb-8 mx-16 mobile:mx-0">
             <div className="flex flex-col md:flex-row md:items-center gap-8">
                 {/* 왼쪽: 평균 별점 */}
-                <div className="md:w-1/3 text-center border-r">
+                <div className="md:w-1/3 text-center border-r mobile:border-none">
                     <p className="mb-4">별점</p>
-                    <div className="text-4xl font-bold mb-4">⭐ {averageRating}</div>
+                    <div className="text-4xl font-bold mb-4 mobile:text-2xl">⭐ {averageRating}</div>
                     <p className="text-gray-400 text-sm text-center"><span className="text-black text-lg text-center">{totalCount}</span> 개의 리뷰가 있습니다.</p>
                 </div>
 

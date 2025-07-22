@@ -41,15 +41,15 @@ function ProductCard({ image, name, price, salePrice, onCartClick }) {
 
         {/*    상품 정보 영역*/}
             <div className="flex flex-col gap-1 mt-4">
-                <span className="font-bold">{name}</span>
+                <span className="font-bold mobile:text-sm">{name}</span>
                 {salePrice ? (
-                    <div className="flex items-center gap-2">
-                        <span className="text-gray-400 line-through">{price.toLocaleString()}원</span>
-                        <span className="font-bold text-lg text-[#00883F]">{Math.round(((price - salePrice) / price) * 100)}% OFF</span>
-                        <span className="text-black font-bold text-lg">{salePrice.toLocaleString()}원</span>
+                    <div className="flex items-center gap-2 mobile:block">
+                        <span className="text-gray-400 line-through mobile:text-sm  ">{price.toLocaleString()}원</span>
+                        <span className="font-bold text-lg text-[#00883F] mobile:text-sm mobile:pl-1">{Math.round(((price - salePrice) / price) * 100)}% OFF</span>
+                        <span className="text-black font-bold text-lg mobile:text-base mobile:block">{salePrice.toLocaleString()}원</span>
                     </div>
                 ) : (
-                    <span className="text-black font-bold text-lg">{price.toLocaleString()}원</span>
+                    <span className="text-black font-bold text-lg mobile:text-base">{price.toLocaleString()}원</span>
                 )}
             </div>
         </div>

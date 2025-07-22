@@ -34,9 +34,9 @@ function SearchBar({ initialKeyword = "" }) {
                     />
                 </button>
             </form>
-            <div className="flex justify-center gap-3 mt-8">
+            <div className="flex justify-center gap-3 mt-8 mobile:text-xs mobile:mt-2 mobile:gap-2">
                 {searchKeywords.map((keyword, index) => (
-                    <button key={index} className="search-tag">
+                    <button key={index} className="bg-[#1B3C5C] px-[25px] py-[9px] rounded-full text-white mobile:px-4 mobile:py-2">
                         {keyword}
                     </button>
                 ))}

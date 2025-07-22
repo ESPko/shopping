@@ -31,7 +31,7 @@ const OrderSummary = ({showSavings = true }) => {
                         <span>-{usedPoints.toLocaleString()}원</span>
                     </div>
                 )}
-                <div className="flex justify-between text-lg font-semibold border-t pt-2 pb-10">
+                <div className="flex justify-between text-lg font-semibold border-t pt-2 pb-10 mobile:text-base">
                     <span>총 결제 금액</span>
                     <span className="text-[#1B3C5C]">
                         {totalPayAmount().toLocaleString()}원

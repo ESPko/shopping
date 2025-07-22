@@ -10,8 +10,8 @@ const tabs = [
 
 function TabMenu() {
     return (
-        <div className="flex justify-between items-center mt-8 mb-10">
-            <h2 className="text-3xl font-bold">My page</h2>
+        <div className="flex justify-between items-center mt-8 mb-10 mobile:block mobile:mb-4">
+            <h2 className="text-3xl font-bold mobile:text-2xl">My page</h2>
             <nav className="flex flex-wrap gap-2">
                 {tabs.map(({ label, path }) => (
                     <NavLink
@@ -19,7 +19,7 @@ function TabMenu() {
                         to={path}
                         end
                         className={({ isActive }) =>
-                            `px-4 py-1.5 text-sm font-semibold rounded-full border ${
+                            `px-4 py-1.5 text-sm font-semibold rounded-full border mobile:px-3 mobile:text-xs ${
                                 isActive
                                     ? "bg-[#1B3C5C] text-white"
                                     : "bg-white text-[#1B3C5C] border-[#1B3C5C]"

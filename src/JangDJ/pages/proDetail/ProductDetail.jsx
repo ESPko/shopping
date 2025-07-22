@@ -14,7 +14,7 @@ function ProductDetail() {
         <div>
             <Header isDefaultBlack={true} />
             <div className="pt-28 max-w-[1440px] mx-auto overflow-visible">
-                <div className="grid md:grid-cols-2 gap-10 pt-4 px-24">
+                <div className="grid md:grid-cols-2 gap-10 pt-4 px-24 mobile:block mobile:px-4">
                     <ProDeImage />
                     <ProDeBuy name={name} price={price} />
                 </div>

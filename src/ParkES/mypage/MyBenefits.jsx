@@ -5,13 +5,13 @@ const MyBenefits = () => {
     const [activeTab, setActiveTab] = useState("point"); // 초기 탭
 
     return (
-        <div className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen">
+        <div className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen mobile:pt-10">
             {/* 상단 탭 */}
             <TabMenu />
 
 
             {/* 포인트/쿠폰 탭 */}
-            <div className="flex justify-center gap-8 text-lg font-medium mb-4">
+            <div className="flex justify-center gap-8 text-lg font-medium mb-4 mobile:text-sm">
                 <div
                     className={`cursor-pointer ${activeTab === "point" ? "text-black font-bold border-b-2 border-black" : "text-gray-500"}`}
                     onClick={() => setActiveTab("point")}
@@ -34,11 +34,11 @@ const MyBenefits = () => {
                     <div className="h-px bg-gray-200 mb-6"></div>
 
                     <div className="text-center mb-1 text-sm text-gray-500">사용가능 적립금</div>
-                    <div className="text-center text-3xl font-bold mb-6">3,000원</div>
+                    <div className="text-center text-3xl font-bold mb-6 mobile:text-xl">3,000원</div>
 
                     <div className="h-px bg-gray-200 mb-6"></div>
 
-                    <div className="grid grid-cols-4 text-center text-sm text-gray-500 mb-2">
+                    <div className="grid grid-cols-4 text-center text-sm text-gray-500 mb-2 mobile:text-xs">
                         <div>총 적립금</div>
                         <div>사용된 적립금</div>
                         <div>미가용 적립금</div>
@@ -60,7 +60,7 @@ const MyBenefits = () => {
 
                     <div className="h-px bg-gray-200 mb-3"></div>
 
-                    <div className="grid grid-cols-4 text-sm mb-1">
+                    <div className="grid grid-cols-4 text-sm mb-1 mobile:text-xs">
                         <div>2025-06-20</div>
                         <div className="font-bold">3,000원</div>
                         <div className="text-gray-600"> </div>

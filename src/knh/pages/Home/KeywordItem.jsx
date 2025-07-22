@@ -90,14 +90,14 @@ const KeywordItem = ({ mainContentTit }) => {
     const activeCategory = keywordItem.find((cat) => cat.id === activeId);
     const selectItems = activeCategory ? activeCategory.items : [];
     return (
-        <section className="main-keyword px-3 py-40">
+        <section className="main-keyword px-3 py-40 mobile:py-10">
             <div>
                 {(() => {
                     const item = mainContentTit.find((content) => content.id === 3);
                     return item ? (
                         <div key={item.id}>
-                            <h1 className="text-4xl font-[700]">{item.title}</h1>
-                            <p className="text-lg font-thin">{item.subtitle}</p>
+                            <h1 className="text-4xl font-[700] mobile:text-2xl">{item.title}</h1>
+                            <p className="text-lg font-thin mobile:text-base">{item.subtitle}</p>
                         </div>
                     ) : null;
                 })()}
@@ -107,7 +107,7 @@ const KeywordItem = ({ mainContentTit }) => {
                     <button
                         key={cate.id}
                         onClick={() => setActiveId(cate.id)}
-                        className={`text-2xl mb-5 px-2 pb-1 pt-5 mr-4 
+                        className={`text-2xl mb-5 px-2 pb-1 pt-5 mr-4 mobile:text-base
             ${activeId === cate.id ? 'border-b-2 border-b-black font-bold' : ''}
           `}
                     >{cate.title}

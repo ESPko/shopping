@@ -106,15 +106,15 @@ const BestItem = ({mainContentTit}) => {
     const activeCategory = bestItem.find((cat) => cat.id === activeId);
     const selectItems = activeCategory ? activeCategory.items : [];
     return (
-        <section className={'main-best pt-40'}>
-            <div className={'flex justify-between items-center px-3'}>
+        <section className={'main-best pt-40 mobile:pt-10'}>
+            <div className={'flex justify-between items-center px-3 mobile:block'}>
                 <div>
                     {(() => {
                         const item = mainContentTit.find((content) => content.id === 1);
                         return item ? (
                             <div key={item.id}>
-                                <h1 className={'text-4xl font-[700]'}>{item.title}</h1>
-                                <p className={'text-lg font-thin'}>{item.subtitle}</p>
+                                <h1 className={'text-4xl font-[700] mobile:text-2xl'}>{item.title}</h1>
+                                <p className={'text-lg font-thin mobile:text-base'}>{item.subtitle}</p>
                             </div>
                         ) : null;
                     })()}
@@ -124,7 +124,7 @@ const BestItem = ({mainContentTit}) => {
                         <button
                         key={cate.id}
                         onClick={() => setActiveId(cate.id)}
-                        className={`border px-10 py-2 rounded-full font-bold transition ml-4
+                        className={`border px-10 py-2 rounded-full font-bold transition ml-4 mobile:text-sm mobile:ml-1 mobile:px-5 mobile:py-2
             ${activeId === cate.id ? 'bg-[#1B3C5C] text-white' : 'bg-white text-[#1B3C5C] border-[#1B3C5C]'}
           `}
                         >{cate.title}

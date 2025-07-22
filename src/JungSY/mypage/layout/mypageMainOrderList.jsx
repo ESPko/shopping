@@ -93,7 +93,7 @@ function mypageMainOrderList() {
 
 
                 {/* 테이블 헤더 */}
-                <div className="grid grid-cols-4 text-center bg-gray-100 py-2 font-semibold border border-gray-300 text-sm">
+                <div className="grid grid-cols-4 text-center bg-gray-100 py-2 font-semibold border border-gray-300 text-sm mobile:text-xs">
                     <div>주문일자 [주문번호]</div>
                     <div>상품</div>
                     <div>주문처리상태</div>

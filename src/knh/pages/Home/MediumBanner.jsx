@@ -50,16 +50,16 @@ const MediumBanner = () => {
             <div className={'w-5/6'}></div>
             <div className={'ml-auto mr-10 max-w-[820px]'}>
                 <div className={'p-6 rounded-lg overflow-hidden'}>
-                    <h1 className={'text-white text-4xl font-bold pb-2'}>{mediumBanner.title}</h1>
-                    <p className={'text-white text-2xl'}>{mediumBanner.subtitle}</p>
+                    <h1 className={'text-white text-4xl font-bold pb-2 mobile:text-2xl'}>{mediumBanner.title}</h1>
+                    <p className={'text-white text-2xl mobile:text-base'}>{mediumBanner.subtitle}</p>
                 </div>
-                <div className="flex gap-6 w-full p-6 rounded-lg overflow-hidden">
+                <div className="flex gap-6 w-full p-6 rounded-lg overflow-hidden mobile:p-0 mobile:flex-wrap">
                     {mediumBanner.products.map((product) => (
                         <a key={product.id} href={product.link} className="text-center">
                             <img
                                 src={product.img}
                                 alt={product.name}
-                                className="  rounded-lg mb-2"
+                                className="rounded-lg mb-2"
                             />
                             <div className={'text-left'}>
                                 <h3 className="font-semibold text-lg text-white">{product.name}</h3>

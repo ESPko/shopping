@@ -3,6 +3,7 @@ import '../knh.css';
 import SearchBar from "./SearchBar.jsx";
 import { Link } from 'react-router-dom';
 import useCartStore from "../Store/useCartStore.jsx";
+import MobileMenu from "./MobileMenu.jsx";
 
 
 // 로고 이미지 데이터
@@ -127,8 +128,11 @@ const Header = ({ isDefaultBlack = false }) => {
                 setActiveMenu(null);
             }}
         >
+            <div className="mobile:block tablet:block hidden">
+                <MobileMenu />
+            </div>
             <header
-                className={`z-50 w-screen h-[100px] flex items-center justify-between fixed px-8
+                className={`hidden desktop:flex z-50 w-screen h-[100px] items-center justify-between fixed px-8
                     ${borderStyle}
                     ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
                     transition-all duration-300

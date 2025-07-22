@@ -4,7 +4,7 @@ import TabMenu from "../components/TabMenu.jsx";
 function mypageMainHome() {
     return (
         <>
-            <main className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen">
+            <main className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen mobile:pt-10">
                 {/* 제목 및 네비게이션 */}
                 <TabMenu />
 
@@ -15,13 +15,13 @@ function mypageMainHome() {
                 </div>
 
                 {/* 적립금, 쿠폰 */}
-                <div className="border-b py-7 flex gap-8">
-                    <div className="flex flex-1 items-center">
-                        <strong className="font-semibold w-40">적립금</strong>
+                <div className="border-b py-7 flex gap-8 mobile:gap-0 mobile:py-2">
+                    <div className="flex flex-1 items-center mobile:block">
+                        <strong className="font-semibold w-40 mobile:pr-2">적립금</strong>
                         <a href="#" className="text-[#1B3C5C] font-medium text-left flex-1">3,000원</a>
                     </div>
-                    <div className="flex flex-1 items-center">
-                        <strong className="font-semibold w-40">쿠폰</strong>
+                    <div className="flex flex-1 items-center mobile:block">
+                        <strong className="font-semibold w-40 mobile:pr-2">쿠폰</strong>
                         <a href="#" className="text-[#1B3C5C] font-medium text-left flex-1">1장</a>
                     </div>
                 </div>
@@ -29,33 +29,33 @@ function mypageMainHome() {
 
                 {/* 메뉴 블럭 */}
                 <div className="grid md:grid-cols-2 gap-6 border-b py-7">
-                    <div className={'flex flex-1 items-center'}>
+                    <div className={'flex flex-1 items-center mobile:block'}>
                         <strong className="font-semibold w-40">주문조회</strong>
-                        <div className="flex flex-1 gap-4">
+                        <div className="flex flex-1 gap-4  mobile:pt-1">
                             <a href="#" className="hover:font-bold">주문내역</a>
                             <a href="#" className="hover:font-bold">교환/반품조회</a>
                         </div>
                     </div>
-                    <div className={'flex flex-1 items-center'}>
+                    <div className={'flex flex-1 items-center mobile:block'}>
                         <strong className="font-semibold w-40">활동정보</strong>
-                        <div className="flex flex-1 gap-4">
+                        <div className="flex flex-1 gap-4 mobile:pt-1">
                             <a href="#" className="hover:font-bold">관심상품</a>
                             <a href="#" className="hover:font-bold">리뷰</a>
                             <a href="#" className="hover:font-bold">Q&A</a>
                         </div>
                     </div>
-                    <div className={'flex flex-1 items-center'}>
+                    <div className={'flex flex-1 items-center mobile:block'}>
                         <strong className="font-semibold w-40">혜택정보</strong>
-                        <div className="flex flex-1 gap-4">
+                        <div className="flex flex-1 gap-4 mobile:pt-1">
                             <a href="#" className="hover:font-bold">적립금</a>
                             <a href="#" className="hover:font-bold">예치금</a>
                             <a href="#" className="hover:font-bold">쿠폰</a>
                             <a href="#" className="hover:font-bold">회원혜택안내</a>
                         </div>
                     </div>
-                    <div className={'flex flex-1 items-center'}>
+                    <div className={'flex flex-1 items-center mobile:block'}>
                         <strong className="font-semibold w-40">회원정보</strong>
-                        <div className="flex flex-1 gap-4">
+                        <div className="flex flex-1 gap-4 mobile:pt-1">
                             <a href="#" className="hover:font-bold">회원정보수정</a>
                             <a href="#" className="hover:font-bold">배송주소록관리</a>
                         </div>
@@ -63,7 +63,7 @@ function mypageMainHome() {
                 </div>
 
                 {/* 주문 상태 */}
-                <div className="grid md:grid-cols-2 text-sm border-b border-gray-300">
+                <div className="grid md:grid-cols-2 text-sm border-b border-gray-300 mobile:border-none">
                     {["입금전", "배송준비중", "배송중", "배송완료"].map((label, index) => {
                         const isTop = index < 2;
                         const isLeft = index % 2 === 0;
@@ -72,6 +72,7 @@ function mypageMainHome() {
                             <div
                                 key={index}
                                 className={`flex flex-1 items-center py-3 h-44 text-sm
+                                mobile:border-none mobile:pl-0 mobile:h-20
                                   ${isLeft ? "border-r" : ""}
                                   ${isTop ? "border-b" : ""}
                                   border-gray-300

@@ -14,9 +14,9 @@ function ProDeBuy({ name, price }) {
     const sizes = ["S", "M", "L", "XL"];
 
     return (
-        <div className="pl-8 pt-10">
+        <div className="pl-8 pt-10 mobile:pl-0">
         {/*    상품명, 가격*/}
-            <h2 className="text-2xl font-bold mb-5">{name}</h2>
+            <h2 className="text-2xl font-bold mb-5 mobile:text-xl mobile:mb-2">{name}</h2>
             <p className="text-xl font-bold mb-8">{price.toLocaleString()} 원</p>
 
         {/*    사이즈 */}
@@ -50,7 +50,7 @@ function ProDeBuy({ name, price }) {
                 <p className="font-semibold">
                     총 결제금액
                 </p>
-                <p className="font-bold text-2xl">
+                <p className="font-bold text-2xl mobile:text-xl">
                     {(price * count).toLocaleString()} 원
                 </p>
             </div>
@@ -58,11 +58,11 @@ function ProDeBuy({ name, price }) {
 
         {/*    버튼 */}
             <div className="flex gap-4">
-                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#A0A0A0] rounded-full text-white">
+                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#A0A0A0] rounded-full text-white mobile:text-sm">
                     <ShoppingBag />
                     장바구니
                 </button>
-                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#1B3C5C] text-white rounded-full">
+                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#1B3C5C] text-white rounded-full mobile:text-sm">
                     바로구매
                 </button>
             </div>

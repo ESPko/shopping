@@ -1,7 +1,7 @@
 import React from "react";
 
 const FormRow = ({ label, required, children }) => (
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-4 mobile:block">
         <label className="w-32 text-gray-700 mt-2">
             {label}
             {required && <span className="text-blue-600">*</span>}
@@ -148,13 +148,13 @@ const MyInfoForm = () => {
             <div className="flex justify-center gap-4 mt-10">
                 <button
                     type="submit"
-                    className="bg-[#1B3C5C] text-white font-semibold px-8 py-3 rounded-md"
+                    className="bg-[#1B3C5C] text-white font-semibold px-8 py-3 rounded-md mobile:text-xs mobile:px-5"
                 >
                     회원정보 수정
                 </button>
                 <button
                     type="button"
-                    className="border border-[#1B3C5C] text-black font-semibold px-8 py-3 rounded-md bg-white"
+                    className="border border-[#1B3C5C] text-black font-semibold px-8 py-3 rounded-md bg-white mobile:text-xs mobile:px-5"
                 >
                     회원탈퇴
                 </button>

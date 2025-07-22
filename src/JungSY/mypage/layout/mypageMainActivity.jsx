@@ -6,7 +6,7 @@ function mypageMainActivity() {
 
     return (
         <>
-            <main className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen">
+            <main className="pt-[120px] max-w-4xl mx-auto px-4 text-gray-800 text-sm min-h-screen mobile:pt-10">
                 <TabMenu />
 
                 {/* 중단 탭 메뉴 */}
@@ -32,26 +32,26 @@ function mypageMainActivity() {
                         {/* 상품 항목 */}
                         <div className="flex items-center justify-between border-b py-4">
                             {/* 체크박스 + 이미지 */}
-                            <div className="flex items-start gap-3">
+                            <div className="flex items-start gap-3 ">
                                 <input type="checkbox" className="self-center" />
                                 <img
                                     src="/images/diadoraProduct.jpg"
                                     alt="관심상품"
-                                    className="w-32 h-32 object-cover"
+                                    className="w-32 h-32 object-cover mobile:w-20 mobile:h-20"
                                 />
                             </div>
 
                             {/* 상품정보 */}
                             <div className="flex items-start">
                                 <div>
-                                    <div className="font-semibold mb-1 text-lg">경량 러닝 볼캡 CHARCOAL GREY</div>
+                                    <div className="font-semibold mb-1 text-lg mobile:text-xs mobile:w-20">경량 러닝 볼캡 CHARCOAL GREY</div>
                                     <a href="#" className="text-xs underline text-gray-500 hover:text-black transition">옵션변경</a>
                                 </div>
                             </div>
 
                             {/* 가격 */}
                             <div className="flex items-start">
-                                <div className="text-base font-semibold">59,000원</div>
+                                <div className="text-base font-semibold mobile:text-sm">59,000원</div>
                             </div>
 
                             {/* 버튼들 */}

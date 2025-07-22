@@ -13,16 +13,16 @@ function ProDeImage() {
 
     return (
         <div>
-            <div className="flex gap-4 mb-4">
+            <div className="flex gap-4 mb-4 mobile:block">
                 {/*썸네일 사진 세로 리스트*/}
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 mobile:flex-row mobile:pb-5 mobile:justify-center mobile:gap-2 ">
                     {images.map((img, idx) => (
                         <img
                             key={idx}
                             src={img}
                             alt={`썸네일-${idx}`}
                             onClick={() => setCurrentImg(idx)}
-                            className={`w-20 h-20 object-cover rounded cursor-pointer ${currentImg === idx ? "ring-2 ring-gray-300" : ""}`}
+                            className={`w-20 h-20 object-cover rounded cursor-pointer mobile:w-14 mobile:h-14 ${currentImg === idx ? "ring-2 ring-gray-300" : ""}`}
                         />
                     ))}
                 </div>

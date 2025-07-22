@@ -13,7 +13,7 @@ const MyInfoTabs = () => {
             <div className="h-[1px] bg-gray-200 mb-6"></div>
 
             {/* 탭 메뉴 */}
-            <div className="flex justify-center gap-8 text-lg font-medium mb-4">
+            <div className="flex justify-center gap-8 text-lg font-medium mb-4 mobile:text-sm">
                 {["회원정보수정", "배송주소록관리"].map((tab) => {
                     const selected = activeTab === tab;
                     return (

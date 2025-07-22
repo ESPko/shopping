@@ -29,17 +29,16 @@ function ProQna() {
 
     return (
         <div>
-            <Header isDefaultBlack={true} />
 
             {/* 메인 컨텐츠 */}
-            <div style={{ paddingLeft: '200px', paddingRight: '200px' }}>
+            <div className={'pl-[200px] pr-[200px] mobile:pl-0 mobile:pr-0'}>
 
                 {/* 상단 바 */}
                 <div style={{marginBottom: '20px', textAlign: 'center'}}>
-                    <h3 className="text-4xl font-black mb-8 text-center">QnA</h3>
+                    <h3 className="text-4xl font-black mb-8 text-center mobile:text-2xl mobile:mt-10">QnA</h3>
                 </div>
                 {/* 게시판 리스트 */}
-                <div className="mx-16">
+                <div className="mx-16 mobile:mx-4">
                     <QnaList />
                 </div>
 

@@ -17,20 +17,20 @@ const QnaSecret = () => {
     };
 
     return (
-        <div style={{ maxWidth: '500px', margin: '100px auto', padding: '20px' }}>
+        <div className={'my-[100px] mx-auto mobile:my-10'} style={{ maxWidth: '500px', padding: '20px'}}>
             <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>
                 Q&A
             </h2>
 
             <hr style={{ marginBottom: '20px' }} />
 
-            <p style={{ textAlign: 'center', fontSize: '18px', marginBottom: '10px' }}>
+            <p className={'mobile:text-base'} style={{ textAlign: 'center', fontSize: '18px', marginBottom: '10px' }}>
                 게시글 보기
             </p>
-            <p style={{ textAlign: 'center', color: '#666', marginBottom: '6px' }}>
+            <p className={'mobile:text-sm'} style={{ textAlign: 'center', color: '#666', marginBottom: '6px' }}>
                 이 글은 비밀글입니다. 비밀번호를 입력하여 주세요.
             </p>
-            <p style={{ textAlign: 'center', color: '#999', marginBottom: '20px' }}>
+            <p className={'mobile:text-sm'} style={{ textAlign: 'center', color: '#999', marginBottom: '20px' }}>
                 관리자는 확인 버튼만 누르시면 됩니다.
             </p>
 
@@ -54,7 +54,7 @@ const QnaSecret = () => {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-                <button
+                <button className={'mobile:text-sm'}
                     onClick={handleList}
                     style={{
                         border: '1px solid black',
@@ -69,6 +69,7 @@ const QnaSecret = () => {
                 </button>
 
                 <button
+                    className={'mobile:text-sm'}
                     onClick={handleConfirm}
                     style={{
                         border: '1px solid black',

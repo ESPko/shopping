@@ -55,16 +55,23 @@ function QnaDetail() {
         <div>
             <Header isDefaultBlack={true} />
 
-            <div style={{ paddingTop: '120px', paddingLeft: '40px', paddingRight: '40px', maxWidth: '800px', margin: '0 auto', marginBottom: '40px' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>
+            <div className="pt-[120px] px-[40px] max-w-[800px] mx-auto mb-[40px] mobile:pt-10">
+                <h2 style={{fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px'}}>
                     Q&A
                 </h2>
 
                 {/* 한 줄 정보: 제목 / 작성자 / 작성일 / 조회수 */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 20px', borderBottom: '1px solid #ccc', marginBottom: '20px', fontSize: '1rem' }}>
+                <div className={'mobile:text-sm'} style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '12px 20px',
+                    borderBottom: '1px solid #ccc',
+                    marginBottom: '20px',
+                    fontSize: '1rem'
+                }}>
                     <div><strong>제목: </strong>{post.title}</div>
                     <div><strong>작성자: </strong>{post.name}</div>
-                    <div><strong>작성일: </strong>{post.date ? post.date.slice(0,10) : '-'}</div>
+                    <div><strong>작성일: </strong>{post.date ? post.date.slice(0, 10) : '-'}</div>
                     <div><strong>조회수: </strong>{post.hit}</div>
                 </div>
 
@@ -85,8 +92,10 @@ function QnaDetail() {
                 />
 
                 {/* 버튼 영역 */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
+                <div className={'mt-[30px] mobile:mt-2'}
+                    style={{display: 'flex', justifyContent: 'space-between'}}>
                     <button
+                        className={'mobile:text-sm'}
                         type="button"
                         onClick={handleList}
                         style={{
@@ -101,8 +110,9 @@ function QnaDetail() {
                         목록
                     </button>
 
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div style={{display: 'flex', gap: '10px'}}>
                         <button
+                            className={'mobile:text-sm'}
                             type="button"
                             onClick={handleDelete}
                             style={{
@@ -119,6 +129,7 @@ function QnaDetail() {
                         </button>
 
                         <button
+                            className={'mobile:text-sm'}
                             type="button"
                             onClick={handleEdit}
                             style={{
@@ -136,7 +147,7 @@ function QnaDetail() {
                 </div>
             </div>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 }

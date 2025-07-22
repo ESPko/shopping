@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import useOrderAddrStore from "../Store/useAddrStore.jsx";
 
-// ✅ 정렬 유연하게 대응
 const FormRow = ({ label, required, children, alignTop = false }) => (
-    <div className={`flex ${alignTop ? 'items-start' : 'items-center'} gap-4`}>
+    <div className={`flex ${alignTop ? 'items-start' : 'items-center'} gap-4 mobile:block mobile:text-sm`}>
         <label className={`w-32 text-gray-700 ${alignTop ? 'mt-1' : ''}`}>
             {label}
             {required && <span className="text-blue-600">*</span>}

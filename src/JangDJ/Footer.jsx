@@ -4,7 +4,7 @@ import {FaFacebookF, FaInstagram} from "react-icons/fa";
 function Footer() {
     return (
         <footer className="bg-white border-t text-sm text-gray-800 w-full border-gray-600">
-            <div className="w-full max-w-7xl mx-auto px-6 py-10 grid grid-cols-3 gap-8 text-start">
+            <div className="mobile:grid-cols-1 w-full max-w-7xl mx-auto px-6 py-10 grid grid-cols-3 gap-8 text-start">
             {/*    왼쪽*/}
                 <div>
                     <ul className="space-y-2 mb-4 font-bold">
@@ -29,7 +29,7 @@ function Footer() {
                     </div>
                 </div>
             {/*    오른쪽*/}
-                <div className="leading-relaxed">
+                <div className="leading-relaxed mobile:border-t mobile:pt-5">
                     <p><strong>Hilight Brands</strong> 주식회사 하이라이트브랜즈 | CEO. Jun Kwon Lee</p>
                     <p className="mt-2">
                         Business License No. 788-81-01239 [사업자정보확인]<br />
@@ -42,7 +42,7 @@ function Footer() {
                 </div>
             </div>
         {/*    맨 밑*/}
-            <div className="mx-16 border-t pt-6 py-4 text-center text-xs text-gray-500">
+            <div className="mx-16 mobile:mx-4 border-t pt-6 py-4 text-center text-xs text-gray-500">
                 Hilight Brands is a division within Modern Works. The Diadora trademark, logo and trade dress are used by Modern Works under license from Diadora Company. <strong>© 2025 Hilight Brands</strong>
             </div>
         </footer>

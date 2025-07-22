@@ -23,7 +23,7 @@ const QnaList = () => {
     return (
         <div className="w-full">
             <table className="w-full text-center">
-                <thead className="bg-white border-b border-gray-200">
+                <thead className="bg-white border-b border-gray-200 mobile:hidden">
                 <tr className="h-12">
                     <th>No</th>
                     <th>Product</th>
@@ -33,7 +33,7 @@ const QnaList = () => {
                     <th>Hit</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className={'mobile:text-sm'}>
                 {posts.map((post) => (
                     <tr key={post.id} className="border-b border-gray-200 h-12 hover:bg-gray-50">
                         <td className="align-middle">{post.id}</td>

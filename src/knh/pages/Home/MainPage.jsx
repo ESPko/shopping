@@ -7,6 +7,7 @@ import SubBanner from "./SubBanner.jsx";
 import HighItem from "./HighItem.jsx";
 import MediumBanner from "./MediumBanner.jsx";
 import KeywordItem from "./KeywordItem.jsx";
+import MobileMenu from "../../components/MobileMenu.jsx";
 
 const MainPage = () => {
     const MainContentTit = [

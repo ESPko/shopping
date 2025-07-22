@@ -29,7 +29,7 @@ const Savings = () => {
     }, [usedPoints]);
 
     return (
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-4 mobile:block mobile:text-sm">
             <label className="w-32 text-gray-700 mt-2">사용할 적립금</label>
             <div className="flex-1">
                 <input
@@ -40,7 +40,7 @@ const Savings = () => {
                     onChange={handleUsedPointsChange}
                     className="bg-gray-100 rounded px-3 py-2 w-40 border-none focus:outline-none text-right"
                 />
-                <label className="w-32 text-gray-700 mt-2">
+                <label className="w-32 text-gray-700 mt-2 mobile:block mobile:w-[300px]">
                     (총 사용 가능 적립금:{usablePoints.toLocaleString()} 원)
                 </label>
             </div>

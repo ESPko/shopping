@@ -30,7 +30,7 @@ function ProReviewModal() {
                 <p className="mt-5 pl-14 text-xl font-bold">포토리뷰</p>
 
 
-                <div className="flex gap-8 px-14 my-6">
+                <div className="flex gap-8 px-14 my-6 mobile:block">
                     {/* 이미지 슬라이드 */}
                     <div className="w-full md:w-1/2 aspect-[4/4] overflow-hidden bg-gray-100 shrink-0 relative flex justify-center items-center">
                         <img
@@ -57,7 +57,7 @@ function ProReviewModal() {
                     </div>
 
                     {/* 리뷰 정보 */}
-                    <div className="text-sm space-y-1">
+                    <div className="text-sm space-y-1 mobile:pt-5">
                         <div className=" mb-2">
                             {"★".repeat(rating)}{"☆".repeat(5 - rating)}
                         </div>
