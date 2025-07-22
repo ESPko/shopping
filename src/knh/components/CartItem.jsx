@@ -2,8 +2,8 @@ import { useState } from "react";
 import QtySelector from "./QtySelector.jsx";
 import { X } from "lucide-react";
 import CartPop from "../pages/Cart/CartPop.jsx";
-import useAuthStore from "../../JungSY/UserAuthStore.js";
-import useCartStore from "./UserCartStore.jsx";
+import useAuthStore from "../Store/UserAuthStore.js";
+import useCartStore from "../Store/UseCartStore.jsx";
 
 const CartItem = ({ item }) => {
 

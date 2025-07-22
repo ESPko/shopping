@@ -1,6 +1,6 @@
 // src/store/useOrderStore.jsx
 import { create } from 'zustand';
-import useCartStore from "./useCartStore.jsx";
+import useCartStore from "./UseCartStore.jsx";
 
 const useOrderStore = create((set, get) => ({
     orderedItems: [],

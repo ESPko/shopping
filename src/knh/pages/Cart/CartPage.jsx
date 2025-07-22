@@ -3,8 +3,8 @@ import Footer from "../../../JangDJ/Footer.jsx";
 import CartItem from "../../components/CartItem.jsx";
 import CartSummary from "./CartSummary.jsx";
 import { useEffect } from "react";
-import useCartStore from "../../components/UserCartStore.jsx";
-import useAuthStore from "../../../JungSY/UserAuthStore.js";
+import useAuthStore from "../../Store/UserAuthStore.js";
+import useCartStore from "../../Store/UseCartStore.jsx";
 
 const CartPage = () => {
     const { cartItems, fetchCartItems } = useCartStore();

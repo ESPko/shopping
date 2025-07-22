@@ -1,10 +1,10 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainPage from "./knh/pages/Home/MainPage.jsx";
 import Qna from "./ParkES/Qna/Qna.jsx";
 import LoginRoutes from "./LoginRoutes.jsx";
-import {CheckoutPage} from "./ParkES/payment/checkout.jsx";
-import {SuccessPage} from "./ParkES/payment/success.jsx";
-import {FailPage} from "./ParkES/payment/fail.jsx";
+import { CheckoutPage } from "./ParkES/payment/checkout.jsx";
+import { SuccessPage } from "./ParkES/payment/success.jsx";
+import { FailPage } from "./ParkES/payment/fail.jsx";
 import Community from "./ParkES/community/Community.jsx";
 import QnaDetail from "./ParkES/Qna/QnaDetail.jsx";
 import QnaEdit from "./ParkES/Qna/QnaEdit.jsx";
@@ -18,92 +18,43 @@ import QnaWrite from "./ParkES/Qna/QnaWrite.jsx";
 import CartPage from "./knh/pages/Cart/CartPage.jsx";
 import OrderPage from "./knh/pages/ Order/OrderPage.jsx";
 import OrderCompletePage from "./knh/pages/OrderComplete/OrderCompletePage.jsx";
+import PrivateRoute from "./JungSY/PrivateRoute.jsx";
 
-// function Menu() {
-//     const navigate = useNavigate();
-//
-//     return (
-//         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 space-y-8 px-4">
-//             <h1 className="text-4xl font-bold text-gray-800 mb-6">페이지 선택</h1>
-//             <div className="space-y-4 w-full max-w-xs">
-//                 <button
-//                     onClick={() => navigate('/main')}
-//                     className="w-full px-4 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
-//                 >
-//                     MainPage
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/list')}
-//                     className="w-full px-4 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition"
-//                 >
-//                     ProductList
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/qna')}
-//                     className="w-full px-4 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition"
-//                 >
-//                     Qna
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/auth')}
-//                     className="w-full px-4 py-3 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
-//                 >
-//                     Login
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/pay')}
-//                     className="w-full px-4 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
-//                 >
-//                     Pay
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/detail')}
-//                     className="w-full px-4 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition"
-//                 >
-//                     ProductDetail
-//                 </button>
-//                 <button
-//                     onClick={() => navigate('/mypage')}
-//                     className="w-full px-4 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition"
-//                 >
-//                     Mypage
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// }
 
 function App() {
-    return (
-        <Routes>
-            {/*<Route path="/" element={<Menu />} />*/}
-            <Route path="/" element={<MainPage />} />
-            <Route path="/list" element={<ProductList/>} />
-            <Route path="/qna" element={<Qna />} />
-            <Route path="/qnadetail/:no" element={<QnaDetail />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/qnawrite" element={<QnaWrite/>} />
-            <Route path="/qnaedit/:no" element={<QnaEdit/>} />
-            <Route path="/qnasecret/:id" element={<QnaSecret />} />
-            <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
-            <Route path='/cart' element={<CartPage />} />
-            <Route path='/search' element={<SearchPage />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/auth/*" element={<LoginRoutes />} />
-            <Route path={'/mypage/*'} element={<MyPageRouter />} />
+        return (
+            <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/list" element={<ProductList />} />
+                    <Route path="/qna" element={<Qna />} />
+                    <Route path="/qnadetail/:no" element={<QnaDetail />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="/qnawrite" element={<QnaWrite />} />
+                    <Route path="/qnaedit/:no" element={<QnaEdit />} />
+                    <Route path="/qnasecret/:id" element={<QnaSecret />} />
+                    <Route path="/myaddrupdate" element={<MyAddrUpdate />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/search" element={<SearchPage />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/auth/*" element={<LoginRoutes />} />
 
+                    {/* ✅ 보호된 마이페이지 라우트 */}
+                    <Route path="/mypage/*" element={
+                            <PrivateRoute>
+                                    <MyPageRouter />
+                            </PrivateRoute>
+                    } />
 
-            {/* ✅ /pay 하위 경로 */}
-            <Route path="/pay" element={<CheckoutPage />} />
-            <Route path="/pay/success" element={<SuccessPage />} />
-            <Route path="/pay/fail" element={<FailPage />} />
+                    {/* ✅ 결제 관련 라우트 */}
+                    <Route path="/pay" element={<CheckoutPage />} />
+                    <Route path="/pay/success" element={<SuccessPage />} />
+                    <Route path="/pay/fail" element={<FailPage />} />
 
-            <Route path='/order' element={<OrderPage />} />
-            <Route path='/order/susccess' element={<OrderCompletePage />} />
-
-
-        </Routes>
-    );
+                    {/* ✅ 주문 관련 라우트 */}
+                    <Route path="/order" element={<OrderPage />} />
+                    <Route path="/order/susccess" element={<OrderCompletePage />} />
+            </Routes>
+        );
 }
 
 export default App;

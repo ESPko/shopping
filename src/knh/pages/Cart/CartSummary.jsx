@@ -1,6 +1,6 @@
-import useCartStore from "../../Store/useCartStore.jsx";
 import { useNavigate } from "react-router-dom";
 import useOrderStore from "../../Store/useOrderStore.jsx";
+import useCartStore from "../../Store/UseCartStore.jsx";
 
 const CartSummary = () => {
     const nav = useNavigate();

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../JungSY/UserAuthStore.js";
+import useAuthStore from "../Store/UserAuthStore.js";
+import axios from "axios";
 
 const logoImg = {
     White: [{ image: 'https://diadorakorea.com/web/upload/image/logo/logo_wh.png?v=1' }],
@@ -47,9 +48,9 @@ const Header = ({ isDefaultBlack = false }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const navigate = useNavigate();
 
-    const { isLoggedIn } = useAuthStore();
+    const { isLoggedIn, setIsLoggedIn, setUser } = useAuthStore();
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY === 0) {
@@ -116,11 +117,19 @@ const Header = ({ isDefaultBlack = false }) => {
         setIsSearchOpen(prev => !prev);
     };
 
-    const handleMypageClick = (e) => {
+    const handleMypageClick = async (e) => {
         e.preventDefault();
-        if (isLoggedIn) {
+        try {
+            const res = await axios.get("http://localhost:8080/api/auth/me", {
+                withCredentials: true,
+            });
+            setUser(res.data);
+            setIsLoggedIn(true);
             navigate("/mypage");
-        } else {
+        } catch (err) {
+            setUser(null);
+            setIsLoggedIn(false);
+            alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
             navigate("/auth");
         }
     };
@@ -136,10 +145,10 @@ const Header = ({ isDefaultBlack = false }) => {
         >
             <header
                 className={`z-50 w-screen h-[100px] flex items-center justify-between fixed px-8
-          ${borderStyle}
-          ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
-          transition-all duration-300
-          ${showHeader ? 'top-0' : '-top-[100px]'}`}
+                ${borderStyle}
+                ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
+                transition-all duration-300
+                ${showHeader ? 'top-0' : '-top-[100px]'}`}
             >
                 <a href="/" onClick={handleLogoClick}>
                     <h1>
@@ -154,8 +163,8 @@ const Header = ({ isDefaultBlack = false }) => {
                                 key={category.name}
                                 onMouseEnter={() => setActiveMenu(category.name)}
                                 className={`text-xl cursor-pointer transition-colors hover:text-[#00883e] 
-                  ${textColorClass} 
-                  ${category.name === "Community" ? "font-normal" : "font-bold"}`}
+                                ${textColorClass} 
+                                ${category.name === "Community" ? "font-normal" : "font-bold"}`}
                             >
                                 {category.name}
                             </div>
@@ -165,8 +174,8 @@ const Header = ({ isDefaultBlack = false }) => {
                                 href={category.link}
                                 onClick={handleCommunityClick}
                                 className={`text-xl cursor-pointer transition-colors hover:text-[#00883e] 
-                  ${textColorClass} 
-                  ${category.name === "Community" ? "font-normal" : "font-bold"}`}
+                                ${textColorClass} 
+                                ${category.name === "Community" ? "font-normal" : "font-bold"}`}
                             >
                                 {category.name}
                             </a>
@@ -200,7 +209,7 @@ const Header = ({ isDefaultBlack = false }) => {
                             </span>
                         )}
                     </a>
-                    <a href="/login" className="w-[30px] mr-6" onClick={handleMypageClick}>
+                    <a href="/#" className="w-[30px] mr-6" onClick={handleMypageClick}>
                         <img src={mypageIconSrc} alt="mypage" className="transition" />
                     </a>
                 </div>

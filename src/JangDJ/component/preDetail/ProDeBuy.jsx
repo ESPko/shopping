@@ -1,19 +1,21 @@
 import React from "react";
 import { ShoppingBag } from "lucide-react";
-import useAuthStore from "../../../JungSY/UserAuthStore.js";
-import useCartStore from "../../../knh/components/UserCartStore.jsx";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../../knh/Store/UserAuthStore.js";
 import useProductDetail from "../../store/useProductDetail.js";
+import useCartStore from "../../../knh/Store/UseCartStore.jsx";
 
 function ProDeBuy({ productId, name, price }) {
     const { selectedSize, setSize, count, addCount, minusCount } = useProductDetail();
     const { user } = useAuthStore();
     const addToCart = useCartStore(state => state.addToCart);
+    const navigate = useNavigate();
 
     const sizes = ["S", "M", "L", "XL"];
 
     const handleAddToCart = () => {
         console.log("addToCart 호출", { productId, selectedSize, count });
-        console.log("추가할 productId:", productId); // 콘솔에 찍어서 확인
+        console.log("추가할 productId:", productId);
 
         if (!user) {
             alert("로그인이 필요합니다.");
@@ -26,7 +28,25 @@ function ProDeBuy({ productId, name, price }) {
         addToCart(productId, selectedSize, count);
     };
 
-    // (buyNow 함수 동일하게 유지)
+    const buyNow = () => {
+        if (!user) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
+        if (!selectedSize) {
+            alert("사이즈를 선택해주세요.");
+            return;
+        }
+        navigate("/checkout", {
+            state: {
+                productId,
+                name,
+                price,
+                size: selectedSize,
+                count,
+            },
+        });
+    };
 
     return (
         <div className="pl-8 pt-10">
@@ -41,7 +61,9 @@ function ProDeBuy({ productId, name, price }) {
                             key={size}
                             onClick={() => setSize(size)}
                             className={`text-center w-16 h-8 rounded-full ${
-                                selectedSize === size ? "bg-[#1B3C5C] text-white" : "border border-[#1B3C5C] text-black"
+                                selectedSize === size
+                                    ? "bg-[#1B3C5C] text-white"
+                                    : "border border-[#1B3C5C] text-black"
                             }`}
                         >
                             {size}
@@ -73,7 +95,7 @@ function ProDeBuy({ productId, name, price }) {
                     장바구니
                 </button>
                 <button
-                    onClick={() => {/* buyNow 함수 호출 유지하세요 */}}
+                    onClick={buyNow}
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#1B3C5C] text-white rounded-full"
                 >
                     바로구매

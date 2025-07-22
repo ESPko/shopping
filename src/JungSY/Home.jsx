@@ -5,7 +5,7 @@ import { KAKAO_AUTH_URL, NAVER_AUTH_URL } from "./LoginAPIConfig.js";
 import naverbtn from '../assets/naver_login_btn.png';
 import Header from "../knh/components/Header.jsx";
 import Footer from "../JangDJ/Footer.jsx";
-import useAuthStore from "./UserAuthStore.js";
+import useAuthStore from "../knh/Store/UserAuthStore.js";
 
 function Home() {
     const [userId, setUserId] = useState('');
@@ -19,16 +19,17 @@ function Home() {
             const res = await axios.post('http://localhost:8080/api/auth/login', {
                 userId,
                 password
-            }, {withCredentials: true});
+            }, {
+                withCredentials: true // 쿠키 포함
+            });
 
             const userData = res.data;
             console.log(userData);
 
-            // 로그인 성공 시
-            setUser(userData);            // 전역 상태 저장
+            setUser(userData);
             setIsLoggedIn(true);
             setErrorMsg('');
-            navigate('/');                // 홈 또는 마이페이지 이동
+            navigate('/');
         } catch (err) {
             console.error(err);
             setErrorMsg('❌ 로그인 실패: 아이디 또는 비밀번호를 확인하세요.');
@@ -36,7 +37,7 @@ function Home() {
     };
 
     const handleSignup = () => {
-        navigate('/auth/signup'); // 회원가입 페이지로 이동
+        navigate('/auth/signup');
     };
 
     return (
@@ -104,12 +105,6 @@ function Home() {
                             </div>
                         </a>
                     </div>
-
-                    {/*<div className="text-sm text-right mt-4 text-gray-600">*/}
-                    {/*    <a href="#" className="hover:underline">*/}
-                    {/*        비회원 주문 조회*/}
-                    {/*    </a>*/}
-                    {/*</div>*/}
                 </div>
             </div>
             <Footer />

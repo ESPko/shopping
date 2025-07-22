@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useCartStore from "../../components/UserCartStore.jsx";
+import useCartStore from "../../Store/UseCartStore.jsx";
 
 const CartPop = ({ onClose, item }) => {
     // item.selectedSize가 null인 경우 기본값으로 'S'를 사용
