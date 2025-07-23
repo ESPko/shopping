@@ -37,7 +37,7 @@ const useProductDetail = create((set) => ({
     // x 버튼 클릭시 사이즈 삭제
     removeSize: (size) =>
         set((state) => {
-            const updated = { ...state.selectedSize };
+            const updated = { ...state.selectedSizes };
             delete updated[size];
             return { selectedSizes: updated };
         }),

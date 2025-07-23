@@ -5,18 +5,31 @@ import FilterPriceSlide from "../../component/proList/FilterPriceSlide.jsx";
 import useFilterList from "../../useFilterList.js";
 import FilterColor from "../../component/proList/FilterColor.jsx";
 import Header from "../../../knh/components/Header.jsx";
+import axios from "axios";
 
-function ListFilter({ open, close }) {
+function ListFilter({ open, close, setProducts }) {
     // 상품 리스트 스크롤 막기
     useEffect(() => {
         document.body.style.overflow = open ? 'hidden' : '';
     }, [open]);
 
-    // 금액대
-    const {priceRange, setPriceRange} = useFilterList();
+    const {priceRange, setPriceRange, color, setColor, resetFilter} = useFilterList();
 
-    // 색상
-    const {color, setColor} = useFilterList();
+    // 검색 버튼
+    const handleSearch = async () => {
+        const colorQuery = color.map(c => `color=${encodeURIComponent(c)}`).join('&');
+        const priceQuery = `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+
+        try {
+        const res = await axios.get(`http://localhost:8080/api/products/filter?${priceQuery}&${colorQuery}`);
+            setProducts(res.data); //  부모 상품 리스트 갱신
+            console.log('검색 결과', res.data);
+            close();
+        } catch (e) {
+            console.error('검색 실패', e);
+        }
+    };
+
     return (
         <>
             {/*배경 회색*/}
@@ -46,9 +59,9 @@ function ListFilter({ open, close }) {
                     {color.length > 0 && (
                         <div className="mb-6 border-b-2 pb-6 px-2">
                             <div className="flex flex-wrap gap-2">
-                                {color.map((label, idx) => (
+                                {color.map((label) => (
                                     <div
-                                        key={idx}
+                                        key={label}
                                         className="flex items-center gap-1 px-3 py-1 bg-gray-100 border rounded-full text-sm"
                                     >
                                         <span>{label}</span>
@@ -75,13 +88,13 @@ function ListFilter({ open, close }) {
                 {/*    버튼*/}
                     <div className="flex gap-3 pt-2">
                         <button
-                            onClick={()=> setColor([])}
+                            onClick={resetFilter}
                             className="flex-1 py-3 border rounded-full flex items-center justify-center gap-2 text-white bg-[#1B3C5C]"
                         >
                             <FiRotateCw className="w-6 h-6 pr-1" />
                             초기화
                         </button>
-                        <button className="flex-1 py-3 bg-[#1B3C5C] text-white rounded-full flex items-center justify-center gap-2">
+                        <button className="flex-1 py-3 bg-[#1B3C5C] text-white rounded-full flex items-center justify-center gap-2" onClick={handleSearch}>
                             <FaSearch className="w-5 h-5 pr-1" />
                             검색하기
                         </button>

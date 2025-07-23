@@ -10,11 +10,17 @@ const useFilterList = create((set) => ({
     priceRange: [10000, 500000],
     setPriceRange: (range) => set({ priceRange: range }),
 
+    // 키워드 검색
+    searchKeyword: '',
+    setSearchKeyword: (keyword) => set({searchKeyword: keyword }),
+
+
     // 리셋
     resetFilter: () =>
         set({
-            color: null,
+            color: [],
             priceRange: [10000, 500000],
+            searchKeyword: '',
         }),
 }));
 

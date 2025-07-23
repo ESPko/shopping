@@ -5,10 +5,13 @@ import Footer from "../../Footer.jsx";
 import ListFilterButton from "../../component/proList/ListFilterButton.jsx";
 import SortDropdown from "../../component/proList/SortDropdown.jsx";
 import Header from "../../../knh/components/Header.jsx";
+import useFilterList from "../../useFilterList.js";
 
 function ProductList() {
+    // 정렬 방식
     const [sort, setSort] = useState("new");
     const [products, setProducts] = useState([]);
+    const { color, priceRange, searchKeyword } = useFilterList();
 
     useEffect(() => {
         const fetchProducts = async () => {

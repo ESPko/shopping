@@ -77,9 +77,9 @@ function ProDeBuy({ productId, name, price }) {
                     <div className="flex items-center gap-4">
                         <span className="font-medium w-12">{size}</span>
                         <div className="flex items-center border rounded">
-                            <button onClick={minusCount} className="px-3 py-1">-</button>
+                            <button onClick={minusCount(size)} className="px-3 py-1">-</button>
                             <span className="px-4">{count}</span>
-                            <button onClick={addCount} className="px-3 py-1">+</button>
+                            <button onClick={addCount(size)} className="px-3 py-1">+</button>
                         </div>
                         <span className="ml-4 text-gray-500">
                             {(price * count).toLocaleString()} 원
