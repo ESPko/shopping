@@ -7,9 +7,9 @@ const CartSummary = () => {
     const {
         removeSelected,
         removeAll,
-        totalAmount,
-        shippingFee,
-        totalPrice,
+        totalAmount, // 총 금액 (배송비 포함)
+        shippingFee, // 배송비
+        totalPrice,  // 총 금액 (상품 가격)
         cartItems,
     } = useCartStore();
 
@@ -61,7 +61,7 @@ const CartSummary = () => {
                 <div className={"border-b"}>
                     <div className="flex justify-between items-center gap-4 pb-3">
                         <span>주문금액</span>
-                        <span>{totalPrice().toLocaleString()}원</span>
+                        <span>{totalPrice().toLocaleString()}원</span> {/* totalPrice() 호출 */}
                     </div>
                     <div className="flex justify-between items-center gap-4 pb-3">
                         <span>배송비</span>
@@ -70,7 +70,7 @@ const CartSummary = () => {
                 </div>
                 <div className="flex justify-between items-center gap-4 pt-5 font-bold text-xl text-black">
                     <span>합계</span>
-                    <span>{totalAmount().toLocaleString()}원</span>
+                    <span>{totalAmount().toLocaleString()}원</span> {/* totalAmount() 호출 */}
                 </div>
             </div>
 

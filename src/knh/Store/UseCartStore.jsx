@@ -4,7 +4,9 @@ import useAuthStore from "./UserAuthStore.js"; // 로그인 정보 훅
 
 const useCartStore = create((set, get) => ({
     cartItems: [],
+    shippingFee: 3000,  // 예시로 배송비를 3,000원으로 설정
 
+    // 장바구니 데이터 불러오기
     fetchCartItems: async () => {
         const user = useAuthStore.getState().user;
         console.log("fetchCartItems() 호출됨", user);
@@ -19,6 +21,20 @@ const useCartStore = create((set, get) => ({
         }
     },
 
+    // 장바구니의 총 가격 계산
+    totalPrice: () => {
+        const cartItems = get().cartItems;
+        return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    },
+
+// 장바구니의 총 금액 (배송비 포함) 계산
+    totalAmount: () => {
+        const totalPrice = get().totalPrice();
+        const shippingFee = get().shippingFee;
+        return totalPrice + shippingFee;
+    },
+
+    // 장바구니 아이템 선택 상태 변경
     toggleSelect: (itemId, selectedSize) => {
         const cartItems = get().cartItems.map(item =>
             item.id === itemId && item.selectedSize === selectedSize
@@ -28,6 +44,7 @@ const useCartStore = create((set, get) => ({
         set({ cartItems });
     },
 
+    // 수량 변경
     changeQty: async (itemId, delta) => {
         const user = useAuthStore.getState().user;
         if (!user) return;
@@ -62,6 +79,7 @@ const useCartStore = create((set, get) => ({
         }
     },
 
+    // 아이템 삭제
     removeItem: async (itemId) => {
         const user = useAuthStore.getState().user;
         if (!user) return;
@@ -76,6 +94,7 @@ const useCartStore = create((set, get) => ({
         }
     },
 
+    // 사이즈 변경
     changeSize: async (itemId, newSize) => {
         const user = useAuthStore.getState().user;
         if (!user) return;
@@ -98,7 +117,7 @@ const useCartStore = create((set, get) => ({
         }
     },
 
-    // ✅ productId를 직접 받도록 수정
+    // 카트에 상품 추가
     addToCart: async (productId, size, quantity) => {
         console.log("addToCart called with productId =", productId);
         console.log("size =", size);
