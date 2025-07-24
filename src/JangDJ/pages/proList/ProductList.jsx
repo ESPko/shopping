@@ -65,12 +65,12 @@ function ProductList() {
         <div>
             <Header isDefaultBlack={true} />
             <div className="pt-28 max-w-[1440px] mx-auto">
-                <div className="flex px-4 pt-6 pb-10 font-bold gap-3 items-center">
-                    <h2 className="text-xl">{pageTitle}</h2>
+                <div className="flex px-4 pt-6 pb-10 font-bold gap-3 items-center mobile:block mobile:pb-5">
+                    <h2 className="text-xl mobile:text-base">{pageTitle}</h2>
                 </div>
 
                 <div className="flex justify-between items-center p-4">
-                    <h2 className="text-3xl">{pageTitle}</h2>
+                    <h2 className="text-3xl mobile:text-base">{pageTitle}</h2>
                     <div className="flex gap-3">
                         <SortDropdown onChange={(value) => setSort(value)} />
                         <ListFilterButton />

@@ -31,10 +31,10 @@ const MediumBanner = () => {
             <div className={'w-5/6'}></div>
             <div className={'ml-auto mr-10 max-w-[820px]'}>
                 <div className={'p-6 rounded-lg overflow-hidden'}>
-                    <h1 className={'text-white text-4xl font-bold pb-2'}>{mediumBannerInfo.title}</h1>
-                    <p className={'text-white text-2xl'}>{mediumBannerInfo.subtitle}</p>
+                    <h1 className={'text-white text-4xl font-bold pb-2 mobile:text-2xl'}>{mediumBannerInfo.title}</h1>
+                    <p className={'text-white text-2xl mobile:text-base'}>{mediumBannerInfo.subtitle}</p>
                 </div>
-                <div className="flex gap-6 w-full p-6 rounded-lg overflow-hidden">
+                <div className="flex gap-6 w-full p-6 rounded-lg overflow-hidden mobile:p-0 mobile:flex-wrap">
                     {products.map((product) => (
                         <a
                             key={product.id}

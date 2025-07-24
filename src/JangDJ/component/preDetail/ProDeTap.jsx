@@ -21,7 +21,7 @@ function ProDeTap() {
 
     return (
         <div className=" border-b mt-20 text-xl bg-white sticky top-[100px] z-20">
-            <div className="flex justify-center text-xl">
+            <div className="flex justify-center text-xl mobile:text-sm">
                 <button
                     className={`w-64 px-6 py-3 ${activeTab === "info" ? "border-b-2 border-[#00883e] text-black font-bold" : "text-gray-500"}`}
                     onClick={() => handleClick("info")}

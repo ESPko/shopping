@@ -30,7 +30,7 @@ function Qna() {
             <Header isDefaultBlack={true} />
 
             {/* 메인 컨텐츠 */}
-            <div style={{ paddingTop: '120px', paddingLeft: '200px', paddingRight: '200px' }}>
+            <div className={'pt-[120px] pr-[200px] pl-[200px] mobile:pt-10 mobile:px-4'}>
                 {/* 상단 바 */}
                 <div style={{
                     display: 'flex',
@@ -42,7 +42,7 @@ function Qna() {
                         Community
                     </h2>
 
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div className={'mobile:text-sm'} style={{ display: 'flex', gap: '10px' }}>
                         <button
                             onClick={() => navigate("/community")}
                             style={{
@@ -52,7 +52,7 @@ function Qna() {
                                 padding: '6px 16px',
                                 border: 'none',
                                 cursor: 'pointer',
-                                fontWeight: '600'
+                                fontWeight: '600',
                             }}
                         >
                             공지사항

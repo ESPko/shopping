@@ -40,11 +40,11 @@ function ProductListCart({ product, onClose }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="bg-white rounded-xl w-full max-w-md relative">
                 <div className="bg-[#1B3C5C] text-white px-6 py-4 ">
-                    <span className="text-lg font-bold">옵션 선택</span>
+                    <span className="text-lg font-bold mobile:text-base">옵션 선택</span>
                     <button onClick={onClose} className="absolute top-3 right-4 text-3xl">×</button>
                 </div>
 
-                <div className="flex gap-4 mb-4 p-6 ">
+                <div className="flex gap-4 mb-4 p-6 mobile:mb-0 ">
                     <img src={product.image} alt={product.name} className="h-20 w-20 object-contain" />
                     <div>
                         <h2 className="font-semibold">{product.name}</h2>
@@ -105,15 +105,15 @@ function ProductListCart({ product, onClose }) {
                 {selectedSize.length > 0 && (
                     <div className="px-6 pb-4 border-t pt-5 text-gray-700 font-medium">
                         총 상품금액 ({selectedSize.reduce((sum, opt) => sum + opt.count, 0)}개)  : {" "}
-                        <span className="text-2xl font-semibold">
+                        <span className="text-2xl font-semibold mobile:text-xl">
                             {selectedSize.reduce((sum, opt) => sum + opt.count * opt.price, 0).toLocaleString()}원
                         </span>
                     </div>
                 )}
 
                 <div className="flex flex-col p-6 ">
-                    <button className="bg-[#1B3C5C] text-lg text-white py-2 rounded h-16">바로구매하기</button>
-                    <button className="border border-[#1B3C5C] font-semibold py-2 text-lg rounded h-16">장바구니담기</button>
+                    <button className="bg-[#1B3C5C] text-lg text-white py-2 rounded h-16 mobile:text-base mobile:h-10">바로구매하기</button>
+                    <button className="border border-[#1B3C5C] font-semibold py-2 text-lg rounded h-16 mobile:text-base mobile:h-10">장바구니담기</button>
                 </div>
             </div>
 

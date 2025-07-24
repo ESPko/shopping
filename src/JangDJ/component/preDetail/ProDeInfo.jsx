@@ -5,7 +5,7 @@ import ProDeExpla from "./ProDeExpla.jsx";
 function ProDeInfo() {
     return (
         <div>
-            <div id="info" className="py-20">
+            <div id="info" className="py-20 mobile:py-0">
                 <ProDeExpla />
             </div>
             <div id="review">

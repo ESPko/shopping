@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../Store/UserAuthStore.js";
 import axios from "axios";
+import MobileMenu from "./MobileMenu.jsx";
+
 
 const logoImg = {
     White: [{ image: 'https://diadorakorea.com/web/upload/image/logo/logo_wh.png?v=1' }],
@@ -50,14 +52,17 @@ const Header = ({ isDefaultBlack = false }) => {
 
     const { isLoggedIn, setIsLoggedIn, setUser } = useAuthStore();
 
+    // 스크롤 이벤트
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
+
             if (currentScrollY === 0) {
                 setForceBlackStyle(false);
                 setShowHeader(true);
                 return;
             }
+
             if (currentScrollY > ScrollY && currentScrollY > 100) {
                 setShowHeader(false);
                 setForceBlackStyle(false);
@@ -65,8 +70,10 @@ const Header = ({ isDefaultBlack = false }) => {
                 setShowHeader(true);
                 setForceBlackStyle(true);
             }
+
             setScrollY(currentScrollY);
         };
+
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [ScrollY]);
@@ -74,10 +81,12 @@ const Header = ({ isDefaultBlack = false }) => {
     const hoverActive = !isDefaultBlack && isHovered;
     const computedIsDefaultBlack = isDefaultBlack || forceBlackStyle;
 
+
     const logoSrc = computedIsDefaultBlack || hoverActive
         ? logoImg.Black[0].image
         : logoImg.White[0].image;
 
+    // 아이콘 이미지
     const searchIconSrc = computedIsDefaultBlack || hoverActive
         ? "/src/assets/icon_search.png"
         : "/src/assets/icon_search_wh.png";
@@ -143,8 +152,11 @@ const Header = ({ isDefaultBlack = false }) => {
                 setActiveMenu(null);
             }}
         >
+            <div className="mobile:block tablet:block hidden">
+                <MobileMenu />
+            </div>
             <header
-                className={`z-50 w-screen h-[100px] flex items-center justify-between fixed px-8
+                className={`hidden desktop:flex z-50 w-screen h-[100px] items-center justify-between fixed px-8
                 ${borderStyle}
                 ${hoverActive || computedIsDefaultBlack ? 'bg-white' : 'bg-transparent'}
                 transition-all duration-300
@@ -199,6 +211,7 @@ const Header = ({ isDefaultBlack = false }) => {
                                     &times;
                                 </button>
                             </div>
+
                         </div>
                     )}
                     <a href="/cart" className="relative w-[30px] mr-7" onClick={(e) => { e.preventDefault(); navigate('/cart'); }}>
@@ -215,6 +228,7 @@ const Header = ({ isDefaultBlack = false }) => {
                 </div>
             </header>
 
+            {/* 드롭다운 메뉴 */}
             {activeMenu && menuData[activeMenu] && (
                 <div className="fixed top-[100px] left-0 w-screen h-[50vh] bg-white z-50 p-8 overflow-y-auto">
                     <div className="grid grid-cols-4 gap-8 mt-2">
@@ -242,3 +256,4 @@ const Header = ({ isDefaultBlack = false }) => {
 };
 
 export default Header;
+

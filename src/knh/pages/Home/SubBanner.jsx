@@ -4,12 +4,12 @@ const SubBanner = () => {
         link: 'https://diadorakorea.com'
     }
     return (
-        <section className="main-subbanner px-3 pt-40">
+        <section className="main-subbanner px-3 pt-40 mobile:pt-10">
             <a href={subBanner.link} target="_blank" rel="noopener noreferrer">
             <img
                 src={subBanner.img}
                 alt="서브 배너"
-                className="w-full rounded-lg object-cover"
+                className="w-full rounded-lg object-cover mobile:h-[100px]"
             /></a>
         </section>
     );

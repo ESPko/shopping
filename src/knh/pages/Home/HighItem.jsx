@@ -27,19 +27,20 @@ const HighItem = ({ mainContentTit }) => {
     const highTitleContent = mainContentTit.find((content) => content.id === 2);
 
     return (
-        <section className="main-high px-3 py-40">
-            <div className="flex justify-between items-center">
+        <section className="main-high px-3 py-40 mobile:pt-10 mobile:py-0">
+            {/* 상단 제목 영역 */}
+            <div className="flex justify-between items-center mobile:block">
                 <div>
                     {highTitleContent && (
                         <div key={highTitleContent.id}>
-                            <h1 className="text-4xl font-[700]">{highTitleContent.title}</h1>
-                            <p className="text-lg font-thin">{highTitleContent.subtitle}</p>
+                            <h1 className="text-4xl font-[700] mobile:text-2xl">{highTitleContent.title}</h1>
+                            <p className="text-lg font-thin mobile:text-base mobile:pb-3">{highTitleContent.subtitle}</p>
                         </div>
                     )}
                 </div>
                 <button
                     onClick={handleMoreClick}
-                    className="border px-10 py-2 rounded-full font-bold text-white bg-[#1B3C5C]"
+                    className="border px-10 py-2 rounded-full font-bold text-white bg-[#1B3C5C] mobile:text-sm"
                 >
                     더보기
                 </button>
@@ -47,7 +48,7 @@ const HighItem = ({ mainContentTit }) => {
 
             {error && <p className="text-red-500 mt-4">{error}</p>}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8 mobile:py-2">
                 {items.map((item) => (
                     <div
                         key={item.id}

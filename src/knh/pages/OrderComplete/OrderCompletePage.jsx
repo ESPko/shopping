@@ -19,19 +19,19 @@ const OrderCompletePage = () => {
 
 
     useEffect(() => {
-        orderAll(); // ✅ 이걸 꼭 호출해야 orderedItems에 데이터가 들어감
+        orderAll();
     }, []);
     return (
         <>
             <Header isDefaultBlack={true} />
-            <section className="py-40 max-w-[800px] mx-auto">
-                <h2 className={'flex justify-center text-3xl font-bold pb-2'}><CircleCheck size={38} className={'pb-1 mr-1'} color={'#008832'} />결제완료!</h2>
-                <p className={'flex justify-center'}>감사합니다 결제가 완료되었습니다.</p>
+            <section className="py-40 max-w-[800px] mx-auto mobile:px-4 mobile:py-10">
+                <h2 className={'flex justify-center text-3xl font-bold pb-2 mobile:text-xl mobile:pb-0'}><CircleCheck size={38} className={'pb-1 mr-1 mobile:size-8'} color={'#008832'} />결제완료!</h2>
+                <p className={'flex justify-center mobile:text-sm'}>감사합니다 결제가 완료되었습니다.</p>
                 <OrderItem />
                 <OrderSummary showSavings={false} />
                 <OrderAddr readOnly={true} />
                 <button
-                    className="w-full bg-[#1B3C5C] text-white py-3 mt-6 text-lg rounded"
+                    className="w-full bg-[#1B3C5C] text-white py-3 mt-6 text-lg rounded mobile:text-sm"
                     onClick={() => goHome()}
                 >
                     쇼핑 계속하기

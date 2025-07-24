@@ -97,7 +97,7 @@ export function CheckoutPage() {
                 <div id="agreement" className="w-100" />
                 <div className="btn-wrapper w-100">
                     <button
-                        className="w-full bg-[#1B3C5C] text-white py-3 mt-6 text-lg rounded"
+                        className="w-full bg-[#1B3C5C] text-white py-3 mt-6 text-lg rounded mobile:text-base"
                         onClick={handleOrderAndPayment}
                         disabled={!ready && !!order}
                     >

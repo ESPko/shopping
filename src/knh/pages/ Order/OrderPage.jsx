@@ -26,7 +26,7 @@ const OrderPage = () =>  {
     return (
         <>
             <Header isDefaultBlack={true} />
-            <section className="py-40 max-w-[800px] mx-auto">
+            <section className="py-40 max-w-[800px] mx-auto  mobile:px-4 mobile:py-10">
                 <h2 className={'flex justify-center text-3xl font-bold pb-4'}>주문하기</h2>
                 <OrderList orderItems={orderItems} />
                 <OrderAddr />

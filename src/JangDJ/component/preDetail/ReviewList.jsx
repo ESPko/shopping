@@ -65,12 +65,12 @@ function ReviewList() {
 
     return (
         <>
-            <div className="mx-16">
-                <p className="pl-2 text-xl font-bold pb-4 border-b">리뷰 {filter.length}개</p>
+            <div className="mx-16 mobile:mx-4">
+                <p className="pl-2 text-xl font-bold pb-4 border-b mobile:text-base mobile:pb-0">리뷰 {filter.length}개</p>
 
                 <ul>
                     {currentReview.map((r) => (
-                        <li key={r.id} className="border-b flex gap-12 py-8">
+                        <li key={r.id} className="border-b flex gap-12 py-8 mobile:block">
                             <div className="felx items-center gap-2 mb-2 text-[#00883e]">
                                 <p className="text-lg mb-2">{"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)}</p>
                                 <p className="text-sm text-gray-400">{r.user}</p>

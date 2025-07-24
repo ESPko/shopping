@@ -21,7 +21,7 @@ const CommunityList = () => {
                     <th>Date</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className={'mobile:text-sm'}>
                 {posts.map((post) => (
                     <tr key={post.id} className="border-b border-gray-200 h-12 hover:bg-gray-50">
                         <td className="align-middle">{post.id}</td>

@@ -24,7 +24,7 @@ function Community() {
     return (
         <div>
             <Header isDefaultBlack={true} />
-            <div style={{ paddingTop: "120px", paddingLeft: "200px", paddingRight: "200px" }}>
+            <div className={'pt-[120px] pr-[200px] pl-[200px] mobile:pt-10 mobile:px-4'}>
                 {/* 상단 바 */}
                 <div
                     style={{
@@ -38,7 +38,7 @@ function Community() {
                     <h2 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Community</h2>
 
                     {/* 오른쪽 알약 버튼들 */}
-                    <div style={{ display: "flex", gap: "10px" }}>
+                    <div className={'mobile:text-sm'} style={{ display: "flex", gap: "10px" }}>
                         {/* 공지사항 버튼 (Community 페이지로 이동) */}
                         <button
                             onClick={() => navigate("/community")}
