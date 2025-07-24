@@ -11,10 +11,12 @@ function SearchBar({ initialKeyword = "" }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
+        console.log("검색 시도:", keyword);
         if (keyword.trim() !== "") {
             nav(`/search?q=${encodeURIComponent(keyword)}`);
         }
     };
+
 
     return (
         <>
