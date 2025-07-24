@@ -11,10 +11,12 @@ function SearchBar({ initialKeyword = "" }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
+        console.log("검색 시도:", keyword);
         if (keyword.trim() !== "") {
             nav(`/search?q=${encodeURIComponent(keyword)}`);
         }
     };
+
 
     return (
         <>
@@ -34,13 +36,14 @@ function SearchBar({ initialKeyword = "" }) {
                     />
                 </button>
             </form>
-            <div className="flex justify-center gap-3 mt-8">
-                {searchKeywords.map((keyword, index) => (
-                    <button key={index} className="search-tag">
-                        {keyword}
-                    </button>
-                ))}
-            </div>
+            {/*<div className="flex justify-center gap-3 mt-8">*/}
+            {/*    {searchKeywords.map((keyword, index) => (*/}
+            {/*        <button key={index} className="search-tag">*/}
+            {/*            {keyword}*/}
+            {/*        </button>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
+
         </>
 
     );

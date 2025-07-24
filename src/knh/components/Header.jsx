@@ -47,6 +47,7 @@ const Header = ({ isDefaultBlack = false }) => {
     const [ScrollY, setScrollY] = useState(0);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const navigate = useNavigate();
+    const [searchKeyword, setSearchKeyword] = useState("");
 
     const { isLoggedIn, setIsLoggedIn, setUser } = useAuthStore();
 
@@ -189,16 +190,32 @@ const Header = ({ isDefaultBlack = false }) => {
                     </a>
                     {isSearchOpen && (
                         <div className="fixed top-[100px] left-0 w-screen h-[50vh] bg-white z-50 p-8 overflow-y-auto">
-                            <div className="max-w-xl mx-auto flex items-center space-x-4">
-                                <input type="text" placeholder="검색..." className="border p-2 w-full" />
+                            <form
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    if (searchKeyword.trim() !== "") {
+                                        navigate(`/search?q=${encodeURIComponent(searchKeyword)}`);
+                                        setIsSearchOpen(false); // 검색 후 닫기
+                                    }
+                                }}
+                                className="max-w-xl mx-auto flex items-center space-x-4"
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="검색..."
+                                    className="border p-2 w-full"
+                                    value={searchKeyword}
+                                    onChange={(e) => setSearchKeyword(e.target.value)}
+                                />
                                 <button
+                                    type="button"
                                     onClick={() => setIsSearchOpen(false)}
                                     className="text-3xl text-gray-500 hover:text-black flex-shrink-0 pb-20"
                                     aria-label="닫기"
                                 >
                                     &times;
                                 </button>
-                            </div>
+                            </form>
                         </div>
                     )}
                     <a href="/cart" className="relative w-[30px] mr-7" onClick={(e) => { e.preventDefault(); navigate('/cart'); }}>

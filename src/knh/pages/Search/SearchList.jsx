@@ -1,61 +1,47 @@
-import {useLocation} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 import ProductGrid from "../../../JangDJ/component/proList/ProductGrid.jsx";
 
 const SearchList = () => {
-    const sampleProducts = [
-        {
-            image: '/images/diadoraProduct.jpg',
-            name: '경량 러닝 볼캡 CHARCOAL GREY',
-            price: 59000,
-        },
-        {
-            image: '/images/diadoraProduct.jpg',
-            name: '화이트 러닝 볼캡 LIGHT WHITE',
-            price: 59000,
-            salePrice: 49000,
-        },
-        {
-            image: '/images/diadoraProduct.jpg',
-            name: '블랙 스포츠 캡 BLACK LINE',
-            price: 69000,
-        },
-        {
-            image: '/images/diadoraProduct.jpg',
-            name: '테니스 햇 SUMMER BREEZE',
-            price: 49000,
-        },
-        {
-            image: '/images/diadoraProduct.jpg',
-            name: '그레이 러닝 볼캡 CHARCOAL GREY',
-            price: 59000,
-        },
-    ];
-
     const location = useLocation();
     const query = new URLSearchParams(location.search).get("q") || "";
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // 상품명에 키워드가 포함된 상품만 필터링
-    const filteredProducts = sampleProducts.filter((item) =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-    );
+    useEffect(() => {
+        const fetchSearchResults = async () => {
+            try {
+                setLoading(true);
+                const res = await axios.get(`http://localhost:8080/api/products/search?q=${encodeURIComponent(query)}`);
+                setProducts(res.data);
+            } catch (error) {
+                console.error("검색 결과 요청 중 오류:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSearchResults();
+    }, [query]);
 
     return (
-        <div>
-            <div className="max-w-[1440px] mx-auto">
-                <div className="flex justify-between items-center p-4">
-                    <h2 className="text-sm font-thin">
-                        총 <span className={'font-semibold'}>{filteredProducts.length}</span> 개 의 상품이 검색되었습니다.
-                    </h2>
-                </div>
-
-                {filteredProducts.length > 0 ? (
-                    <ProductGrid products={filteredProducts} />
-                ) : (
-                    <p className="text-center text-gray-500 py-40">검색 결과가 없습니다</p>
-                )}
+        <div className="max-w-[1440px] mx-auto">
+            <div className="flex justify-between items-center p-4">
+                <h2 className="text-sm font-thin">
+                    총 <span className={'font-semibold'}>{products.length}</span> 개의 상품이 검색되었습니다.
+                </h2>
             </div>
+
+            {loading ? (
+                <p className="text-center text-gray-400 py-20">로딩 중...</p>
+            ) : products.length > 0 ? (
+                <ProductGrid products={products} />
+            ) : (
+                <p className="text-center text-gray-500 py-40">검색 결과가 없습니다</p>
+            )}
         </div>
     );
-}
+};
 
 export default SearchList;
