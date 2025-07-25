@@ -14,10 +14,10 @@ function ProductGrid({ products }) {
                         <ProductCard
                             key={item.id}
                             id={item.id}
-                            image={item.infoImage}
+                            image={item.image}
                             name={item.name}
                             price={item.price}
-                            salePrice={item.sale_price}
+                            salePrice={item.salePrice}
                             onCartClick={setSelectProduct}
                         />
                     );

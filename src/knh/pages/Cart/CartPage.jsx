@@ -27,8 +27,8 @@ const CartPage = () => {
     return (
         <>
             <Header isDefaultBlack={true} />
-            <section className="py-40 max-w-[800px] mx-auto mobile:px-4">
-                <h2 className="flex justify-center text-3xl font-bold">장바구니</h2>
+            <section className="py-40 max-w-[800px] mx-auto mobile:px-4 mobile:py-10">
+                <h2 className="flex justify-center text-3xl font-bold mobile:text-2xl">장바구니</h2>
 
                 {cartItems.length === 0 ? (
                     <p className="text-center mt-10">장바구니가 비어 있습니다.</p>

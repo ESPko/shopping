@@ -35,7 +35,7 @@ const MediumBanner = () => {
                     <p className={'text-white text-2xl mobile:text-base'}>{mediumBannerInfo.subtitle}</p>
                 </div>
                 <div className="flex gap-6 w-full p-6 rounded-lg overflow-hidden mobile:p-0 mobile:flex-wrap">
-                    {products.map((product) => (
+                    {products.slice(0,4).map((product) => (
                         <a
                             key={product.id}
                             href={`/product/${product.id}`}

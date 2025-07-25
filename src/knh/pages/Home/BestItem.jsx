@@ -28,7 +28,7 @@ const BestItem = ({ mainContentTit }) => {
 
     return (
         <section className="main-best pt-40">
-            <div className="flex justify-between items-center px-3">
+            <div className="flex justify-between items-center px-3 mobile:block">
                 <div>
                     {(() => {
                         const item = mainContentTit.find((content) => content.id === 1);
@@ -46,7 +46,7 @@ const BestItem = ({ mainContentTit }) => {
                         <button
                             key={cate.value}
                             onClick={() => setActiveCate(cate.value)}
-                            className={`border px-10 py-2 rounded-full font-bold transition ml-4 ${
+                            className={`border px-10 py-2 rounded-full font-bold transition ml-4 mobile:text-sm mobile:py-1 mobile:px-4 mobile:ml-2 ${
                                 activeCate === cate.value
                                     ? "bg-[#1B3C5C] text-white"
                                     : "bg-white text-[#1B3C5C] border-[#1B3C5C]"

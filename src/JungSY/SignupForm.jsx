@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const FormRow = ({ label, required, children }) => (
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-4 mobile:gap-0 mobile:block">
         <label className="w-32 text-gray-700 mt-2">
             {label}
             {required && <span className="text-blue-600">*</span>}
@@ -73,7 +73,7 @@ const SignupForm = () => {
     };
 
     return (
-        <form className="max-w-3xl mx-auto space-y-6" onSubmit={handleSignup}>
+        <form className="max-w-3xl mx-auto space-y-6 mobile:text-sm mobile:space-y-4" onSubmit={handleSignup}>
             <h2 className="text-2xl font-bold text-center mb-6">회원가입</h2>
 
             <FormRow label="아이디" required>
@@ -225,6 +225,7 @@ const SignupForm = () => {
                             우편번호 찾기
                         </button>
                     </div>
+
                     <input
                         type="text"
                         placeholder="기본주소"
@@ -243,7 +244,7 @@ const SignupForm = () => {
             </FormRow>
 
             <FormRow label="일반전화">
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center mobile:gap-1">
                     <select
                         className="bg-gray-100 rounded px-2 py-2 w-20 border-none focus:outline-none"
                         value={phoneArea}

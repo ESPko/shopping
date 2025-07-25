@@ -38,20 +38,20 @@ const CartSummary = () => {
 
     return (
         <div>
-            <div className="flex flex-wrap gap-4 justify-between mb-8">
+            <div className="flex flex-wrap gap-4 justify-between mb-8 mobile:text-xs mobile:pt-5">
                 <div className={"flex gap-3"}>
-                    <button onClick={removeSelected} className="border border-black px-6 py-2 rounded">
+                    <button onClick={removeSelected} className="border border-black px-6 py-2 rounded mobile:px-2">
                         선택삭제
                     </button>
-                    <button onClick={removeAll} className="border border-black px-6 py-2 rounded">
+                    <button onClick={removeAll} className="border border-black px-6 py-2 rounded mobile:px-2">
                         전체삭제
                     </button>
                 </div>
                 <div className={"flex gap-3"}>
-                    <button onClick={handleOrderSelected} className="border border-black px-6 py-2 rounded">
+                    <button onClick={handleOrderSelected} className="border border-black px-6 py-2 rounded mobile:px-2">
                         선택상품 주문
                     </button>
-                    <button onClick={handleOrderAll} className="border border-black px-6 py-2 rounded">
+                    <button onClick={handleOrderAll} className="border border-black px-6 py-2 rounded mobile:px-2">
                         전체상품 주문
                     </button>
                 </div>

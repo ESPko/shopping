@@ -31,7 +31,7 @@ const CartItem = ({ item }) => {
     const imageUrl = item.info_image ? item.info_image : "/images/default-product-image.jpg";  // info_image로 수정
 
     return (
-        <div className="flex gap-10 items-center justify-center border-b border-b-gray-200 py-4">
+        <div className="flex gap-10 items-center justify-center border-b border-b-gray-200 py-4 mobile:block">
             {/* 선택 체크박스 */}
             <input
                 type="checkbox"
@@ -40,11 +40,10 @@ const CartItem = ({ item }) => {
                 className="w-5 h-5 border-gray-300 rounded outline-none focus:ring-0 bg-[#1B3C5C]"
             />
 
-            <div className="max-w-[120px]">
+            <div className="max-w-[120px] mobile:pb-5">
                 <img src={imageUrl} alt={item.name} className="w-full object-cover" />
             </div>
-
-            <div className="mr-32">
+            <div className="mr-32 mobile:mr-0">
                 <h2 className="font-bold">{item.name}</h2>
                 {item.selectedSize && (
                     <p className="text-sm text-gray-600">옵션: {item.selectedSize}</p>
@@ -70,7 +69,9 @@ const CartItem = ({ item }) => {
             />
 
             {/* 삭제 버튼 */}
-            <button onClick={() => removeItem(item.id)}>
+            <button
+                className={'mobile:pt-5'}
+                onClick={() => removeItem(item.id)}>
                 <X size={"25px"} color={"gray"} />
             </button>
         </div>

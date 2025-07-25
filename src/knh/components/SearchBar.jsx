@@ -1,51 +1,59 @@
-// SearchBar.jsx
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import ProductGrid from "../../JangDJ/component/proList/ProductGrid.jsx";
 
-function SearchBar({ initialKeyword = "" }) {
-    // 검색어 키워드
-    const searchKeywords = ["발레토", "그랜드 슬램", "러닝", "테니스"];
+const SearchList = () => {
+    const location = useLocation();
+    const query = new URLSearchParams(location.search).get("q") || "";
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const [keyword, setKeyword] = useState(initialKeyword);
-    const nav = useNavigate();
+    useEffect(() => {
+        const fetchSearchResults = async () => {
+            try {
+                setLoading(true);
+                const res = await axios.get(`http://localhost:8080/api/products/search?q=${encodeURIComponent(query)}`);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        console.log("검색 시도:", keyword);
-        if (keyword.trim() !== "") {
-            nav(`/search?q=${encodeURIComponent(keyword)}`);
-        }
-    };
+                const mappedProducts = res.data.map((p) => ({
+                    id: p.id,
+                    name: p.name,
+                    price: p.price,
+                    salePrice: p.sale_price,
+                    image: p.infoImage,
+                    size: p.size,
+                    color: p.color,
+                    category: p.category,
+                }));
 
+                setProducts(mappedProducts);
+            } catch (error) {
+                console.error("검색 결과 요청 중 오류:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSearchResults();
+    }, [query]);
 
     return (
-        <>
-            <form onSubmit={handleSearch} className="relative w-full max-w-xl mx-auto mt-5">
-                <input
-                    type="text"
-                    placeholder="Search"
-                    value={keyword}
-                    onChange={(e) => setKeyword(e.target.value)}
-                    className="w-full border border-gray-300 rounded px-4 py-3 text-lg pr-10 focus:outline-none focus:ring-0"
-                />
-                <button type="submit">
-                    <img
-                        src="/src/assets/icon_search.png"
-                        alt="search"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
-                    />
-                </button>
-            </form>
-            <div className="flex justify-center gap-3 mt-8 mobile:text-xs mobile:mt-2 mobile:gap-2">
-                {searchKeywords.map((keyword, index) => (
-                    <button key={index} className="bg-[#1B3C5C] px-[25px] py-[9px] rounded-full text-white mobile:px-4 mobile:py-2">
-                        {keyword}
-                    </button>
-                ))}
+        <div className="max-w-[1440px] mx-auto">
+            <div className="flex justify-between items-center p-4">
+                <h2 className="text-sm font-thin">
+                    총 <span className={'font-semibold'}>{products.length}</span> 개의 상품이 검색되었습니다.
+                </h2>
             </div>
-        </>
 
+            {loading ? (
+                <p className="text-center text-gray-400 py-20">로딩 중...</p>
+            ) : products.length > 0 ? (
+                <ProductGrid products={products} />
+            ) : (
+                <p className="text-center text-gray-500 py-40">검색 결과가 없습니다</p>
+            )}
+        </div>
     );
-}
+};
 
-export default SearchBar;
+export default SearchList;

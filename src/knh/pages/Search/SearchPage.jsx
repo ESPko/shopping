@@ -10,7 +10,6 @@ const SearchPage = () => {
             <section className="py-40">
                 <h2 className={'flex justify-center text-3xl font-bold'}>상품 검색</h2>
                 <SearchBar />
-                <SearchList />
             </section>
             <Footer />
         </>
