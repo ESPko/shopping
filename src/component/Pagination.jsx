@@ -42,10 +42,10 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
             {getPageNumbers().map((page, idx) =>
                 page === '...' ? (
-                    <span key={idx} style={{ padding: '0 8px' }}>...</span>
+                    <span key={`ellipsis-${idx}`} style={{ padding: '0 8px' }}>...</span>
                 ) : (
                     <button
-                        key={page}
+                        key={`page-${page}`}
                         onClick={() => onPageChange(page)}
                         style={{
                             fontWeight: page === currentPage ? 'bold' : 'normal',

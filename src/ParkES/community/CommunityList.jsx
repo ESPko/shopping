@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // 추가
 import axios from "axios";
 
 const CommunityList = () => {
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();  // 추가
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/community')  // 스프링부트 pageable 맞게 요청
-            .then((res) => setPosts(res.data.content))  // Page 객체에서 content가 리스트
+        axios.get('http://localhost:8080/api/community')
+            .then((res) => setPosts(res.data.content))
             .catch((err) => console.error(err));
     }, []);
+
+    // 클릭 핸들러
+    const handleClick = (id) => {
+        navigate(`/community/${id}`);  // 상세페이지 경로로 이동
+    };
 
     return (
         <div className="w-full">
@@ -25,18 +32,20 @@ const CommunityList = () => {
                 {posts.map((post) => (
                     <tr key={post.id} className="border-b border-gray-200 h-12 hover:bg-gray-50">
                         <td className="align-middle">{post.id}</td>
-                        <td className="align-middle">
+                        <td
+                            className="align-middle cursor-pointer text-black hover:underline"
+                            onClick={() => handleClick(post.id)}
+                        >
                             <div className="flex items-center justify-center gap-2">
-                                <span className="text-black">🔒</span>
                                 {post.name === '판매자' && (
                                     <span className="bg-gray-300 text-white text-xs px-2 py-0.5 rounded-full">
-                                            RE
-                                        </span>
+                                        RE
+                                    </span>
                                 )}
                                 <span>{post.title}</span>
                                 <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                                        NEW
-                                    </span>
+                                    NEW
+                                </span>
                             </div>
                         </td>
                         <td className="align-middle">{post.name}</td>

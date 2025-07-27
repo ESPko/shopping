@@ -19,6 +19,8 @@ import CartPage from "./knh/pages/Cart/CartPage.jsx";
 import OrderPage from "./knh/pages/ Order/OrderPage.jsx";
 import OrderCompletePage from "./knh/pages/OrderComplete/OrderCompletePage.jsx";
 import PrivateRoute from "./JungSY/PrivateRoute.jsx";
+import CommunityDetail from "./ParkES/community/CommunityDetail.jsx";
+import ReviewForm from "./JangDJ/component/preDetail/ReviewFormModal.jsx";
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
                     <Route path="/qna" element={<Qna />} />
                     <Route path="/qnadetail/:no" element={<QnaDetail />} />
                     <Route path="/community" element={<Community />} />
+                    <Route path="/community/:id" element={<CommunityDetail />} />
                     <Route path="/qnawrite" element={<QnaWrite />} />
                     <Route path="/qnaedit/:no" element={<QnaEdit />} />
                     <Route path="/qnasecret/:id" element={<QnaSecret />} />
@@ -38,7 +41,8 @@ function App() {
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/auth/*" element={<LoginRoutes />} />
 
-                    {/* ✅ 보호된 마이페이지 라우트 */}
+
+                {/* ✅ 보호된 마이페이지 라우트 */}
                     <Route path="/mypage/*" element={
                             <PrivateRoute>
                                     <MyPageRouter />

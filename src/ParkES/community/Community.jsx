@@ -9,6 +9,10 @@ function Community() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 20;
 
+    // 유저 정보를 props나 context 등 다른 방법으로 받아오세요
+    const user = JSON.parse(localStorage.getItem("user")); // 예시로 localStorage에서 가져온다고 가정
+    const isLoggedIn = user !== null; // 로그인 여부
+
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -77,10 +81,11 @@ function Community() {
                 <CommunityList />
             </div>
 
-            {/* 페이지네이션 중앙 정렬 (보드페이지도 비슷한 구조이므로 동일하게) */}
+            {/* 페이지네이션 중앙 정렬 */}
             <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </div>
+
 
             <Footer />
         </div>

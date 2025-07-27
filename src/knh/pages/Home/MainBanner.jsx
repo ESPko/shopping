@@ -56,8 +56,8 @@ const MainBanner = () => {
                 >
                     {mainBanner.map((banner) => (
                         <SwiperSlide key={banner.id}>
-                                <img src={banner.src}
-                                onClick={() => window.location.href = banner.link} className={'max-w-full mx-full object-cover mobile:h-[500px] '} />
+                                <img src={banner.src}/>
+                                {/*// onClick={() => window.location.href = banner.link} className={'max-w-full mx-full object-cover mobile:h-[500px] '} />*/}
                             <div className={'main-text absolute bottom-20 left-20 mobile:left-2'}>
                                 <h1 className={'main-title text-6xl mobile:text-3xl  text-white font-bold pb-4'}>{banner.title}</h1>
                                 <p className={'main-sub text-2xl mobile:text-base mobile:w-[300px] text-white'}>{banner.subtitle}</p>
