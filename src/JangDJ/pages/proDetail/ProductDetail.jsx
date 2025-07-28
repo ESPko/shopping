@@ -15,8 +15,12 @@ function ProductDetail() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/products/${id}`)
-            .then(res => setProduct(res.data))
-            .catch(err => console.error(err));
+            .then(res => {
+                setProduct(res.data);
+            })
+            .catch(err => {
+                console.error('Error fetching product:', err);  // 에러 로그 추가
+            });
     }, [id]);
 
     if (!product) return <div>로딩중...</div>;

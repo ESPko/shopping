@@ -19,12 +19,12 @@ function ReviewPhotos() {
             });
     }, [setReviews]);
 
-    // 리뷰가 없을 경우 빈 배열로 초기화
-    const validReviews = reviews || [];
+    // 리뷰 배열이 비어 있을 수 있으므로 기본값을 빈 배열로 설정
+    const validReviews = Array.isArray(reviews) ? reviews : [];
 
-    // 이미지가 있는 리뷰만 필터링 후 첫 번째 이미지만 추출
+    // 이미지가 있는 리뷰만 필터링하고 첫 번째 이미지만 추출
     const photos = validReviews
-        .filter((review) => review.images_list && review.images_list.length > 0) // images_list 필터링
+        .filter((review) => Array.isArray(review.images_list) && review.images_list.length > 0) // 이미지 배열이 있을 경우만 필터링
         .map((review) => ({
             src: review.images_list[0], // 첫 번째 이미지만 추출
             review,

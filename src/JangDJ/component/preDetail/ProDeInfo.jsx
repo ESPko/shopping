@@ -2,7 +2,8 @@ import ProReview from "./ProReview.jsx";
 import ProQna from "./ProQna.jsx";
 import ProDeExpla from "./ProDeExpla.jsx";
 
-function ProDeInfo() {
+function ProDeInfo({product}) {
+
     return (
         <div>
             <div id="info" className="py-20 mobile:py-0">
@@ -12,7 +13,7 @@ function ProDeInfo() {
                 <ProReview />
             </div>
             <div id="qna" className="pb-20">
-                <ProQna />
+                <ProQna product={product} />
             </div>
         </div>
     );

@@ -21,6 +21,10 @@ import OrderCompletePage from "./knh/pages/OrderComplete/OrderCompletePage.jsx";
 import PrivateRoute from "./JungSY/PrivateRoute.jsx";
 import CommunityDetail from "./ParkES/community/CommunityDetail.jsx";
 import ReviewForm from "./JangDJ/component/preDetail/ReviewFormModal.jsx";
+import ProQnaWrite from "./JangDJ/component/preDetail/ProQnaWrite.jsx";
+import ProQna from "./JangDJ/component/preDetail/ProQna.jsx";
+import QnaList from "./ParkES/Qna/QnaList.jsx";
+import ProQnaList from "./JangDJ/component/preDetail/ProQnaList.jsx";
 
 
 function App() {
@@ -39,7 +43,10 @@ function App() {
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/product/:id" element={<ProductDetail />} />
-                    <Route path="/auth/*" element={<LoginRoutes />} />
+                    <Route path="/proqnawrite/:productId" element={<ProQnaWrite />} />
+
+
+                <Route path="/auth/*" element={<LoginRoutes />} />
 
 
                 {/* ✅ 보호된 마이페이지 라우트 */}
