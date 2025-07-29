@@ -9,14 +9,29 @@ const useOrderStore = create((set, get) => ({
     orderSelected: () => {
         const { cartItems } = useCartStore.getState();
         const selected = cartItems.filter(item => item.selected);
-        set({ orderedItems: selected }); // 수정: orderItems → orderedItems
+        const processed = selected.map(item => ({
+            ...item,
+            image: item.info_image
+                ? item.info_image.startsWith("http")
+                    ? item.info_image
+                    : `/upload/${item.info_image}`
+                : "/images/default-product-image.jpg"
+        }));
+        set({ orderedItems: processed });
     },
-
 
     // 전체 장바구니 항목 주문으로 설정
     orderAll: () => {
         const { cartItems } = useCartStore.getState();
-        set({ orderedItems: cartItems });
+        const processed = cartItems.map(item => ({
+            ...item,
+            image: item.info_image
+                ? item.info_image.startsWith("http")
+                    ? item.info_image
+                    : `/upload/${item.info_image}`
+                : "/images/default-product-image.jpg"
+        }));
+        set({ orderedItems: processed });
     },
 
     // 주문 상품 가격 합계
@@ -35,9 +50,7 @@ const useOrderStore = create((set, get) => ({
     itemTotalPrice: (item) =>
         item.price * item.quantity,
 
-
-
-// 상태 추가
+    // 상태 추가
     usablePoints: 10000, // 사용자 보유 포인트
     usedPoints: 0,       // 꼭 0으로 초기화할 것!
 
@@ -54,7 +67,6 @@ const useOrderStore = create((set, get) => ({
         const used = get().usedPoints;
         return Math.max(0, total + shipping - used);
     },
-
 }));
 
 export default useOrderStore;

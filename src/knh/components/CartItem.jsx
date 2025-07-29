@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import CartPop from "../pages/Cart/CartPop.jsx";
 import useAuthStore from "../Store/UserAuthStore.js";
 import useCartStore from "../Store/UseCartStore.jsx";
+import * as res from "autoprefixer";
 
 const CartItem = ({ item }) => {
 
@@ -26,6 +27,8 @@ const CartItem = ({ item }) => {
         changeSize(item.id, newSize);  // 새로운 사이즈로 변경
         setOpenItemPop(false);
     };
+
+
 
     // 기본 이미지 설정
     const imageUrl = item.info_image ? item.info_image : "/images/default-product-image.jpg";  // info_image로 수정
