@@ -25,6 +25,9 @@ import ProQnaWrite from "./JangDJ/component/preDetail/ProQnaWrite.jsx";
 import ProQna from "./JangDJ/component/preDetail/ProQna.jsx";
 import QnaList from "./ParkES/Qna/QnaList.jsx";
 import ProQnaList from "./JangDJ/component/preDetail/ProQnaList.jsx";
+import ProQnaSecret from "./JangDJ/component/preDetail/ProQnaSecret.jsx";
+import ProQnaDetail from "./JangDJ/component/preDetail/ProQnaDetail.jsx";
+import ProQnaEdit from "./JangDJ/component/preDetail/ProQnaEdit.jsx";
 
 
 function App() {
@@ -43,7 +46,13 @@ function App() {
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/product/:id" element={<ProductDetail />} />
+
                     <Route path="/proqnawrite/:productId" element={<ProQnaWrite />} />
+                    <Route path="/product/:productId/qnadetail/:id" element={<ProQnaDetail />} />
+                    <Route path="/product/:productId/prosecret/:id" element={<ProQnaSecret />} />
+                    <Route path="/product/:productId/qnaedit/:id" element={<ProQnaEdit />} />
+
+
 
 
                 <Route path="/auth/*" element={<LoginRoutes />} />

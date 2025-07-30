@@ -1,39 +1,55 @@
-// Store/useOrderStore.jsx
-
 import { create } from 'zustand';
+import useAuthStore from "./UserAuthStore.js";
 
-const memberInfo = {
-    label: '우리집',          // 배송지명
-    name: '김나현',           // 받는 사람
-    postcode: '1134',
-    address1: '부산광역시 해운대',
-    address2: '1112호',
-    phone1: '010',
-    phone2: '9898',
-    phone3: '1234',
+const defaultMemberInfo = {
+    label: '우리집',
+    name: '',
+    postcode: '',
+    address1: '',
+    address2: '',
+    phone1: '',
+    phone2: '',
+    phone3: '',
     message: '문앞에 놔두세요',
 };
 
-const useOrderStore = create((set) => ({
-    // 기존 주문 상품 관련 상태...
+const useAddrStore = create((set, get) => {
+    // 로그인 유저 정보 가져오기 (get 사용하여 항상 최신 상태 반영)
+    const getInitialAddress = () => {
+        const user = useAuthStore.getState().user;
+        if (!user) return defaultMemberInfo;
 
-    // 배송지 정보 상태 초기값을 memberInfo로 설정
-    address: { ...memberInfo },
+        const phones = user.mobile ? user.mobile.split('-') : [];
+        return {
+            label: '우리집',
+            name: user.nickname || '',
+            postcode: user.zipCode || '',
+            address1: user.address1 || '',
+            address2: user.address2 || '',
+            phone1: phones[0] || '',
+            phone2: phones[1] || '',
+            phone3: phones[2] || '',
+            message: '문앞에 놔두세요',
+        };
+    };
 
-    // 배송지 정보 업데이트 함수
-    updateAddress: (field, value) =>
-        set((state) => ({
-            address: {
-                ...state.address,
-                [field]: value,
-            },
-        })),
+    return {
+        // 주문 상품 관련 상태 (필요시 추가 가능)
 
-    // 회원 정보(기본 주소)로 배송지 리셋 함수
-    resetAddressToMember: () =>
-        set(() => ({
-            address: { ...memberInfo },
-        })),
-}));
+        address: getInitialAddress(),
 
-export default useOrderStore;
+        updateAddress: (field, value) =>
+            set((state) => ({
+                address: {
+                    ...state.address,
+                    [field]: value,
+                },
+            })),
+
+        resetAddressToMember: () => {
+            set({ address: getInitialAddress() });
+        },
+    };
+});
+
+export default useAddrStore;

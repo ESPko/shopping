@@ -14,7 +14,8 @@ const OrderItem = () => {
                         className={'flex gap-10 items-center justify-between border-b border-b-gray-200 py-4 mobile:gap-2 mobile:py-3'}
                     >
                         <div className={'max-w-[120px] mobile:max-w-[80px]'}>
-                            <img src={item.image} className={'w-full object-cover'} alt={item.name} />
+
+                            <img src={item.info_image} className={'w-full object-cover'} alt={item.name} />
                         </div>
 
                         <div className={'mr-32 mobile:mr-0 mobile:text-sm'}>

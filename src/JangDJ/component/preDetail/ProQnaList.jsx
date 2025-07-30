@@ -4,36 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 const ProQnaList = ({ productId }) => {
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (productId) {
-            // productId를 포함한 API 요청
-            axios.get(`http://localhost:8080/api/qna?productId=${productId}`)
+            axios.get(`http://localhost:8080/api/productqna/product/${productId}`)
                 .then((res) => {
-                    setPosts(res.data); // 데이터 설정
-                    setLoading(false);
+                    setPosts(res.data);
                 })
                 .catch((err) => {
-                    setError('데이터를 불러오는 데 실패했습니다.'); // 오류 메시지 설정
-                    setLoading(false);
+                    setError('데이터를 불러오는 데 실패했습니다.');
+                    console.error(err);
                 });
         }
-    }, [productId]); // productId가 변경될 때마다 호출
+    }, [productId]);
+
 
     const handleTitleClick = (post) => {
         if (post.secret === 0) {
-            navigate(`/qnasecret/${post.id}`);
+            navigate(`/product/${post.product_id}/prosecret/${post.id}`);
         } else {
-            navigate(`/qnadetail/${post.id}`);
+            navigate(`/product/${post.product_id}/prosecret/${post.id}`);
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>; // 로딩 중일 때 표시
-    }
 
     if (error) {
         return <div>{error}</div>; // 에러 발생 시 표시
@@ -55,15 +50,15 @@ const ProQnaList = ({ productId }) => {
                 <tbody>
                 {posts.length === 0 ? (
                     <tr>
-                        <td colSpan="6">No posts available.</td>
-                    </tr>
+                        <td colSpan="6" className="py-8 text-gray-500">
+                            현재 게시글의 질문리스트가 비어있습니다.
+                        </td>                    </tr>
                 ) : (
                     posts.map((post) => (
                         <tr key={post.id} className="border-b border-gray-200 h-12 hover:bg-gray-50">
                             <td className="align-middle">{post.id}</td>
-                            <td className="align-middle">{post.product || '-'}</td>
+                            <td className="align-middle">{post.product_name || '-'}</td>
 
-                            {/* 제목 클릭 시 조건에 따라 페이지 이동 */}
                             <td className="align-middle">
                                 <div
                                     className="flex items-center justify-center gap-2 cursor-pointer"
@@ -75,27 +70,21 @@ const ProQnaList = ({ productId }) => {
 
                                     {post.name === '판매자' && (
                                         <span className="bg-gray-300 text-white text-xs px-2 py-0.5 rounded-full">
-                                                RE
-                                            </span>
+                RE
+              </span>
                                     )}
-
                                     <span>{post.title}</span>
-
-                                    {post.new && (
-                                        <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                                                NEW
-                                            </span>
-                                    )}
                                 </div>
                             </td>
 
-                            <td className="align-middle">{post.name}</td>
-                            <td className="align-middle">{post.date}</td>
-                            <td className="align-middle">{post.hit}</td>
+                            <td className="align-middle">{post.name || '-'}</td>
+                            <td className="align-middle">{post.date || '-'}</td>
+                            <td className="align-middle">{post.hit ?? 0}</td>
                         </tr>
                     ))
                 )}
                 </tbody>
+
             </table>
         </div>
     );
