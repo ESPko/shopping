@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/Header.jsx";
 import Footer from "../../../JangDJ/Footer.jsx";
@@ -5,24 +6,46 @@ import { CheckoutPage } from "../../../ParkES/payment/checkout.jsx";
 import OrderList from "./OrderList.jsx";
 import OrderAddr from "../../components/OrderAddr.jsx";
 import OrderSummary from "../../components/OrderSummary.jsx";
-import { useState, useEffect } from "react";
-import useOrderStore from "../../Store/useAddrStore.jsx";
-import useCartStore from "../../Store/useCartStore.jsx";  // zustand 장바구니 상태 임포트
+import useCartStore from "../../Store/useCartStore.jsx";
+import useAddrStore from "../../Store/useAddrStore.jsx";
+import useOrderStore from "../../Store/useOrderStore.jsx";
 
 const OrderPage = () => {
     const location = useLocation();
-    const { orderItem } = location.state || {};
-    const cartItems = useCartStore((state) => state.cartItems); // zustand 장바구니 데이터
-    const [orderItems, setOrderItems] = useState([]);
-    const address = useOrderStore((state) => state.address); // 유저 배송지 정보
+    const orderItem = location.state?.orderItem || null;
+    const orderItemsFromState = location.state?.orderItems || null;
+
+    const address = useAddrStore(state => state.address);
+    const cartItems = useCartStore(state => state.cartItems);
+    const setOrderedItems = useOrderStore(state => state.setOrderedItems);
+
+    const orderItems = useMemo(() => {
+        let items = [];
+
+        if (orderItemsFromState) {
+            items = orderItemsFromState;
+        } else if (orderItem) {
+            items = [...cartItems, orderItem];
+        } else {
+            items = cartItems;
+        }
+
+        // 중복 제거 (productId + size or selectedSize 기준)
+        const uniqueItems = Array.from(
+            new Map(
+                items.map(item => {
+                    const size = item.size || item.selectedSize || "none";
+                    return [`${item.productId}_${size}`, item];
+                })
+            ).values()
+        );
+
+        return uniqueItems;
+    }, [orderItemsFromState, orderItem, cartItems]);
 
     useEffect(() => {
-        if (orderItem) {
-            setOrderItems([orderItem]); // 단일 상품 주문일 경우
-        } else {
-            setOrderItems(cartItems);   // 장바구니 전체 주문일 경우
-        }
-    }, [orderItem, cartItems]);
+        setOrderedItems(orderItems);
+    }, [orderItems, setOrderedItems]);
 
     const orderRequestDto = {
         receiverName: address.name,
@@ -33,22 +56,17 @@ const OrderPage = () => {
         deliveryMessage: address.message,
     };
 
-    useEffect(() => {
-        console.log("orderItems:", orderItems);
-        console.log("orderRequestDto:", orderRequestDto);
-    }, [orderItems, orderRequestDto]);
-
     return (
         <>
             <Header isDefaultBlack={true} />
             <section className="py-40 max-w-[800px] mx-auto mobile:px-4 mobile:py-10">
-                <h2 className={'flex justify-center text-3xl font-bold pb-4'}>주문하기</h2>
+                <h2 className="flex justify-center text-3xl font-bold pb-4">주문하기</h2>
                 <OrderList orderItems={orderItems} />
                 <OrderAddr />
                 <OrderSummary orderItems={orderItems} />
                 <CheckoutPage
                     orderItems={orderItems}
-                    orderRequestDto={orderRequestDto} // 전달
+                    orderRequestDto={orderRequestDto}
                 />
             </section>
             <Footer />

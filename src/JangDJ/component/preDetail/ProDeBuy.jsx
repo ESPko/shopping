@@ -5,7 +5,7 @@ import useAuthStore from "../../../knh/Store/UserAuthStore.js";
 import useProductDetail from "../../store/useProductDetail.js";
 import useCartStore from "../../../knh/Store/UseCartStore.jsx";
 
-function ProDeBuy({ productId, name, price }) {
+function ProDeBuy({ product }) {
     const { selectedSize, setSize, count, addCount, minusCount } = useProductDetail();
     const { user } = useAuthStore();
     const addToCart = useCartStore(state => state.addToCart);
@@ -13,10 +13,11 @@ function ProDeBuy({ productId, name, price }) {
 
     const sizes = ["S", "M", "L", "XL"];
 
-    const handleAddToCart = () => {
-        console.log("addToCart 호출", { productId, selectedSize, count });
-        console.log("추가할 productId:", productId);
+    const { id: productId, name, price, infoImage } = product;
 
+    console.log("product:", product);
+
+    const handleAddToCart = () => {
         if (!user) {
             alert("로그인이 필요합니다.");
             return;
@@ -37,24 +38,48 @@ function ProDeBuy({ productId, name, price }) {
             alert("사이즈를 선택해주세요.");
             return;
         }
-        navigate("/checkout", {
+
+        // 현재 장바구니 아이템 가져오기 (최신 상태)
+        const cartItems = useCartStore.getState().cartItems;
+
+        const buyNowItem = {
+            id: productId,
+            productId: productId,
+            name,
+            price,
+            selectedSize,
+            quantity: count,
+            info_image: infoImage || "/default-image.jpg",
+        };
+
+        let newCartItems = [...cartItems];
+        const existingIndex = newCartItems.findIndex(
+            (item) => item.productId === productId && item.selectedSize === selectedSize
+        );
+
+        if (existingIndex >= 0) {
+            newCartItems[existingIndex] = {
+                ...newCartItems[existingIndex],
+                quantity: newCartItems[existingIndex].quantity + count,
+            };
+        } else {
+            newCartItems.push(buyNowItem);
+        }
+
+        console.log("바로구매로 주문페이지에 넘기는 orderItems:", newCartItems);
+
+        navigate("/order", {
             state: {
-                productId,
-                name,
-                price,
-                size: selectedSize,
-                count,
+                orderItems: newCartItems,
             },
         });
     };
 
     return (
         <div className="pl-8 pt-10">
-        {/*    상품명, 가격*/}
             <h2 className="text-2xl font-bold mb-5 mobile:text-xl mobile:mb-2">{name}</h2>
             <p className="text-xl font-bold mb-8">{price.toLocaleString()} 원</p>
 
-        {/*    사이즈 */}
             <div className="mb-6">
                 <p className="mb-3 text-sm font-bold">사이즈 선택</p>
                 <div className="flex gap-2">
@@ -74,7 +99,6 @@ function ProDeBuy({ productId, name, price }) {
                 </div>
             </div>
 
-        {/*    수량*/}
             <div className="flex items-center gap-4 mb-10">
                 <p className="font-medium">수량</p>
                 <div className="flex items-center border rounded">
@@ -84,14 +108,11 @@ function ProDeBuy({ productId, name, price }) {
                 </div>
             </div>
 
-        {/*    총 결제 금액 */}
             <div className="flex justify-between border-b-2 border-black pb-4 mb-10">
                 <p className="font-semibold">총 결제금액</p>
                 <p className="font-bold text-2xl mobile:text-xl">{(price * count).toLocaleString()} 원</p>
             </div>
 
-
-        {/*    버튼 */}
             <div className="flex gap-4">
                 <button
                     onClick={handleAddToCart}

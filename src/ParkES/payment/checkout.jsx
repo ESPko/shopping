@@ -91,12 +91,6 @@ export function CheckoutPage() {
         })),
     };
 
-    useEffect(() => {
-        console.log('orderedItems:', orderedItems);
-        console.log('orderRequestDto:', orderRequestDto);
-        console.log("order 객체:", order);
-        console.log("order.totalPayAmount:", order?.totalPayAmount);
-    }, [orderedItems, orderRequestDto]);
 
     const handleOrderAndPayment = async () => {
         if (!user) {
