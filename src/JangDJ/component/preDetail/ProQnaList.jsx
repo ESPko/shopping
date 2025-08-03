@@ -78,8 +78,18 @@ const ProQnaList = ({ productId }) => {
                             </td>
 
                             <td className="align-middle">{post.name || '-'}</td>
-                            <td className="align-middle">{post.date || '-'}</td>
-                            <td className="align-middle">{post.hit ?? 0}</td>
+                            <td className="align-middle">
+                                {post.date
+                                    ? new Date(post.date).toLocaleString("ko-KR", {
+                                        year: "numeric",
+                                        month: "2-digit",
+                                        day: "2-digit",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                        hour12: false
+                                    }).replace(/\. /g, '-').replace('.', '') // "2025. 08. 02. 21:25" -> "2025-08-02-21:25"
+                                    : '-'}
+                            </td>                            <td className="align-middle">{post.hit ?? 0}</td>
                         </tr>
                     ))
                 )}

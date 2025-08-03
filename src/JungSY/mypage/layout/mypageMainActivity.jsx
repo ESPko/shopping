@@ -1,8 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TabMenu from "../components/TabMenu.jsx";
+import axios from "axios";
+import useAuthStore from "../../../knh/Store/UserAuthStore.js";
+import ProductCard from "../../../JangDJ/component/proList/ProductCard.jsx";
 
-function mypageMainActivity() {
+function MypageMainActivity() {
     const [activeTab, setActiveTab] = useState("관심상품");
+    const { user } = useAuthStore();
+    const userId = user?.id;
+
+    const [likedProducts, setLikedProducts] = useState([]);
+
+    useEffect(() => {
+        if (activeTab === "관심상품" && userId) {
+            axios.get(`http://localhost:8080/api/likes/products`, {
+                params: { userId },
+            })
+                .then(res => {
+                    setLikedProducts(res.data);
+                })
+                .catch(err => {
+                    console.error("관심상품 불러오기 실패", err);
+                });
+        }
+    }, [activeTab, userId]);
 
     return (
         <>
@@ -29,47 +50,26 @@ function mypageMainActivity() {
                 {/* 탭별 콘텐츠 */}
                 {activeTab === "관심상품" && (
                     <>
-                        {/* 상품 항목 */}
-                        <div className="flex items-center justify-between border-b py-4">
-                            {/* 체크박스 + 이미지 */}
-                            <div className="flex items-start gap-3 ">
-                                <input type="checkbox" className="self-center" />
-                                <img
-                                    src="/images/diadoraProduct.jpg"
-                                    alt="관심상품"
-                                    className="w-32 h-32 object-cover mobile:w-20 mobile:h-20"
-                                />
-                            </div>
+                        {likedProducts.length === 0 ? (
+                            <p className="text-center py-20 text-gray-500">관심상품이 없습니다.</p>
+                        ) : (
+                            <div className="grid grid-cols-2 gap-6">
 
-                            {/* 상품정보 */}
-                            <div className="flex items-start">
-                                <div>
-                                    <div className="font-semibold mb-1 text-lg mobile:text-xs mobile:w-20">경량 러닝 볼캡 CHARCOAL GREY</div>
-                                    <a href="#" className="text-xs underline text-gray-500 hover:text-black transition">옵션변경</a>
-                                </div>
+                                {likedProducts.map(product => {
+                                    return (
+                                        <ProductCard
+                                            key={product.id}
+                                            id={product.id}
+                                            image={product.info_image || product.image}
+                                            name={product.name}
+                                            price={product.price}
+                                            salePrice={product.salePrice}
+                                        />
+                                    );
+                                })}
                             </div>
-
-                            {/* 가격 */}
-                            <div className="flex items-start">
-                                <div className="text-base font-semibold mobile:text-sm">59,000원</div>
-                            </div>
-
-                            {/* 버튼들 */}
-                            <div className="text-center text-sm space-y-2">
-                                <div className="text-xs text-gray-700 flex flex-col space-y-2">
-                                    <a href="#" className="underline hover:text-black transition">주문하기</a>
-                                    <a href="#" className="underline hover:text-black transition">장바구니담기</a>
-                                    <a href="#" className="underline hover:text-red-500 transition">삭제</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 하단 버튼 */}
-                        <div className="flex gap-2 mt-6">
-                            <button className="border px-4 py-2 rounded">선택삭제</button>
-                            <button className="border px-4 py-2 rounded">선택담기</button>
-                            <button className="border px-4 py-2 rounded">전체주문</button>
-                        </div>
+                        )}
+                        {/* 필요하면 하단 버튼들 추가 가능 */}
                     </>
                 )}
 
@@ -84,4 +84,4 @@ function mypageMainActivity() {
     );
 }
 
-export default mypageMainActivity;
+export default MypageMainActivity;
