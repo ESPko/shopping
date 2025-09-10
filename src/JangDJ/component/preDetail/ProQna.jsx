@@ -14,9 +14,6 @@ function ProQna({ product }) {
 
     const navigate = useNavigate();
 
-    if (!productId) {
-    }
-
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
@@ -43,7 +40,7 @@ function ProQna({ product }) {
 
                 {/* 게시판 리스트 */}
                 <div className="mx-16 mobile:mx-4">
-                    <ProQnaList product={product} /> {/* product 객체 전체 전달 */}
+                    <ProQnaList productId={product ? product.id : null} />
                 </div>
 
                 {/* WRITE 버튼 (오른쪽 정렬) */}

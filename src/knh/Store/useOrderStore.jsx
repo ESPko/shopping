@@ -1,14 +1,16 @@
-// src/store/useOrderStore.jsx
 import { create } from 'zustand';
 import useCartStore from "./UseCartStore.jsx";
 
 const useOrderStore = create((set, get) => ({
     orderedItems: [],
 
+
+
     // 선택된 항목만 주문 항목으로 설정
     orderSelected: () => {
         const { cartItems } = useCartStore.getState();
         const selected = cartItems.filter(item => item.selected);
+<<<<<<< HEAD
         const processed = selected.map(item => ({
             ...item,
             image: item.info_image
@@ -18,6 +20,9 @@ const useOrderStore = create((set, get) => ({
                 : "/images/default-product-image.jpg"
         }));
         set({ orderedItems: processed });
+=======
+        set({ orderedItems: selected });
+>>>>>>> 492dd77173377e983fd4c1e21aabb541ef1e7d77
     },
 
     // 전체 장바구니 항목 주문으로 설정
@@ -33,6 +38,9 @@ const useOrderStore = create((set, get) => ({
         }));
         set({ orderedItems: processed });
     },
+
+    // **여기 추가 — orderedItems 직접 세팅 액션**
+    setOrderedItems: (items) => set({ orderedItems: items }),
 
     // 주문 상품 가격 합계
     totalOrderPrice: () => {

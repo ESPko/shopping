@@ -12,7 +12,6 @@ function ReviewPhotos() {
         axios.get('http://localhost:8080/api/reviews')  // 리뷰 데이터를 받아오는 API
             .then((response) => {
                 setReviews(response.data);  // 받은 데이터를 상태에 설정
-                console.log("받은 리뷰 데이터:", response.data);
             })
             .catch((error) => {
                 console.error("리뷰를 가져오는 데 실패했습니다.", error);

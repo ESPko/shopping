@@ -1,4 +1,3 @@
-import OrderPage from "../ Order/OrderPage.jsx";
 import Header from "../../components/Header.jsx";
 import Footer from "../../../JangDJ/Footer.jsx";
 import { CircleCheck } from 'lucide-react';

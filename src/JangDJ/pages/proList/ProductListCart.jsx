@@ -1,124 +1,159 @@
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../../knh/Store/UserAuthStore.js";
+import useCartStore from "../../../knh/Store/UseCartStore.jsx";
 
 function ProductListCart({ product, onClose }) {
-    // const [selectSize, setSelectSize] = useState();
-    // const [count, setCount] = useState(1);
-    // const price = product.salePrice || product.price;
-    // const totalPrice = price * count;
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [count, setCount] = useState(1);
 
-    const [selectedSize, setSelectedSize] = useState([]);
-    const price = product.salePrice|| product.price;
+    const navigate = useNavigate();
+    const { user } = useAuthStore();
+    const addToCart = useCartStore((state) => state.addToCart);
 
-    const handleSizeClick = (size) => {
-        const exist = selectedSize.find((opt) => opt.size === size);
-        if (!exist) {
-            setSelectedSize([
-                ...selectedSize,
-                {size, count: 1, price},
-            ]);
+    const price = product.salePrice || product.price;
+    const sizes = ["S", "M", "L", "XL"];
+
+    const handleAddToCart = () => {
+        if (!user) {
+            alert("로그인이 필요합니다.");
+            return;
         }
+        if (!selectedSize) {
+            alert("사이즈를 선택해주세요.");
+            return;
+        }
+
+        addToCart(product.id, selectedSize, count);
+        alert("장바구니에 담겼습니다.");
+        onClose();
     };
 
-    const updateCount = (size, change) => {
-        setSelectedSize((prev) =>
-            prev.map((opt) =>
-            opt.size === size
-                ? { ...opt, count: Math.max(1, opt.count + change) }
-                : opt
-            )
+    const buyNow = () => {
+        if (!user) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
+        if (!selectedSize) {
+            alert("사이즈를 선택해주세요.");
+            return;
+        }
+
+        // 장바구니 아이템 현재 상태 가져오기
+        const cartItems = useCartStore.getState().cartItems;
+
+        const buyNowItem = {
+            id: product.id,
+            productId: product.id,
+            name: product.name,
+            price,
+            selectedSize,
+            quantity: count,
+            info_image: product.image || "/default-image.jpg",
+        };
+
+        let newCartItems = [...cartItems];
+        const existingIndex = newCartItems.findIndex(
+            (item) => item.productId === product.id && item.selectedSize === selectedSize
         );
+
+        if (existingIndex >= 0) {
+            newCartItems[existingIndex] = {
+                ...newCartItems[existingIndex],
+                quantity: newCartItems[existingIndex].quantity + count,
+            };
+        } else {
+            newCartItems.push(buyNowItem);
+        }
+
+        navigate("/order", {
+            state: {
+                orderItems: newCartItems,
+            },
+        });
     };
 
-    // 사이즈 별 x 버튼
-    const removeOption = (size) => {
-        setSelectedSize((prev) =>
-            prev.filter((opt) => opt.size !== size)
-        );
-    };
+    const increaseCount = () => setCount((c) => c + 1);
+    const decreaseCount = () => setCount((c) => (c > 1 ? c - 1 : 1));
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-xl w-full max-w-md relative">
-                <div className="bg-[#1B3C5C] text-white px-6 py-4 ">
+            <div className="bg-white rounded-xl w-full max-w-md relative overflow-hidden">
+                {/* 헤더 */}
+                <div className="bg-[#1B3C5C] text-white px-6 py-4 relative">
                     <span className="text-lg font-bold mobile:text-base">옵션 선택</span>
-                    <button onClick={onClose} className="absolute top-3 right-4 text-3xl">×</button>
+                    <button onClick={onClose} className="absolute top-3 right-4 text-3xl">
+                        ×
+                    </button>
                 </div>
 
-                <div className="flex gap-4 mb-4 p-6 mobile:mb-0 ">
+                {/* 상품 정보 */}
+                <div className="flex gap-4 mb-4 p-6 mobile:mb-0">
                     <img src={product.image} alt={product.name} className="h-20 w-20 object-contain" />
-                    <div>
+                    <div className="flex flex-col justify-center">
                         <h2 className="font-semibold">{product.name}</h2>
+                        <p className="text-[#1B3C5C] font-bold">{price.toLocaleString()}원</p>
                     </div>
                 </div>
 
+                {/* 사이즈 선택 */}
                 <div className="px-6 pt-6">
-                    <div className="font-medium mb-2">사이즈</div>
+                    <div className="font-medium mb-2">사이즈 선택</div>
                     <div className="flex gap-2 flex-wrap">
-                        {["S", "M", "L", "XL"].map((size) => (
+                        {sizes.map((size) => (
                             <button
                                 key={size}
-                                className="px-3 py-1 rounded border bg-white hover:bg-gray-100"
-                                onClick={() => handleSizeClick(size)}
+                                onClick={() => setSelectedSize(size)}
+                                className={`px-3 py-1 rounded border ${
+                                    selectedSize === size ? "bg-[#1B3C5C] text-white" : "bg-white hover:bg-gray-100"
+                                }`}
                             >
                                 {size}
                             </button>
                         ))}
                     </div>
-                    <div className="font-light mt-8 text-sm pb-2 border-b">* 위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</div>
                 </div>
 
-                {selectedSize.map(({ size, count, price }) => (
-                    <div
-                        key={size}
-                        className="flex items-center justify-between gap-4 px-6 py-4"
+                {/* 수량 선택 */}
+                <div className="px-6 pt-6 flex items-center gap-4">
+                    <span className="font-medium">수량</span>
+                    <div className="flex items-center border rounded">
+                        <button onClick={decreaseCount} className="px-3 py-1">
+                            -
+                        </button>
+                        <span className="px-4">{count}</span>
+                        <button onClick={increaseCount} className="px-3 py-1">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                {/* 총 결제금액 */}
+                <div className="px-6 pt-6 pb-4 border-b text-gray-700 font-medium flex justify-between">
+                    <span>총 결제금액</span>
+                    <span className="text-2xl font-semibold mobile:text-xl">
+            {(price * count).toLocaleString()} 원
+          </span>
+                </div>
+
+                {/* 버튼 영역 */}
+                <div className="flex flex-col p-6 gap-2">
+                    <button
+                        onClick={buyNow}
+                        className="bg-[#1B3C5C] text-lg text-white py-2 rounded h-16 mobile:text-base mobile:h-10"
                     >
-                        <div className="font-medium w-1/3">{size}</div>
-                        <div className="flex items-center gap-2 w-1/3 justify-center">
-                            <button
-                                className="px-2 py-1"
-                                onClick={() => updateCount(size, -1)}
-                            >
-                                -
-                            </button>
-                            <span>{count}</span>
-                            <button
-                                className="px-2 py-1"
-                                onClick={() => updateCount(size, 1)}
-                            >
-                                +
-                            </button>
-                        </div>
-                        <div className="flex items-center gap-4 w-1/3 justify-end">
-                            <div className="font-bold">
-                                {(price * count).toLocaleString()} 원
-                            </div>
-                            <button
-                                className="text-gray-500 hover:text-red-500"
-                                onClick={() => removeOption(size)}
-                            >
-                                ×
-                            </button>
-                        </div>
-                    </div>
-                ))}
-
-                {selectedSize.length > 0 && (
-                    <div className="px-6 pb-4 border-t pt-5 text-gray-700 font-medium">
-                        총 상품금액 ({selectedSize.reduce((sum, opt) => sum + opt.count, 0)}개)  : {" "}
-                        <span className="text-2xl font-semibold mobile:text-xl">
-                            {selectedSize.reduce((sum, opt) => sum + opt.count * opt.price, 0).toLocaleString()}원
-                        </span>
-                    </div>
-                )}
-
-                <div className="flex flex-col p-6 ">
-                    <button className="bg-[#1B3C5C] text-lg text-white py-2 rounded h-16 mobile:text-base mobile:h-10">바로구매하기</button>
-                    <button className="border border-[#1B3C5C] font-semibold py-2 text-lg rounded h-16 mobile:text-base mobile:h-10">장바구니담기</button>
+                        바로구매
+                    </button>
+                    <button
+                        onClick={handleAddToCart}
+                        className="border border-[#1B3C5C] font-semibold py-2 text-lg rounded h-16 mobile:text-base mobile:h-10"
+                    >
+                        장바구니 담기
+                    </button>
                 </div>
             </div>
-
         </div>
     );
 }
 
-export default ProductListCart
+export default ProductListCart;

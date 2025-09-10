@@ -38,6 +38,7 @@ function ProQnaWrite({product}) {
                     content,
                     password,
                     isSecret: secret === 'secret',
+                    name, // 작성자 추가
                 }),
             });
 
